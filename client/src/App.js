@@ -6,11 +6,16 @@ import Search from "./pages/Search";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Wrapper from "./components/Wrapper";
+import Header from "./components/Header";
 
 const App = () => (
   <Router>
     <div>
       <Navbar />
+      <Header>
+      <h1> Animal Sanctuaries</h1>
+      <h2> Website for Animal lovers</h2>
+    </Header>
       <Wrapper>
         <Route exact path="/" component={About} />
         <Route exact path="/about" component={About} />
