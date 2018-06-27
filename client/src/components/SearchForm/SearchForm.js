@@ -16,16 +16,16 @@ const SearchForm = props => (
         placeholder="Type in an Animal Sanctuary Name"
         id="sanctuary"
       />
-      <datalist id="breeds">
-        {props.breeds.map(breed => <option value={breed} key={breed} />)}
+      <datalist id="sanctuaries">
+        {props.sanctuaries.map(sanctuary => <option value={sanctuary} key={sanctuary} />)}
       </datalist>
-      <button
+      {/* <button
         type="submit"
         onClick={props.handleFormSubmit}
         className="btn btn-success"
       >
         Search
-      </button>
+      </button> */}
     </div>
   </form>
 );
