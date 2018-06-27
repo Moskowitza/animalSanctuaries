@@ -20,9 +20,13 @@ class Search extends Component {
   };
 
   //we need some sort of filter function
-  //
-  filterResults=()=>{
-  }
+  //THIS NEEDS WORK
+  removeSanctuary = name => {
+    // Filter this.state.sanctuaries for sanctuaries with an alphabet Character (char) not equal to the char being searched
+    const friends = this.state.sanctuaries.filter(sanctuary => sanctuary.name !== name);
+    // Set this.state.sanctuaries equal to the new sanctuary array
+    this.setState({ sanctuaries });
+  };
 
 
   // handle any changes to the input fields
@@ -44,9 +48,8 @@ class Search extends Component {
           <SearchForm
             handleInputChange={this.handleInputChange}
             search={this.state.search}
-
           />
-          {this.state.sanctuaries.map(sanctuary=>(
+          {this.state.sanctuaries.filter(this.searchingFor(this.state.search)).map(sanctuary=>(
             <SearchResults 
             id={sanctuary.id}
             key={sanctuary.id}
