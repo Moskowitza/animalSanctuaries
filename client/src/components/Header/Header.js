@@ -1,10 +1,10 @@
 import React from "react";
 import "./Header.css";
 
-const Header = () => (
-  <footer className="header">
-    <span>Animal Sanctuary 2018</span>
-  </footer>
+const Header = props => (
+  <header className="header">
+  {props.children}
+  </header>
 );
 
 export default Header;

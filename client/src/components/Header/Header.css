@@ -1,0 +1,15 @@
+.header {
+    background:linear-gradient(to bottom right, blue, purple, plum);
+    height: 300px;
+}
+h1{
+    text-align: center;
+    color:white;
+    font-family: 'Monoton', cursive;
+}
+h2{
+    text-align: center;
+    color:white;
+    font-family: 'Yanone Kaffeesatz', sans-serif;
+
+}
