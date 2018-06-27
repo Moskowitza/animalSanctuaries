@@ -6,19 +6,20 @@ const SearchForm = props => (
   <form className="search">
     <div className="form-group">
       <label htmlFor="breed">Sanctuary Name:</label>
+      <p>Search: {props.search}</p>
       <input
         value={props.search}
         onChange={props.handleInputChange}
-        name="sanctuary"
-        list="sanctuary"
+        name="search"
+        list="search"
         type="text"
         className="form-control"
         placeholder="Type in an Animal Sanctuary Name"
         id="sanctuary"
       />
-      <datalist id="sanctuaries">
+      {/* <datalist id="sanctuaries">
         {props.sanctuaries.map(sanctuary => <option value={sanctuary} key={sanctuary} />)}
-      </datalist>
+      </datalist> */}
       {/* <button
         type="submit"
         onClick={props.handleFormSubmit}

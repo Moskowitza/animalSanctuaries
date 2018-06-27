@@ -19,9 +19,22 @@ class Search extends Component {
     console.log(sanctuaries)
   };
 
-  // handleInputChange = event => {
-  //   this.setState({ search: event.target.value });
-  // };
+  //we need some sort of filter function
+  //
+  filterResults=()=>{
+  }
+
+
+  // handle any changes to the input fields
+  handleInputChange = event => {
+    // Pull the name and value properties off of the event.target (the element which triggered the event)
+    const { name, value } = event.target;
+
+    // Set the state for the appropriate input field
+    this.setState({
+      [name]: value
+    });
+  };
 
   render() {
     return (
@@ -30,7 +43,8 @@ class Search extends Component {
           <h1 className="text-center">Search By Sanctuary Name:</h1>
           <SearchForm
             handleInputChange={this.handleInputChange}
-            sanctuaries={this.state.sanctuaries}
+            search={this.state.search}
+
           />
           {this.state.sanctuaries.map(sanctuary=>(
             <SearchResults 
