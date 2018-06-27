@@ -13,7 +13,7 @@ class Search extends Component {
 
   // When the component mounts, get a list of all sanctuaries this.state.sanctuaries from the json file
   componentDidMount() {
-    this.setState({ 
+    this.setState({
       sanctuaries: this.state.sanctuaries
     });
     console.log(sanctuaries)
@@ -21,19 +21,23 @@ class Search extends Component {
 
   //we need some sort of filter function
   //THIS NEEDS WORK
-  removeSanctuary = name => {
-    // Filter this.state.sanctuaries for sanctuaries with an alphabet Character (char) not equal to the char being searched
-    const friends = this.state.sanctuaries.filter(sanctuary => sanctuary.name !== name);
-    // Set this.state.sanctuaries equal to the new sanctuary array
-    this.setState({ sanctuaries });
-  };
+  // removeSanctuary = name => {
+  //   // Filter this.state.sanctuaries for sanctuaries with an alphabet Character (char) not equal to the char being searched
+  //   // const sanctuaries = this.state.sanctuaries.filter(sanctuary => sanctuary.name !== name);
+  //   // Set this.state.sanctuaries equal to the new sanctuary array
+  //   const sanctuaries = this.state.sanctuaries.name.toLowerCase();
+  //   if (sanctuaries.indexOf(this.state.search)) {
+  //     this.setState({ 
+  //       sanctuaries 
+  //     });
+  //   }
+  // };
 
 
   // handle any changes to the input fields
   handleInputChange = event => {
     // Pull the name and value properties off of the event.target (the element which triggered the event)
     const { name, value } = event.target;
-
     // Set the state for the appropriate input field
     this.setState({
       [name]: value
@@ -41,6 +45,11 @@ class Search extends Component {
   };
 
   render() {
+    let filteredSanctuaries =this.state.sanctuaries.filter(
+     (sanctuary) => {
+       return sanctuary.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
+     }
+    );
     return (
       <div>
         <Container style={{ minHeight: "80%" }}>
@@ -49,13 +58,13 @@ class Search extends Component {
             handleInputChange={this.handleInputChange}
             search={this.state.search}
           />
-          {this.state.sanctuaries.filter(this.searchingFor(this.state.search)).map(sanctuary=>(
-            <SearchResults 
-            id={sanctuary.id}
-            key={sanctuary.id}
-            name={sanctuary.name}
-            website={sanctuary.website}
-            logo={sanctuary.logo}
+          {filteredSanctuaries.map(sanctuary => (
+            <SearchResults
+              id={sanctuary.id}
+              key={sanctuary.id}
+              name={sanctuary.name}
+              website={sanctuary.website}
+              logo={sanctuary.logo}
             />
           ))}
         </Container>
