@@ -3,6 +3,8 @@ import API from "../utils/API";
 import Card from "../components/Card";
 import Alert from "../components/Alert";
 
+
+
 class Discover extends Component {
   state = {
     image: "",
@@ -51,10 +53,6 @@ class Discover extends Component {
 
   render() {
     return (
-          <Header>
-      <h1> Animal Sanctuaries</h1>
-      <h2> Website for Animal lovers</h2>
-    </Header>
       <div>
         <h1 className="text-center">Make New Friends</h1>
         <h3 className="text-center">

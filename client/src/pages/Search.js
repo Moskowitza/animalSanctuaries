@@ -1,57 +1,63 @@
 import React, { Component } from "react";
-import API from "../utils/API";
 import Container from "../components/Container";
 import SearchForm from "../components/SearchForm";
 import SearchResults from "../components/SearchResults";
-import Alert from "../components/Alert";
-
+import sanctuaries from "../sanctuaries.json";
 class Search extends Component {
   state = {
     search: "",
-    breeds: [],
+    sanctuaries,
     results: [],
     error: ""
   };
 
-  // When the component mounts, get a list of all available base breeds and update this.state.breeds
+  // When the component mounts, get a list of all sanctuaries this.state.sanctuaries from the json file
   componentDidMount() {
-    API.getBaseBreedsList()
-      .then(res => this.setState({ breeds: res.data.message }))
-      .catch(err => console.log(err));
-  }
+    this.setState({ 
+      sanctuaries: this.state.sanctuaries
+    });
+    console.log(sanctuaries)
+  };
 
+  //we need some sort of filter function
+  //THIS NEEDS WORK
+  removeSanctuary = name => {
+    // Filter this.state.sanctuaries for sanctuaries with an alphabet Character (char) not equal to the char being searched
+    const friends = this.state.sanctuaries.filter(sanctuary => sanctuary.name !== name);
+    // Set this.state.sanctuaries equal to the new sanctuary array
+    this.setState({ sanctuaries });
+  };
+
+
+  // handle any changes to the input fields
   handleInputChange = event => {
-    this.setState({ search: event.target.value });
+    // Pull the name and value properties off of the event.target (the element which triggered the event)
+    const { name, value } = event.target;
+
+    // Set the state for the appropriate input field
+    this.setState({
+      [name]: value
+    });
   };
 
-  handleFormSubmit = event => {
-    event.preventDefault();
-    API.getDogsOfBreed(this.state.search)
-      .then(res => {
-        if (res.data.status === "error") {
-          throw new Error(res.data.message);
-        }
-        this.setState({ results: res.data.message, error: "" });
-      })
-      .catch(err => this.setState({ error: err.message }));
-  };
   render() {
     return (
       <div>
         <Container style={{ minHeight: "80%" }}>
-          <h1 className="text-center">Search By Breed!</h1>
-          <Alert
-            type="danger"
-            style={{ opacity: this.state.error ? 1 : 0, marginBottom: 10 }}
-          >
-            {this.state.error}
-          </Alert>
+          <h1 className="text-center">Search By Sanctuary Name:</h1>
           <SearchForm
-            handleFormSubmit={this.handleFormSubmit}
             handleInputChange={this.handleInputChange}
-            breeds={this.state.breeds}
+            search={this.state.search}
           />
-          <SearchResults results={this.state.results} />
+          {this.state.sanctuaries.filter(this.searchingFor(this.state.search)).map(sanctuary=>(
+            <SearchResults 
+            id={sanctuary.id}
+            key={sanctuary.id}
+            name={sanctuary.name}
+            website={sanctuary.website}
+            logo={sanctuary.logo}
+            />
+          ))}
         </Container>
       </div>
     );
