@@ -14,6 +14,12 @@ module.exports = function(sequelize, DataTypes) {
         validate: {
           len: [1]
         }
+      },
+      animalSanID:
+      {
+        type: DataTypes.TEXT,
+        allowNull: false,
+
       }
     });
     return Post;

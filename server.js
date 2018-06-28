@@ -18,6 +18,15 @@ if (process.env.NODE_ENV === "production") {
 
 
 // Define API routes here
+//send login data to SQL
+app.post("/api/login", (req, res) => {
+  db.User.create(req.body).then(function (data) {
+    res.json(data);
+});
+});
+
+
+
 
 
 
