@@ -22,7 +22,7 @@ if (process.env.NODE_ENV === "production") {
 app.post("/api/login", (req, res) => {
   db.User.create(req.body).then(function (data) {
     res.json(data);
-});
+  });
 });
 
 
@@ -37,7 +37,7 @@ app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 
-db.sequelize.sync({force: true}).then(function() {
+db.sequelize.sync({ force: true }).then(function () {
   app.listen(PORT, () => {
     console.log(`🌎 ==> Server now on port ${PORT}!`);
   });

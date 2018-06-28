@@ -1,10 +1,10 @@
-import React from "react";
+import React, { Component } from "react";
 import Container from "../components/Container";
 import Row from "../components/Row";
 import Col from "../components/Col";
 
 
-class Login extends React.Component {
+class Login extends Component {
   //Setting the initial values of this.state.email and this.state.password
 
  state = {

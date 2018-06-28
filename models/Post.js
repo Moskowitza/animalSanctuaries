@@ -1,5 +1,4 @@
 module.exports = function(sequelize, DataTypes) {
-  
     const Post = sequelize.define("Post", {
       title: {
         type: DataTypes.STRING,
