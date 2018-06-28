@@ -7,20 +7,22 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Wrapper from "./components/Wrapper";
 import Header from "./components/Header";
+import Login from "./pages/Login";
 
 const App = () => (
   <Router>
     <div>
       <Navbar />
       <Header>
-      <h1> Animal Sanctuaries</h1>
-      <h2> Website for Animal lovers</h2>
-    </Header>
+        <h1> Animal Sanctuaries</h1>
+        <h2> Website for Animal lovers</h2>
+      </Header>
       <Wrapper>
         <Route exact path="/" component={About} />
         <Route exact path="/about" component={About} />
         <Route exact path="/discover" component={Discover} />
         <Route exact path="/search" component={Search} />
+        <Route exact path="/login" component={Login} />
       </Wrapper>
       <Footer />
     </div>
