@@ -8,10 +8,13 @@ import Col from "../components/Col";
 class Login extends Component {
   //Setting the initial values of this.state.email and this.state.password
 
- state = {
+  state = {
     username: "",
-    password: ""
-  }  
+    password: "",
+    email:"",
+    firstname:"",
+    lastname:""
+  }
 
 
   // handle any changes to the input fields
@@ -28,57 +31,76 @@ class Login extends Component {
   // When the form is submitted, prevent the default event and alert the username and password
   handleFormSubmit = event => {
     event.preventDefault();
-      alert(`Username: ${this.state.username}\nPassword: ${this.state.password}`);
-      API.saveUser({
-          username: this.state.username,
-          password: this.state.password,
-      })
-          .then(res => console.log(res))
+    // alert(`Username: ${this.state.username}\nPassword: ${this.state.password}`);
+    API.saveUser({
+      username: this.state.username,
+      password: this.state.password,
+      email:this.state.email,
+      firstname:this.state.firstname,
+      lastname:this.state.lastname
+    })
+      .then(res => console.log(res))
 
-    };  
+  };
 
-    // const data = new FormData(event.target);
-    
+  // const data = new FormData(event.target);
 
-  
+
+
 
   render() {
     return (
       <div>
         <Container>
-        <Row className="justify-content-center"> 
-        <Col size="md-12">
-        <form className="card-body">
-           
-            <span>
-            <p></p>
-            Username: 
-            {/* {this.state.username} */}
+          <Row className="justify-content-center">
+            <Col size="md-12">
+              <form className="card-body">
 
-            <input
-              type="text"
-              placeholder="Username"
-              name="username"
-            value={this.state.username}
-            onChange={this.handleInputChange.bind(this)}
-            />
-            </span>                   {/* <p></p>{this.state.password} */}
-            <span>Password:
-                
-            <input
-              type="password"
-              placeholder="Password"
-              name="password"
-              value={this.state.password}
-            onChange={this.handleInputChange.bind(this)}
-            />
-            <button onClick={this.handleFormSubmit}>Submit</button>
-            </span>
-          </form>
-        </Col>
-        </Row>
+                <span>
+                  <p></p>
+                    <label>Email Address</label>
+                    <input 
+                      type="text" 
+                      name="email" 
+                      value={this.state.email}
+                      onChange={this.handleInputChange.bind(this)}
+                      />
+                    <label>Firstname</label>
+                    <input 
+                      type="text" 
+                      name="firstname" 
+                      value={this.state.firstname}
+                      onChange={this.handleInputChange.bind(this)}
+                    />
+                    <label >Lastname</label>
+                    <input 
+                    type="text" 
+                      name="lastname" 
+                      value={this.state.lastname}
+                      onChange={this.handleInputChange.bind(this)}       
+                     />
+                     <label >User Name</label>
+                    <input 
+                    type="text" 
+                      name="username" 
+                      value={this.state.username}
+                      onChange={this.handleInputChange.bind(this)}
+                      
+                     />
+                    <label>Password</label>
+                    <input
+                      type="text" 
+                      name="password" 
+                      value={this.state.password}
+                      onChange={this.handleInputChange.bind(this)}
+                     />
+                  <button onClick={this.handleFormSubmit}>Submit</button>
+                </span>
+              </form>
+            </Col>
+          </Row>
         </Container>
-  
+
       </div>
     );
   }
