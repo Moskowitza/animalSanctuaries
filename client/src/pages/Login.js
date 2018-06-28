@@ -1,10 +1,11 @@
-import React from "react";
+import React, { Component } from "react";
 import Container from "../components/Container";
+import API from "../utils/API";
 import Row from "../components/Row";
 import Col from "../components/Col";
 
 
-class Login extends React.Component {
+class Login extends Component {
   //Setting the initial values of this.state.email and this.state.password
 
  state = {
@@ -28,29 +29,16 @@ class Login extends React.Component {
   handleFormSubmit = event => {
     event.preventDefault();
       alert(`Username: ${this.state.username}\nPassword: ${this.state.password}`);
-      this.setState({
-        username: event.target.value,
-        password: event.target.value
-      });
+      API.saveUser({
+          username: this.state.username,
+          password: this.state.password,
+      })
+          .then(res => console.log(res))
+
+    };  
 
     // const data = new FormData(event.target);
     
-
-    fetch("/api/login", {
-      method: "post",
-        body: JSON.stringify(this.state)
-    }).then(function(response) {
-      if (response.status !== 200) {
-        console.log("Looks like there was a problem. Status Code: " + response.status);
-        return;
-      }
-      response.json().then(function(data) {
-        console.log(data);
-      });
-    });
-}
-    
- 
 
   
 

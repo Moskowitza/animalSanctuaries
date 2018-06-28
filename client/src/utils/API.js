@@ -11,5 +11,11 @@ export default {
   },
   getBaseBreedsList: function() {
     return axios.get("https://dog.ceo/api/breeds/list");
+  },
+  
+    // Saves a book to the database
+  saveUser: function (userData) {
+    return axios.post("/api/login", userData);
   }
+  
 };
