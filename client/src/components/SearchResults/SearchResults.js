@@ -3,11 +3,10 @@ import "./SearchResults.css";
 
 const SearchResults = props => (
   <ul className="list-group search-results">
-    {props.results.map(result => (
-      <li key={result} className="list-group-item">
-        <img alt="Dog" src={result} className="img-fluid" />
+      <li key={props.key} className="list-group-item">
+        <img alt="sanctuary" src={props.logo} className="img-fluid" />
+        <h3>Sanctuary Name:{props.name}</h3>
       </li>
-    ))}
   </ul>
 );
 
