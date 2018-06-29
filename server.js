@@ -7,6 +7,8 @@ const env = require('dotenv').load();
 const PORT = process.env.PORT || 3001;
 const app = express();
 const db = require("./models");
+const LocalStrategy = require('passport-local').Strategy;
+
 
 
 // Define middleware here
@@ -35,21 +37,15 @@ models.sequelize.sync().then(function() {
 }).catch(function(err) {
  
     console.log(err, "Something went wrong with the Database Update!")
- 
 });
-// Define API routes here
-//send login data to SQL
-app.post("/api/login", (req, res) => {
-  db.User.create(req.body).then(function (data) {
-    res.json(data);
-  });
-});
+const routes = require("./routes/auth-api");
+app.use(routes);
 
-
-
-
-
-
+// passport config
+const User = require('./models/user');
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 // Send every other request to the React app
 // Define any API routes before this runs
