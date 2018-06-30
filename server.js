@@ -1,19 +1,4 @@
 const express = require("express");
-<<<<<<< HEAD
-const bodyParser = require("body-parser");
-const path = require("path");
-const env = require('dotenv').load();
-// passport stuff
-const passport = require("passport");
-const LocalStrategy = require('passport-local').Strategy;
-
-const session = require("express-session");
-
-const PORT = process.env.PORT || 3001;
-const app = express();
-
-const db = require("./models");
-=======
 
 const app = express();
 //middleware : import the passport module and the express-session, both of which we need to handle authentication.
@@ -22,13 +7,12 @@ var session  = require('express-session');
 const path = require("path");
 // Then, we import the body-parser module. This extracts the entire body part of an incoming request and exposes it in a format that is easier to work with. In this case, we will use the JSON format.
 var bodyParser = require('body-parser');
-
+var sequelize =require('sequelize')
 // import the dot-env module to handle environment variables.
 var env = require('dotenv').load();
 
 
 const PORT = process.env.PORT || 3001;
->>>>>>> 0a7e1fa27439324246ff5d13fd619f7f617dc3f1
 
 
 const db = require("./models");
@@ -54,11 +38,6 @@ app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 
 
-<<<<<<< HEAD
-// Routes
-const routes = require("./routes/auth-api");
-app.use(routes);
-=======
 //Models
 var models = require("./models");
  
@@ -85,7 +64,6 @@ app.post("/api/login", (req, res) => {
 var authRoute = require('./routes/auth.js')(app, passport);
 //load passport strategies
 require('./app/config/passport/passport.js')(passport, models.user);
->>>>>>> 0a7e1fa27439324246ff5d13fd619f7f617dc3f1
 
 // passport config
 const User = require('./models/User');

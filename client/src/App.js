@@ -7,7 +7,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Wrapper from "./components/Wrapper";
 import Header from "./components/Header";
-import Login from "./pages/Login";
+import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
 
 const App = () => (
@@ -23,7 +23,7 @@ const App = () => (
         <Route exact path="/about" component={About} />
         <Route exact path="/discover" component={Discover} />
         <Route exact path="/search" component={Search} />
-        <Route exact path="/login" component={Login} />
+        <Route exact path="/Signin" component={Signin} />
         <Route exact path="/signup" component={Signup} />
       </Wrapper>
       <Footer />

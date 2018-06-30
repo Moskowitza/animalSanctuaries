@@ -6,7 +6,7 @@ import Row from "../components/Row";
 import Col from "../components/Col";
 
 // Switch this to REGISTER and create a seperate LOGIN
-class Login extends Component {
+class Signin extends Component {
   //Setting the initial values of this.state.email and this.state.password
 
   state = {
@@ -60,7 +60,8 @@ class Login extends Component {
         <Container>
           <Row className="justify-content-center">
             <Col size="md-12">
-              <form className="card-body">
+            {/* FORM HAS ACTION TO SIGNIN route*/}
+              <form className="card-body" action="/sigin">
 
                 <span>
                   <p></p>
@@ -101,6 +102,7 @@ class Login extends Component {
                     onChange={this.handleInputChange.bind(this)}
                   />
                   <button onClick={this.handleFormSubmit}>Submit</button>
+                  <a className="btn" href='/'>Cancel</a>
                 </span>
               </form>
             </Col>
@@ -113,4 +115,4 @@ class Login extends Component {
 };
 
 
-export default withRouter(Login);
+export default withRouter(Signin);
