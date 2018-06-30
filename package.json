@@ -12,7 +12,6 @@
     "build": "cd client && npm run build",
     "heroku-postbuild": "npm run build"
   },
-  "proxy": "http://localhost:3001",
   "author": "",
   "license": "ISC",
   "devDependencies": {
@@ -32,6 +31,7 @@
     "mysql2": "^1.5.3",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
+    "passport-local-sequelize": "^0.8.0",
     "sequelize": "^4.38.0"
   }
 }

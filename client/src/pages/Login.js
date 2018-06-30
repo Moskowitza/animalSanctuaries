@@ -1,19 +1,20 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
 import Container from "../components/Container";
 import API from "../utils/API";
 import Row from "../components/Row";
 import Col from "../components/Col";
 
-
+// Switch this to REGISTER and create a seperate LOGIN
 class Login extends Component {
   //Setting the initial values of this.state.email and this.state.password
 
   state = {
     username: "",
     password: "",
-    email:"",
-    firstname:"",
-    lastname:""
+    email: "",
+    firstname: "",
+    lastname: ""
   }
 
 
@@ -32,15 +33,20 @@ class Login extends Component {
   handleFormSubmit = event => {
     event.preventDefault();
     // alert(`Username: ${this.state.username}\nPassword: ${this.state.password}`);
+    // We need to have an HTTP request to our path
     API.saveUser({
       username: this.state.username,
       password: this.state.password,
-      email:this.state.email,
-      firstname:this.state.firstname,
-      lastname:this.state.lastname
+      email: this.state.email,
+      firstname: this.state.firstname,
+      lastname: this.state.lastname
     })
-      .then(res => console.log(res))
-
+      .then(res => {
+        console.log(res);
+        // this.props.history.push("/");
+        // this.history.pushState(null, 'login');
+      })
+      .catch(err => console.log(err));
   };
 
   // const data = new FormData(event.target);
@@ -58,42 +64,42 @@ class Login extends Component {
 
                 <span>
                   <p></p>
-                    <label>Email Address</label>
-                    <input 
-                      type="text" 
-                      name="email" 
-                      value={this.state.email}
-                      onChange={this.handleInputChange.bind(this)}
-                      />
-                    <label>Firstname</label>
-                    <input 
-                      type="text" 
-                      name="firstname" 
-                      value={this.state.firstname}
-                      onChange={this.handleInputChange.bind(this)}
-                    />
-                    <label >Lastname</label>
-                    <input 
-                    type="text" 
-                      name="lastname" 
-                      value={this.state.lastname}
-                      onChange={this.handleInputChange.bind(this)}       
-                     />
-                     <label >User Name</label>
-                    <input 
-                    type="text" 
-                      name="username" 
-                      value={this.state.username}
-                      onChange={this.handleInputChange.bind(this)}
-                      
-                     />
-                    <label>Password</label>
-                    <input
-                      type="text" 
-                      name="password" 
-                      value={this.state.password}
-                      onChange={this.handleInputChange.bind(this)}
-                     />
+                  <label>Email Address</label>
+                  <input
+                    type="text"
+                    name="email"
+                    value={this.state.email}
+                    onChange={this.handleInputChange.bind(this)}
+                  />
+                  <label>Firstname</label>
+                  <input
+                    type="text"
+                    name="firstname"
+                    value={this.state.firstname}
+                    onChange={this.handleInputChange.bind(this)}
+                  />
+                  <label >Lastname</label>
+                  <input
+                    type="text"
+                    name="lastname"
+                    value={this.state.lastname}
+                    onChange={this.handleInputChange.bind(this)}
+                  />
+                  <label >User Name</label>
+                  <input
+                    type="text"
+                    name="username"
+                    value={this.state.username}
+                    onChange={this.handleInputChange.bind(this)}
+
+                  />
+                  <label>Password</label>
+                  <input
+                    type="text"
+                    name="password"
+                    value={this.state.password}
+                    onChange={this.handleInputChange.bind(this)}
+                  />
                   <button onClick={this.handleFormSubmit}>Submit</button>
                 </span>
               </form>
@@ -107,4 +113,4 @@ class Login extends Component {
 };
 
 
-export default Login;
+export default withRouter(Login);
