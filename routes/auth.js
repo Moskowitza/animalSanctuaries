@@ -4,9 +4,9 @@ var authController = require('../controllers/authcontroller.js');
 module.exports = function (app, passport) {
     // GET routes to render our handlebar pages
     app.get('/signup', authController.signup);
-    // app.get('/signin', authController.signin);
+    app.get('/signin', authController.signin);
     //     //WE need a logout
-    // app.get('/logout', authController.logout);
+    app.get('/logout', authController.logout);
 
     // POST route to implement passport and sign up a user
     /**Since we need passport, we need to pass it to this method. 

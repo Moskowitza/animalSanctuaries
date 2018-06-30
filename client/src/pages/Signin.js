@@ -31,44 +31,44 @@ class Signin extends Component {
   // When the form is submitted, prevent the default event and alert the username and password
   handleFormSubmit = event => {
     event.preventDefault();
-    // alert(`Username: ${this.state.username}\nPassword: ${this.state.password}`);
-    // We need to have an HTTP request to our path
-    API.loginUser({
-      email: this.state.email,
-      password: this.state.password
-    })
-      .then(res => {
-        console.log(res);
-        this.props.history.push("/dashboard");
-        // this.history.pushState(null, 'login');
+    if (this.state.email && this.state.password) {
+      // alert(`Username: ${this.state.username}\nPassword: ${this.state.password}`);
+      // We need to have an HTTP request to our path
+      API.loginUser({
+        email: this.state.email,
+        password: this.state.password
       })
-      .catch(err => console.log(err));
-  };
+        .then(res => {
+          console.log(res);
+          this.props.history.push("/dashboard");
+          // this.history.pushState(null, 'login');
+        })
+        .catch(err => console.log(err));
+    };
+  }
+    // const data = new FormData(event.target);
 
-  // const data = new FormData(event.target);
 
 
+    render() {
+      return (
+        <div>
+          <Container>
+            <Row className="justify-content-center">
+              <Col size="md-12">
+                {/* FORM HAS ACTION TO SIGNIN route*/}
+                <form className="card-body" /*action="/sigin" methdo="post"*/>
 
-
-  render() {
-    return (
-      <div>
-        <Container>
-          <Row className="justify-content-center">
-            <Col size="md-12">
-            {/* FORM HAS ACTION TO SIGNIN route*/}
-              <form className="card-body" /*action="/sigin" methdo="post"*/>
-
-                <span>
-                  <p></p>
-                  <label>Email Address</label>
-                  <input
-                    type="text"
-                    name="email"
-                    value={this.state.email}
-                    onChange={this.handleInputChange.bind(this)}
-                  />
-                  {/* <label >User Name</label>
+                  <span>
+                    <p></p>
+                    <label>Email Address</label>
+                    <input
+                      type="text"
+                      name="email"
+                      value={this.state.email}
+                      onChange={this.handleInputChange}
+                    />
+                    {/* <label >User Name</label>
                   <input
                     type="text"
                     name="username"
@@ -76,25 +76,25 @@ class Signin extends Component {
                     onChange={this.handleInputChange}
 
                   /> */}
-                  <label>Password</label>
-                  <input
-                    type="text"
-                    name="password"
-                    value={this.state.password}
-                    onChange={this.handleInputChange}
-                  />
-                  <button onClick={this.handleFormSubmit}>Submit</button>
-                  <a className="btn" href='/'>Cancel</a>
-                </span>
-              </form>
-            </Col>
-          </Row>
-        </Container>
+                    <label>Password</label>
+                    <input
+                      type="text"
+                      name="password"
+                      value={this.state.password}
+                      onChange={this.handleInputChange}
+                    />
+                    <button type="submit" onClick={this.handleFormSubmit}>Submit</button>
+                    <a className="btn" href='/'>Cancel</a>
+                  </span>
+                </form>
+              </Col>
+            </Row>
+          </Container>
 
-      </div>
-    );
-  }
-};
+        </div>
+      );
+    }
+  };
 
 
-export default withRouter(Signin);
+  export default withRouter(Signin);

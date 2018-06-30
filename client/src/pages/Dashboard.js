@@ -6,11 +6,13 @@ import Col from "../components/Col";
 
 class Dashboard extends Component {
   state = {
-    user: ''
+    user: null
   };
+
   componentDidMount() {
     this.getUser();
   }
+
   getUser = () => {
     API.getUser()
       .then(res => {
@@ -59,7 +61,7 @@ class Dashboard extends Component {
             ) : (
                 <div>
                     <p className="lead"> Login or register to continue.</p>
-                    <a className="btn btn-default" href="/signin">Login</a>&nbsp;
+                    <a className="btn btn-default" onClick={this.handleFormSubmit}>Login</a>&nbsp;
                     <a className="btn btn-default btn-primary" href="/signup">Register</a>
                 </div>
             )}
