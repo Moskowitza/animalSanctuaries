@@ -3,7 +3,6 @@ import Container from "../components/Container";
 
 class Login extends Component {
     //Setting the initial values of this.state.email and this.state.password
-
     state = {
         email: "",
         password: ""
