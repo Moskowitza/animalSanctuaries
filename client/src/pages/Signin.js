@@ -10,19 +10,18 @@ class Signin extends Component {
   //Setting the initial values of this.state.email and this.state.password
 
   state = {
-    username: "",
-    password: "",
+    email: '',
+    password: ''
     // email: "",
     // firstname: "",
     // lastname: ""
-  }
+  };
 
 
   // handle any changes to the input fields
   handleInputChange = event => {
     // Pull the name and value properties off of the event.target (the element which triggered the event)
     const { name, value } = event.target;
-
     // Set the state for the appropriate input field
     this.setState({
       [name]: value
@@ -35,9 +34,8 @@ class Signin extends Component {
     // alert(`Username: ${this.state.username}\nPassword: ${this.state.password}`);
     // We need to have an HTTP request to our path
     API.loginUser({
-      username: this.state.username,
-      password: this.state.password,
-      email: this.state.email
+      email: this.state.email,
+      password: this.state.password
     })
       .then(res => {
         console.log(res);
@@ -59,32 +57,31 @@ class Signin extends Component {
           <Row className="justify-content-center">
             <Col size="md-12">
             {/* FORM HAS ACTION TO SIGNIN route*/}
-              <form className="card-body" action="/sigin">
+              <form className="card-body" /*action="/sigin" methdo="post"*/>
 
                 <span>
                   <p></p>
-                  {/* <label>Email Address</label>
+                  <label>Email Address</label>
                   <input
                     type="text"
                     name="email"
                     value={this.state.email}
                     onChange={this.handleInputChange.bind(this)}
-                  /> */}
-
-                  <label >User Name</label>
+                  />
+                  {/* <label >User Name</label>
                   <input
                     type="text"
                     name="username"
                     value={this.state.username}
-                    onChange={this.handleInputChange.bind(this)}
+                    onChange={this.handleInputChange}
 
-                  />
+                  /> */}
                   <label>Password</label>
                   <input
                     type="text"
                     name="password"
                     value={this.state.password}
-                    onChange={this.handleInputChange.bind(this)}
+                    onChange={this.handleInputChange}
                   />
                   <button onClick={this.handleFormSubmit}>Submit</button>
                   <a className="btn" href='/'>Cancel</a>

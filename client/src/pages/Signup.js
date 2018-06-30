@@ -80,28 +80,28 @@ class Signup extends Component {
                     type="text"
                     name="email"
                     value={this.state.email}
-                    onChange={this.handleInputChange.bind(this)}
+                    onChange={this.handleInputChange}
                   />
                   <label>Firstname</label>
                   <input
                     type="text"
                     name="firstname"
                     value={this.state.firstname}
-                    onChange={this.handleInputChange.bind(this)}
+                    onChange={this.handleInputChange}
                   />
                   <label >Lastname</label>
                   <input
                     type="text"
                     name="lastname"
                     value={this.state.lastname}
-                    onChange={this.handleInputChange.bind(this)}
+                    onChange={this.handleInputChange}
                   />
                   <label >User Name</label>
                   <input
                     type="text"
                     name="username"
                     value={this.state.username}
-                    onChange={this.handleInputChange.bind(this)}
+                    onChange={this.handleInputChange}
 
                   />
                   <label>Password</label>
@@ -109,7 +109,7 @@ class Signup extends Component {
                     type="text"
                     name="password"
                     value={this.state.password}
-                    onChange={this.handleInputChange.bind(this)}
+                    onChange={this.handleInputChange}
                   />
                   <button onClick={this.handleFormSubmit}>Submit</button>
                   <a className="btn" href='/'>Cancel</a>

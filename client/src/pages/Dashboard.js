@@ -6,7 +6,7 @@ import Col from "../components/Col";
 
 class Dashboard extends Component {
   state = {
-    user: null
+    user: ''
   };
   componentDidMount() {
     this.getUser();
@@ -53,7 +53,7 @@ class Dashboard extends Component {
           <Row>
           { this.state.user ? (
                 <div>
-                    <p>You are currently logged in as { this.state.user.username }</p>
+                    <p>You are currently logged in as { this.state.user.email }</p>
                         <a className="btn btn-default" onClick={this.logoutUser}>Logout</a>
                 </div>
             ) : (

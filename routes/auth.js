@@ -19,7 +19,7 @@ module.exports = function (app, passport) {
     // This comes from Dashbaord
     app.get('/auth/check', function (req, res) {
         if (req.user) {
-            res.json({ user: req.user });
+            res.json( req.user );
         }
         else {
             res.json(false);
