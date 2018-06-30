@@ -1,8 +1,9 @@
 // import React from "react";
 // import Container from "../components/Container";
 
-// class Login extends Component {
+// class Signup extends Component {
 //     //Setting the initial values of this.state.email and this.state.password
+
 //     state = {
 //         email: "",
 //         password: ""
@@ -12,13 +13,11 @@
 //     handleInputChange = event => {
 //         // Pull the name and value properties off of the event.target (the element which triggered the event)
 //         const { name, value } = event.target;
-
 //         // Set the state for the appropriate input field
 //         this.setState({
 //             [name]: value
 //         });
 //     };
-
 //     // When the form is submitted, prevent the default event and alert the username and password
 //     handleFormSubmit = event => {
 //         event.preventDefault();
@@ -67,4 +66,4 @@
 // };
 
 
-// export default Login;
+// export default Signup;

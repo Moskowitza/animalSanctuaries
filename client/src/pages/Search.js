@@ -19,21 +19,6 @@ class Search extends Component {
     console.log(sanctuaries)
   };
 
-  //we need some sort of filter function
-  //THIS NEEDS WORK
-  // removeSanctuary = name => {
-  //   // Filter this.state.sanctuaries for sanctuaries with an alphabet Character (char) not equal to the char being searched
-  //   // const sanctuaries = this.state.sanctuaries.filter(sanctuary => sanctuary.name !== name);
-  //   // Set this.state.sanctuaries equal to the new sanctuary array
-  //   const sanctuaries = this.state.sanctuaries.name.toLowerCase();
-  //   if (sanctuaries.indexOf(this.state.search)) {
-  //     this.setState({ 
-  //       sanctuaries 
-  //     });
-  //   }
-  // };
-
-
   // handle any changes to the input fields
   handleInputChange = event => {
     // Pull the name and value properties off of the event.target (the element which triggered the event)
