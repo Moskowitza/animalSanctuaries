@@ -1,86 +1,40 @@
-//here are the paths that direct to pages and CRUD with sequelize
-const express = require('express');
-// const passport = require('passport');
-const User = require('../models/user');
-// const router = express.Router();
-
+var authController = require('../controllers/authcontroller.js');
+// var passport = require('passport');
+//when we hit path /signup, auth controller calls a route, in this one case we just have signup
 module.exports = function (app, passport) {
-    app.get('/', function (req, res) {
-        console.log("authjs / hit")
-        res.render('index', { user: req.user });
-    });
-    // app.post('/auth/signup', function(req,res){
-    //     console.log("auth signup");
-    //     res.json("lol")
-    // });
-    app.post('/auth/signup', function (req, res) {
-        console.log("authjs POST SignUP hit")
-        console.log(req.body);
-        User.create(
-            {
-                username: req.body.username,
-                password: req.body.password,
-                firstname: req.body.firstname,
-                lastname: req.body.lastname
+    // GET routes to render our handlebar pages
+    app.get('/signup', authController.signup);
+    // app.get('/signin', authController.signin);
+    //     //WE need a logout
+    // app.get('/logout', authController.logout);
 
-            }).then(function (newuser) {
-                console.log(newuser);
-                res.json(newuser);
-            })
+    // POST route to implement passport and sign up a user
+    /**Since we need passport, we need to pass it to this method. 
+     * We can import passport in this script OR pass it from server.js. NOTE WE TAKE IN APP, Passport as params */
+    app.post('/auth/signup', passport.authenticate('local-signup', {
+       
+        successRedirect: '/dashboard', //GET path defined below
+        failureRedirect: '/signup'
+    } 
 
-        // User.create(new User({ username: req.body.username }), req.body.password, function (err, user) {
-        //     if (err) {
-        //         return res.render('error', { error: err });
-        //     }
-        //     passport.authenticate('local')(req, res, function () {
-        //         // REDIRECTS HOME< but should go to Signin page
-        //         res.redirect('/dashboard');
-        //     });
-        // });
-    });
+    ))
 
+    // Our successful redirect needs a get path. wow.
+
+
+   
+    // A function to see if we're logged in to protect the routes
+    //we pass it back to the dashboard get route
+    function isLoggedIn(req, res, next) {
+        if (req.isAuthenticated())
+            return next();
+        res.redirect('/signin');
+    }
+    app.get('/dashboard',isLoggedIn, authController.dashboard);
+
+    app.post('/signin', passport.authenticate('local-signin', {
+        successRedirect: '/dashboard',
+        failureRedirect: '/signin'
+    }
+));
 }
-
-// router.get('/', function (req, res) {
-//     console.log("authjs / hit")
-//     res.render('index', { user: req.user });
-// });
-
-// router.get('/signin', function (req, res) {
-//     console.log("authjs GET singin hit")
-//     res.render('siginin');
-// });
-// router.post('/signin', passport.authenticate('local'), function (req, res) {
-//     console.log("authjs POST Signin hit with Passport")
-//     // Should redirect to DASHBOARD, not home
-//     res.redirect('/');
-// });
-
-// router.get('/siginup', function (req, res) {
-//     console.log("authjs GET SignUP hit")
-//     res.render('signup');
-// });
-// router.post('/signup', function (req, res) {
-//     console.log("authjs POST SignUP hit")
-//     res.render('signup');
-//     User.register(new User({ username: req.body.username }), req.body.password, function (err, user) {
-//         if (err) {
-//             return res.render('error', { error: err });
-//         }
-//         passport.authenticate('local')(req, res, function () {
-//             // REDIRECTS HOME< but should go to Signin page
-//             res.redirect('/');
-//         });
-//     });
-// });
-
-// router.get('/logout', function (req, res) {
-//     req.logout();
-//     res.redirect('/');
-// });
-
-// router.get('/error', function (req, res) {
-//     res.render('error');
-// });
-
-// module.exports = router;

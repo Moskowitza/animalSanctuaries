@@ -53,17 +53,17 @@ var models = require("./models");
 // });
 // Define API routes here
 //send login data to SQL
-app.post("/api/login", (req, res) => {
-  db.User.create(req.body).then(function (data) {
-    res.json(data);
-  });
-});
+// app.post("/api/login", (req, res) => {
+//   db.User.create(req.body).then(function (data) {
+//     res.json(data);
+//   });
+// });
 
 
 //Routes !!!! some problem here moved (app) need to pass passport to our authRoute
-var authRoute = require('./routes/auth.js')(app, passport);
+var authRoute = require('../routes/auth.js')(app, passport);
 //load passport strategies
-// require('./app/config/passport/passport.js')(passport, models.user);
+require('./config/passport/passport.js')(passport, db.User);
 
 // passport config
 // const User = require('./models/User');
