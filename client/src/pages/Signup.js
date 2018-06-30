@@ -42,11 +42,21 @@ class Signup extends Component {
       lastname: this.state.lastname
     })
       .then(res => {
-        console.log(res);
-        // this.props.history.push("/");
+
+        if ( res.data === true ) {
+          this.props.history.push("/dashboard");
+        }
+        else {
+          // however you want to handle an error.
+        }
+        // console.log(res);
+       
         // this.history.pushState(null, 'login');
       })
-      .catch(err => console.log(err));
+      .catch(err => {
+        console.log(err)
+        alert
+      });
   };
 
   // const data = new FormData(event.target);

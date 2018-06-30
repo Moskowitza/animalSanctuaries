@@ -31,15 +31,15 @@ module.exports = function (app, passport) {
                 res.json(newuser);
             })
 
-        // User.create(new User({ username: req.body.username }), req.body.password, function (err, user) {
-        //     if (err) {
-        //         return res.render('error', { error: err });
-        //     }
-        //     passport.authenticate('local')(req, res, function () {
-        //         // REDIRECTS HOME< but should go to Signin page
-        //         res.redirect('/dashboard');
-        //     });
-        // });
+        User.create(new User({ username: req.body.username }), req.body.password, function (err, user) {
+            if (err) {
+                return res.render('error', { error: err });
+            }
+            passport.authenticate('local')(req, res, function () {
+                // REDIRECTS HOME< but should go to Signin page
+                res.redirect('/dashboard');
+            });
+        });
     });
 
 }

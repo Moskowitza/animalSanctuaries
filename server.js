@@ -61,7 +61,7 @@ var models = require("./models");
 
 
 //Routes !!!! some problem here moved (app) need to pass passport to our authRoute
-var authRoute = require('../routes/auth.js')(app, passport);
+var authRoute = require('./routes/auth.js')(app, passport);
 //load passport strategies
 require('./config/passport/passport.js')(passport, db.User);
 

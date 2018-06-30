@@ -5,7 +5,7 @@ var bCrypt = require('bcrypt-nodejs');
 1-the passport-local strategy, 
 2-and the user model, which will be passed as an argument. */
 module.exports = function (passport, user) {
-    var User = User;
+    var User = user;
     var LocalStrategy = require('passport-local').Strategy;
 
     /*Then we define our custom strategy with our instance of the LocalStrategy */
