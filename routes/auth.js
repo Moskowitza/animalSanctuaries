@@ -39,7 +39,7 @@ module.exports = function (app, passport) {
     }
     app.get('/dashboard', isLoggedIn, authController.dashboard);
 
-    app.post('/signin', passport.authenticate('local-signin', {
+    app.post('/auth/signin', passport.authenticate('local-signin', {
         successRedirect: '/dashboard',
         failureRedirect: '/signin'
     }
