@@ -12,7 +12,6 @@ module.exports = function (app, passport) {
     /**Since we need passport, we need to pass it to this method. 
      * We can import passport in this script OR pass it from server.js. NOTE WE TAKE IN APP, Passport as params */
     app.post('/auth/signup', passport.authenticate('local-signup', {
-
         successRedirect: '/dashboard', //GET path defined below
         failureRedirect: '/signup'
     }
@@ -45,4 +44,8 @@ module.exports = function (app, passport) {
         failureRedirect: '/signin'
     }
     ));
+    app.get('/auth/logout',function(req,res){
+        req.logout();
+        res.json(true);
+    })
 }

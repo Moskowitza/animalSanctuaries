@@ -54,8 +54,8 @@ class Signup extends Component {
         // this.history.pushState(null, 'login');
       })
       .catch(err => {
-        console.log(err)
-        alert
+        console.log(err);
+        alert('Problem signing in');
       });
   };
 

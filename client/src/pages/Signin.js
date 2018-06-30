@@ -12,9 +12,9 @@ class Signin extends Component {
   state = {
     username: "",
     password: "",
-    email: "",
-    firstname: "",
-    lastname: ""
+    // email: "",
+    // firstname: "",
+    // lastname: ""
   }
 
 
@@ -41,7 +41,7 @@ class Signin extends Component {
     })
       .then(res => {
         console.log(res);
-        // this.props.history.push("/");
+        this.props.history.push("/dashboard");
         // this.history.pushState(null, 'login');
       })
       .catch(err => console.log(err));
@@ -63,13 +63,13 @@ class Signin extends Component {
 
                 <span>
                   <p></p>
-                  <label>Email Address</label>
+                  {/* <label>Email Address</label>
                   <input
                     type="text"
                     name="email"
                     value={this.state.email}
                     onChange={this.handleInputChange.bind(this)}
-                  />
+                  /> */}
 
                   <label >User Name</label>
                   <input
