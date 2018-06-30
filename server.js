@@ -1,5 +1,5 @@
 const express = require("express");
-
+//HI ERIC!
 const app = express();
 //middleware : import the passport module and the express-session, both of which we need to handle authentication.
 var passport = require('passport');
