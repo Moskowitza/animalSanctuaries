@@ -12,17 +12,25 @@ module.exports = function (app, passport) {
     /**Since we need passport, we need to pass it to this method. 
      * We can import passport in this script OR pass it from server.js. NOTE WE TAKE IN APP, Passport as params */
     app.post('/auth/signup', passport.authenticate('local-signup', {
-       
+
         successRedirect: '/dashboard', //GET path defined below
         failureRedirect: '/signup'
-    } 
-
+    }
     ))
+    // This comes from Dashbaord
+    app.get('/auth/check', function (req, res) {
+        if (req.user) {
+            res.json({ user: req.user });
+        }
+        else {
+            res.json(false);
+        }
+    });
 
     // Our successful redirect needs a get path. wow.
 
 
-   
+
     // A function to see if we're logged in to protect the routes
     //we pass it back to the dashboard get route
     function isLoggedIn(req, res, next) {
@@ -30,11 +38,11 @@ module.exports = function (app, passport) {
             return next();
         res.redirect('/signin');
     }
-    app.get('/dashboard',isLoggedIn, authController.dashboard);
+    app.get('/dashboard', isLoggedIn, authController.dashboard);
 
     app.post('/signin', passport.authenticate('local-signin', {
         successRedirect: '/dashboard',
         failureRedirect: '/signin'
     }
-));
+    ));
 }
