@@ -12,15 +12,15 @@ var sequelize =require('sequelize')
 var env = require('dotenv').load();
 
 
-const PORT = process.env.PORT || 3002;
+const PORT = process.env.PORT || 3001;
 
 
 const db = require("./models");
 
-//For bodyParser 
+//For bodyParser
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-//AFTER the bodyParser import line we initialize PASSPORT and the express session and passport session and add them both as middleware. We do this by adding these lines some spaces 
+//AFTER the bodyParser import line we initialize PASSPORT and the express session and passport session and add them both as middleware. We do this by adding these lines some spaces
 app.use(session({ secret: 'keyboard cat',resave: true, saveUninitialized:true})); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
@@ -40,17 +40,17 @@ app.use(passport.session()); // persistent login sessions
 
 //Models
 var models = require("./models");
- 
+
 //Sync Database
-models.sequelize.sync().then(function() {
- 
-    console.log('Nice! Database looks fine')
- 
-}).catch(function(err) {
- 
-    console.log(err, "Something went wrong with the Database Update!")
- 
-});
+// models.sequelize.sync().then(function() {
+
+//     console.log('Nice! Database looks fine')
+
+// }).catch(function(err) {
+
+//     console.log(err, "Something went wrong with the Database Update!")
+
+// });
 // Define API routes here
 //send login data to SQL
 app.post("/api/login", (req, res) => {
@@ -84,4 +84,7 @@ db.sequelize.sync({ force: true }).then(function () {
   });
 });
 
+// app.listen(PORT, () => {
+//   console.log(`🌎 ==> Server now on port ${PORT}!`);
+// });
 

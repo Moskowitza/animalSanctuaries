@@ -9,6 +9,10 @@ module.exports = function (app, passport) {
         console.log("authjs / hit")
         res.render('index', { user: req.user });
     });
+    app.post('/auth/signup', function(req,res){
+        console.log("auth signup");
+        res.json("lol")
+    })
 }
 
 // router.get('/', function (req, res) {
