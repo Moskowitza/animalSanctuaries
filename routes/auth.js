@@ -9,10 +9,36 @@ module.exports = function (app, passport) {
         console.log("authjs / hit")
         res.render('index', { user: req.user });
     });
-    app.post('/auth/signup', function(req,res){
-        console.log("auth signup");
-        res.json("lol")
-    })
+    // app.post('/auth/signup', function(req,res){
+    //     console.log("auth signup");
+    //     res.json("lol")
+    // });
+    app.post('/auth/signup', function (req, res) {
+        console.log("authjs POST SignUP hit")
+        console.log(req.body);
+        User.create(
+            {
+                username: req.body.username,
+                password: req.body.password,
+                firstname: req.body.firstname,
+                lastname: req.body.lastname
+
+            }).then(function (newuser) {
+                console.log(newuser);
+                res.json(newuser);
+            })
+
+        // User.create(new User({ username: req.body.username }), req.body.password, function (err, user) {
+        //     if (err) {
+        //         return res.render('error', { error: err });
+        //     }
+        //     passport.authenticate('local')(req, res, function () {
+        //         // REDIRECTS HOME< but should go to Signin page
+        //         res.redirect('/dashboard');
+        //     });
+        // });
+    });
+
 }
 
 // router.get('/', function (req, res) {
