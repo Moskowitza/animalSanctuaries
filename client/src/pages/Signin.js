@@ -37,9 +37,7 @@ class Signin extends Component {
     API.saveUser({
       username: this.state.username,
       password: this.state.password,
-      email: this.state.email,
-      firstname: this.state.firstname,
-      lastname: this.state.lastname
+      email: this.state.email
     })
       .then(res => {
         console.log(res);
@@ -72,20 +70,7 @@ class Signin extends Component {
                     value={this.state.email}
                     onChange={this.handleInputChange.bind(this)}
                   />
-                  <label>Firstname</label>
-                  <input
-                    type="text"
-                    name="firstname"
-                    value={this.state.firstname}
-                    onChange={this.handleInputChange.bind(this)}
-                  />
-                  <label >Lastname</label>
-                  <input
-                    type="text"
-                    name="lastname"
-                    value={this.state.lastname}
-                    onChange={this.handleInputChange.bind(this)}
-                  />
+
                   <label >User Name</label>
                   <input
                     type="text"
