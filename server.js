@@ -12,7 +12,7 @@ var sequelize =require('sequelize')
 var env = require('dotenv').load();
 
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3002;
 
 
 const db = require("./models");
@@ -63,13 +63,13 @@ app.post("/api/login", (req, res) => {
 //Routes !!!! some problem here moved (app) need to pass passport to our authRoute
 var authRoute = require('./routes/auth.js')(app, passport);
 //load passport strategies
-require('./app/config/passport/passport.js')(passport, models.user);
+// require('./app/config/passport/passport.js')(passport, models.user);
 
 // passport config
-const User = require('./models/User');
-passport.use(new LocalStrategy(User.authenticate()));
-passport.serializeUser(User.serializeUser());
-passport.deserializeUser(User.deserializeUser());
+// const User = require('./models/User');
+// passport.use(new LocalStrategy(User.authenticate()));
+// passport.serializeUser(User.serializeUser());
+// passport.deserializeUser(User.deserializeUser());
 
 // var authRoute = require('./routes/auth.js')(app,passport);
 // Send every other request to the React app
