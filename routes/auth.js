@@ -1,29 +1,37 @@
-//if user is logged in
+//here are the paths that direct to pages and CRUD with sequelize
 const express = require('express');
 const passport = require('passport');
-const User = require('../models/User');
+const User = require('../models/user');
 const router = express.Router();
 
 router.get('/', function (req, res) {
+    console.log("authjs / hit")
     res.render('index', { user: req.user });
 });
 
-router.get('/login', function (req, res) {
-    res.render('login');
+router.get('/signin', function (req, res) {
+    console.log("authjs GET singin hit")
+    res.render('siginin');
 });
-router.post('/login', passport.authenticate('local'), function (req, res) {
+router.post('/signin', passport.authenticate('local'), function (req, res) {
+    console.log("authjs POST Signin hit with Passport")
+    // Should redirect to DASHBOARD, not home
     res.redirect('/');
 });
 
-router.get('/register', function (req, res) {
-    res.render('register');
+router.get('/siginup', function (req, res) {
+    console.log("authjs GET SignUP hit")
+    res.render('signup');
 });
-router.post('/register', function (req, res) {
+router.post('/signup', function (req, res) {
+    console.log("authjs POST SignUP hit")
+    res.render('signup');
     User.register(new User({ username: req.body.username }), req.body.password, function (err, user) {
         if (err) {
             return res.render('error', { error: err });
         }
         passport.authenticate('local')(req, res, function () {
+            // REDIRECTS HOME< but should go to Signin page
             res.redirect('/');
         });
     });

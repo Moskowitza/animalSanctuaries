@@ -1,10 +1,9 @@
 import axios from "axios";
 
-// Export an object containing methods we'll use for accessing the Dog.Ceo API
-
 export default {
-  // Gets all books
+  //these routes should match authcontroller
   getUser: function () {
+    // return axios.get("/auth/check");
     return axios.get("/auth/check");
   },
   loginUser: function (loginData) {
@@ -19,7 +18,7 @@ export default {
   },
   // Saves a book to the database
   saveUser: function (userData) {
-    return axios.post("/auth/register", userData);
+    return axios.post("/auth/signup", userData);
   }
 
 };

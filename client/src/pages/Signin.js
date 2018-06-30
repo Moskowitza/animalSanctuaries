@@ -34,7 +34,7 @@ class Signin extends Component {
     event.preventDefault();
     // alert(`Username: ${this.state.username}\nPassword: ${this.state.password}`);
     // We need to have an HTTP request to our path
-    API.saveUser({
+    API.loginUser({
       username: this.state.username,
       password: this.state.password,
       email: this.state.email
