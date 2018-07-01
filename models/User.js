@@ -1,6 +1,6 @@
 module.exports = function (sequelize, Sequelize) {
 
-    var User = sequelize.define('user', {
+    var User = sequelize.define('User', {
         id: {
             autoIncrement: true,
             primaryKey: true,
@@ -20,14 +20,11 @@ module.exports = function (sequelize, Sequelize) {
         username: {
             type: Sequelize.TEXT
         },
-        about: {
-            type: Sequelize.TEXT
-        },
         email: {
             type: Sequelize.STRING,
-            validate: {
-                isEmail: true
-            }
+            // validate: {
+            //     isEmail: true
+            // }
         },
 
         password: {
