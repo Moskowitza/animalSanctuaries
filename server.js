@@ -38,8 +38,6 @@ app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 
 
-//Models
-var models = require("./models");
 
 //Sync Database
 // models.sequelize.sync().then(function() {

@@ -8,6 +8,9 @@ module.exports = function (sequelize, DataTypes) {
         len: [1]
       }
     },
+    SanctuaryImage: {
+      type: DataTypes.STRING
+    },
     State: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -19,16 +22,16 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.TEXT,
       allowNull: false
     },
-    Phone: {
+    animalPhone: {
       type: DataTypes.STRING
     },
-    AnimalSanEmail: {
+    animalSanEmail: {
       type: DataTypes.STRING
     },
-    AnimalSanAddress: {
+    animalSanAddress: {
       type: DataTypes.STRING
     },
-    AnimalWebsite: {
+    animalWebsite: {
       type: DataTypes.STRING
     },
 
@@ -38,8 +41,32 @@ module.exports = function (sequelize, DataTypes) {
     Instagram: {
       type: DataTypes.STRING
     },
+    Twitter: {
+      type: DataTypes.STRING
+    },
+    youTube: {
+      type: DataTypes.STRING
+    },
     DonationPage: {
       type: DataTypes.STRING
+    },
+    Volunteer: {
+      type: DataTypes.STRING
+    },
+    VisitationPage: {
+      type: DataTypes.STRING
+    },
+    animalBlog: {
+      type: DataTypes.STRING
+    },
+    listAnimal:{
+      type: DataTypes.STRING
+    },
+    EventPage: {
+      type: DataTypes.STRING
+    },
+    animalAbout: {
+      type: DataTypes.TEXT
     }
   });
   return AnimalSanList;
