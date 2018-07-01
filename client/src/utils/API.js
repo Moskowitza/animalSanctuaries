@@ -2,23 +2,24 @@ import axios from "axios";
 
 export default {
   //these routes should match authcontroller
-  getUser: function () {
-    // return axios.get("/auth/check");
+  getUser: function() {
+    // checks if there is a user saved
     return axios.get("/auth/check");
   },
-  loginUser: function (loginData) {
+  //login user
+  loginUser: function(loginData) {
     return axios.post("/auth/signin", loginData);
   },
-  // Saves a book to the database
-  registerUser: function (registerData) {
+  // Makes a NEW user to the database (I don't think we need this one)// 
+  registerUser: function(registerData) {
     return axios.post("/auth/signup", registerData);
   },
-  logoutUser: function () {
+  //logins out user
+  logoutUser: function() {
     return axios.get("/auth/logout");
   },
-  // Saves a book to the database
-  saveUser: function (userData) {
+  // Makes a NEW user to the database
+  saveUser: function(userData) {
     return axios.post("/auth/signup", userData);
   }
-
 };
