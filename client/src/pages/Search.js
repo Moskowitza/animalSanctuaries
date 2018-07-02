@@ -3,12 +3,15 @@ import Container from "../components/Container";
 import SearchForm from "../components/SearchForm";
 import SearchResults from "../components/SearchResults";
 import sanctuaries from "../sanctuaries.json";
+import API from "../utils/API";
 class Search extends Component {
   state = {
     search: "",
     sanctuaries,
     results: [],
-    error: ""
+    error: "",
+    //add state user to save searches
+    user: null
   };
 
   // When the component mounts, get a list of all sanctuaries this.state.sanctuaries from the json file
@@ -16,8 +19,20 @@ class Search extends Component {
     this.setState({
       sanctuaries: this.state.sanctuaries
     });
-    console.log(sanctuaries)
+    //also call our getUser function to see if the user is logged in
+    this.getUser();
   };
+
+  getUser = () => {
+    API.getUser()
+      .then(res => {
+        //this does return the object with key pairs
+        this.setState({
+          user: res.data
+        });
+        console.log(this.state.user)
+      })
+  }
 
   // handle any changes to the input fields
   handleInputChange = event => {
@@ -29,11 +44,15 @@ class Search extends Component {
     });
   };
 
+  //if user is true we 
+  saveSearch = event => {
+  }
+
   render() {
-    let filteredSanctuaries =this.state.sanctuaries.filter(
-     (sanctuary) => {
-       return sanctuary.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
-     }
+    let filteredSanctuaries = this.state.sanctuaries.filter(
+      (sanctuary) => {
+        return sanctuary.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
+      }
     );
     return (
       <div>
@@ -43,7 +62,11 @@ class Search extends Component {
             handleInputChange={this.handleInputChange}
             search={this.state.search}
           />
-          {filteredSanctuaries.map(sanctuary => (
+          {/* if logged in */}
+
+            <div>
+              <p>You are currently logged in as {this.state.user.email}</p>
+              {filteredSanctuaries.map(sanctuary => (
             <SearchResults
               id={sanctuary.id}
               key={sanctuary.id}
@@ -52,6 +75,7 @@ class Search extends Component {
               logo={sanctuary.logo}
             />
           ))}
+            </div>
         </Container>
       </div>
     );

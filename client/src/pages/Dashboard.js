@@ -6,6 +6,7 @@ import Col from "../components/Col";
 
 class Dashboard extends Component {
   state = {
+    super(props)
     user: null
   };
 
