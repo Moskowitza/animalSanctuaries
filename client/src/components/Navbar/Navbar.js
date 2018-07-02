@@ -68,6 +68,17 @@ const Navbar = props => (
             Sign up
           </Link>
         </li>
+        <li
+          className={
+            window.location.pathname === "/newSanctuary"
+              ? "nav-item active"
+              : "nav-item"
+          }
+        >
+          <Link to="/newSanctuary" className="nav-link">
+            New Sanctuary
+          </Link>
+        </li>
       </ul>
     </div>
   </nav>

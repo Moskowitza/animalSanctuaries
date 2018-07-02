@@ -24,6 +24,6 @@ export default {
   },
     // Makes a NEW user to the database
   saveSanctuary: function(Data) {
-   return axios.post("/auth/signup", Data);
+   return axios.post("/auth/newSanctuary", Data);
     }
 };

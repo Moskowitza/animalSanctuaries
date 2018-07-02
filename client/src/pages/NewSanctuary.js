@@ -105,13 +105,15 @@ class NewSanctuary extends Component {
                                         value={this.state.SanctuaryName}
                                         onChange={this.handleInputChange}
                                     />
-                                    <label>Firstname</label>
+                                    <br />
+                                    <label>Image Link</label>
                                     <input
                                         type="text"
                                         name="SanctuaryImage"
                                         value={this.state.SanctuaryImage}
                                         onChange={this.handleInputChange}
                                     />
+                                    <br />
                                     <label >State</label>
                                     <input
                                         type="text"
@@ -119,13 +121,14 @@ class NewSanctuary extends Component {
                                         value={this.state.State}
                                         onChange={this.handleInputChange}
                                     />
+                                    <br />
                                     <label >animalPhone</label>
                                     <input
                                         type="text"
                                         name="animalPhone"
                                         value={this.state.animalPhone}
                                         onChange={this.handleInputChange}
-                                    />
+                                    />                                    <br />
                                     <label >animalSanEmail</label>
                                     <input
                                         type="text"
@@ -133,6 +136,7 @@ class NewSanctuary extends Component {
                                         value={this.state.animalSanEmail}
                                         onChange={this.handleInputChange}
                                     />
+                                    <br />
                                     <label >animalSanAddress</label>
                                     <input
                                         type="text"
@@ -140,6 +144,7 @@ class NewSanctuary extends Component {
                                         value={this.state.animalSanAddress}
                                         onChange={this.handleInputChange}
                                     />
+                                    <br />
                                     <label >animalWebsite</label>
                                     <input
                                         type="text"
@@ -147,6 +152,7 @@ class NewSanctuary extends Component {
                                         value={this.state.animalWebsite}
                                         onChange={this.handleInputChange}
                                     />
+                                    <br />
                                     <label >Facebook</label>
                                     <input
                                         type="text"
@@ -222,7 +228,7 @@ class NewSanctuary extends Component {
                                     <label >EventPage</label>
                                     <input
                                         type="text"
-                                        name="listAnimal"
+                                        name="EventPage"
                                         value={this.state.EventPage}
                                         onChange={this.handleInputChange}
                                     />
