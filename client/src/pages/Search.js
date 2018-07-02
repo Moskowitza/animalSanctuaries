@@ -63,11 +63,11 @@ class Search extends Component {
   }
 
   render() {
-    // let filteredSanctuaries = this.state.sanctuaries.filter(
-    //   (sanctuary) => {
-    //     return sanctuary.SanctuaryName.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
-    //   }
-    // );
+    let filteredSanctuaries = this.state.sanctuaries.filter(
+      (sanctuary) => {
+        return sanctuary.SanctuaryName.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
+      }
+    );
     return (
       <div>
         <Container style={{ minHeight: "80%" }}>
@@ -79,8 +79,8 @@ class Search extends Component {
           {/* if logged in */}
 
             <div>
-              {/* <p>You are currently logged in as {this.state.user.email}</p> */}
-              {/* {filteredSanctuaries.map(sanctuary => (
+              <p>You are currently logged in as {this.state.user.email}</p> */}
+              {filteredSanctuaries.map(sanctuary => (
             <SearchResults
               id={sanctuary.id}
               key={sanctuary.id}
@@ -88,7 +88,7 @@ class Search extends Component {
               website={sanctuary.animalWebsite}
               logo={sanctuary.SanctuaryImage}
             />
-          ))} */}
+          ))}
             </div>
         </Container>
       </div>

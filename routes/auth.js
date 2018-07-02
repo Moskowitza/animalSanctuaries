@@ -58,10 +58,8 @@ module.exports = function (app, passport) {
     });
     //this does not seem to work
     app.get('/auth/sanctuaries', function(req,res){
-        console.log("PATH HIT IN AUTH FILE")
         db.AnimalSanList.findAll({
         }).then(function(data){
-            console.log("get me the sanctuary list"+data)
             res.json(data);
         });
     })
