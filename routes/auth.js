@@ -1,4 +1,5 @@
 var authController = require('../controllers/authcontroller.js');
+const db = require("../models");
 // var passport = require('passport');
 //when we hit path /signup, auth controller calls a route, in this one case we just have signup
 module.exports = function (app, passport) {
@@ -16,7 +17,7 @@ module.exports = function (app, passport) {
         failureRedirect: '/signup'
     }
     ))
-    // This comes from Dashbaord
+    // This comes from the session
     app.get('/auth/check', function (req, res) {
         if (req.user) {
             res.json( req.user );
@@ -47,5 +48,19 @@ module.exports = function (app, passport) {
     app.get('/auth/logout',function(req,res){
         req.logout();
         res.json(true);
+    });
+
+    //post a new sanctuary: this works
+    app.post('/auth/newSanctuary',function(req,res){
+        db.AnimalSanList.create(req.body).then(function(data) {
+            res.json(data);
+          });
+    });
+    //this does not seem to work
+    app.get('/auth/sanctuaries', function(req,res){
+        db.AnimalSanList.findAll({
+        }).then(function(data){
+            res.json(data);
+        });
     })
 }

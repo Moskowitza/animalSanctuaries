@@ -1,4 +1,4 @@
-//Simlply render signup page when asked by our route
+//Simlply render pages when asked by our route
 var exports = module.exports = {}
 
 exports.signup = function(req, res) {
@@ -14,6 +14,12 @@ exports.dashboard = function(req, res) {
     console.log("authcontroller dashboard hit")
     res.json(true);
 }
+//New Sanctuary path?
+// exports.newSanctuary = function(req, res) {
+//     console.log("authcontroller dashboard hit")
+//     res.json(true);
+// }
+
 
 exports.logout = function(req, res) {
     req.session.destroy(function(err) {
