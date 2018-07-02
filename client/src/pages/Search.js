@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Container from "../components/Container";
 import SearchForm from "../components/SearchForm";
 import SearchResults from "../components/SearchResults";
-// import UserSearchResults from "../components/UserSearchResults";
+import UserSearchResults from "../components/UserSearchResults";
 
 // import sanctuaries from "../sanctuaries.json";
 import API from "../utils/API";
@@ -13,7 +13,7 @@ class Search extends Component {
     results: [],
     error: "",
     //add state user to save searches
-    user: null
+    user:{}
   };
 
   // When the component mounts, get a list of all sanctuaries this.state.sanctuaries from the json file
@@ -72,14 +72,27 @@ class Search extends Component {
       <div>
         <Container style={{ minHeight: "80%" }}>
           <h1 className="text-center">Search By Sanctuary Name:</h1>
+          <p>You are currently logged in as {this.state.user.email}</p>
           <SearchForm
             handleInputChange={this.handleInputChange}
             search={this.state.search}
           />
           {/* if logged in */}
-
-            <div>
-              {/* <p>You are currently logged in as {this.state.user.email}</p> */}
+{this.state.user ?
+            (
+              <div> 
+              {filteredSanctuaries.map(sanctuary => (
+            <UserSearchResults
+              id={sanctuary.id}
+              key={sanctuary.id}
+              name={sanctuary.SanctuaryName}
+              website={sanctuary.animalWebsite}
+              logo={sanctuary.SanctuaryImage}
+            />
+          ))}
+            </div>
+            ):(
+              <div> 
               {filteredSanctuaries.map(sanctuary => (
             <SearchResults
               id={sanctuary.id}
@@ -90,6 +103,7 @@ class Search extends Component {
             />
           ))}
             </div>
+            )}
         </Container>
       </div>
     );
