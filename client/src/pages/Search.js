@@ -1,13 +1,15 @@
 import React, { Component } from "react";
 import Container from "../components/Container";
 import SearchForm from "../components/SearchForm";
-import SearchResults from "../components/SearchResults";
+// import SearchResults from "../components/SearchResults";
+// import UserSearchResults from "../components/UserSearchResults";
+
 // import sanctuaries from "../sanctuaries.json";
 import API from "../utils/API";
 class Search extends Component {
   state = {
     search: "",
-    sanctuaries: null,
+    sanctuaries: [],
     results: [],
     error: "",
     //add state user to save searches
@@ -37,6 +39,7 @@ class Search extends Component {
   getSanctuaries = () => {
     API.getSanctuaries()
       .then(res => {
+        console.log("res from sanctuaries search"+res)
         //this does return the object with key pairs
         this.setState({
           sanctuaries: res.data
