@@ -1,5 +1,5 @@
 var authController = require('../controllers/authcontroller.js');
-const db = require("./models");
+const db = require("../models");
 // var passport = require('passport');
 //when we hit path /signup, auth controller calls a route, in this one case we just have signup
 module.exports = function (app, passport) {
