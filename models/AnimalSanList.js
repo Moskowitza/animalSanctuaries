@@ -5,7 +5,7 @@ module.exports = function (sequelize, DataTypes) {
       type: Sequelize.INTEGER,
       autoIncrement: true,
       primaryKey: true
-  },
+    },
     SanctuaryName: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -13,13 +13,13 @@ module.exports = function (sequelize, DataTypes) {
         len: [1]
       }
     },
-    ImageLink:{
+    ImageLink: {
       type: DataTypes.STRING,
     },
     State: {
       type: DataTypes.STRING,
     },
-    Phone:{
+    Phone: {
       type: DataTypes.STRING,
     },
     Email: {
@@ -49,10 +49,10 @@ module.exports = function (sequelize, DataTypes) {
     Othermedia: {
       type: DataTypes.STRING
     },
-    VolunteerPage:{
+    VolunteerPage: {
       type: DataTypes.STRING
     },
-    VisitPage:{
+    VisitPage: {
       type: DataTypes.STRING
     },
     DonationPage: {
@@ -65,12 +65,14 @@ module.exports = function (sequelize, DataTypes) {
     BlogPage: {
       type: DataTypes.STRING
     },
-    AnimalPage:{
+    AnimalPage: {
       type: DataTypes.STRING
     },
-    About:{
+    About: {
       type: DataTypes.STRING
-    }
+    },
+    createdAt: Sequelize.DATE,
+    updatedAt: Sequelize.DATE,
   });
   return AnimalSanList;
 };
