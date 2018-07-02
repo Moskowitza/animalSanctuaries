@@ -2,12 +2,12 @@ import React, { Component } from "react";
 import Container from "../components/Container";
 import SearchForm from "../components/SearchForm";
 import SearchResults from "../components/SearchResults";
-import sanctuaries from "../sanctuaries.json";
+// import sanctuaries from "../sanctuaries.json";
 import API from "../utils/API";
 class Search extends Component {
   state = {
     search: "",
-    sanctuaries,
+    sanctuaries:null,
     results: [],
     error: "",
     //add state user to save searches
@@ -16,11 +16,12 @@ class Search extends Component {
 
   // When the component mounts, get a list of all sanctuaries this.state.sanctuaries from the json file
   componentDidMount() {
-    this.setState({
-      sanctuaries: this.state.sanctuaries
-    });
+    // this.setState({
+    //   sanctuaries: this.state.sanctuaries
+    // });
     //also call our getUser function to see if the user is logged in
     this.getUser();
+    // this.getSanctuaries();
   };
 
   getUser = () => {
@@ -33,6 +34,16 @@ class Search extends Component {
         console.log(this.state.user)
       })
   }
+  // getSanctuaries = () => {
+  //   API.getSanctuaries()
+  //     .then(res => {
+  //       //this does return the object with key pairs
+  //       this.setState({
+  //         sanctuaries: res.data
+  //       });
+  //       console.log(this.state.user)
+  //     })
+  // }
 
   // handle any changes to the input fields
   handleInputChange = event => {

@@ -17,7 +17,7 @@ module.exports = function (app, passport) {
         failureRedirect: '/signup'
     }
     ))
-    // This comes from Dashbaord
+    // This comes from the session
     app.get('/auth/check', function (req, res) {
         if (req.user) {
             res.json( req.user );
@@ -53,6 +53,10 @@ module.exports = function (app, passport) {
         db.AnimalSanList.create(req.body).then(function(data) {
             res.json(data);
           });
-
     });
+    app.get('/auth/sanctuaries',function(req,res){
+        db.AnimalSanList.findall().then(function(data){
+            res.json(data);
+        });
+    })
 }
