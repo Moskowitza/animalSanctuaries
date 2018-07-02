@@ -49,13 +49,19 @@ module.exports = function (app, passport) {
         req.logout();
         res.json(true);
     });
+
+    //post a new sanctuary: this works
     app.post('/auth/newSanctuary',function(req,res){
         db.AnimalSanList.create(req.body).then(function(data) {
             res.json(data);
           });
     });
-    app.get('/auth/sanctuaries',function(req,res){
-        db.AnimalSanList.findall().then(function(data){
+    //this does not seem to work
+    app.get('/auth/sanctuaries', function(req,res){
+        db.AnimalSanList.findAll({
+            include: [db.User]
+        }).then(function(data){
+            console.log("get me the sanctuary list"+data)
             res.json(data);
         });
     })

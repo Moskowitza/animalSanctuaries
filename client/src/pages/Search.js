@@ -7,7 +7,7 @@ import API from "../utils/API";
 class Search extends Component {
   state = {
     search: "",
-    sanctuaries:null,
+    sanctuaries: null,
     results: [],
     error: "",
     //add state user to save searches
@@ -21,7 +21,7 @@ class Search extends Component {
     // });
     //also call our getUser function to see if the user is logged in
     this.getUser();
-    // this.getSanctuaries();
+    this.getSanctuaries();
   };
 
   getUser = () => {
@@ -31,19 +31,19 @@ class Search extends Component {
         this.setState({
           user: res.data
         });
-        console.log(this.state.user)
+        console.log("USER: "+this.state.user)
       })
   }
-  // getSanctuaries = () => {
-  //   API.getSanctuaries()
-  //     .then(res => {
-  //       //this does return the object with key pairs
-  //       this.setState({
-  //         sanctuaries: res.data
-  //       });
-  //       console.log(this.state.user)
-  //     })
-  // }
+  getSanctuaries = () => {
+    API.getSanctuaries()
+      .then(res => {
+        //this does return the object with key pairs
+        this.setState({
+          sanctuaries: res.data
+        });
+        console.log("Sanctuaries: "+this.state.sanctuaries)
+      })
+  }
 
   // handle any changes to the input fields
   handleInputChange = event => {
@@ -60,11 +60,11 @@ class Search extends Component {
   }
 
   render() {
-    let filteredSanctuaries = this.state.sanctuaries.filter(
-      (sanctuary) => {
-        return sanctuary.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
-      }
-    );
+    // let filteredSanctuaries = this.state.sanctuaries.filter(
+    //   (sanctuary) => {
+    //     return sanctuary.SanctuaryName.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
+    //   }
+    // );
     return (
       <div>
         <Container style={{ minHeight: "80%" }}>
@@ -76,16 +76,16 @@ class Search extends Component {
           {/* if logged in */}
 
             <div>
-              <p>You are currently logged in as {this.state.user.email}</p>
-              {filteredSanctuaries.map(sanctuary => (
+              {/* <p>You are currently logged in as {this.state.user.email}</p> */}
+              {/* {filteredSanctuaries.map(sanctuary => (
             <SearchResults
               id={sanctuary.id}
               key={sanctuary.id}
-              name={sanctuary.name}
-              website={sanctuary.website}
-              logo={sanctuary.logo}
+              name={sanctuary.SanctuaryName}
+              website={sanctuary.animalWebsite}
+              logo={sanctuary.SanctuaryImage}
             />
-          ))}
+          ))} */}
             </div>
         </Container>
       </div>

@@ -6,6 +6,7 @@ export default {
     // checks if there is a user saved
     return axios.get("/auth/check");
   },
+
   //login user
   loginUser: function(loginData) {
     return axios.post("/auth/signin", loginData);
@@ -25,5 +26,9 @@ export default {
     // Makes a NEW user to the database
   saveSanctuary: function(Data) {
    return axios.post("/auth/newSanctuary", Data);
+    },
+    getSanctuaries: function() {
+      // Get all sanctuaries
+      return axios.get("/auth/sanctuaries");
     }
 };
