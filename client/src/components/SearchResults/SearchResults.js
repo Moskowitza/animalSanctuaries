@@ -28,7 +28,7 @@ class SearchResults extends Comment {
           <img alt="sanctuary" src={props.logo} className="img-fluid" />
           <h3>Sanctuary Name:{props.name}</h3>
           {/* add button if logged in */}
-          {this.state.user ? (<button>save</button>) : (<p></p>)}
+
         </li>
       </ul>
     )

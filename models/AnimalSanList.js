@@ -18,10 +18,6 @@ module.exports = function (sequelize, DataTypes) {
         len: [1]
       }
     },
-    animalSanID: {
-      type: DataTypes.TEXT,
-      allowNull: false
-    },
     animalPhone: {
       type: DataTypes.STRING
     },

@@ -1,4 +1,5 @@
 var authController = require('../controllers/authcontroller.js');
+const db = require("./models");
 // var passport = require('passport');
 //when we hit path /signup, auth controller calls a route, in this one case we just have signup
 module.exports = function (app, passport) {
@@ -47,5 +48,11 @@ module.exports = function (app, passport) {
     app.get('/auth/logout',function(req,res){
         req.logout();
         res.json(true);
-    })
+    });
+    app.post('/auth/newSanctuary',function(req,res){
+        db.AnimalSanList.create(req.body).then(function(data) {
+            res.json(data);
+          });
+
+    });
 }
