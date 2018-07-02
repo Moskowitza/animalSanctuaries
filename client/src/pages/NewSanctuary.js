@@ -81,7 +81,7 @@ class NewSanctuary extends Component {
             })
             .catch(err => {
                 console.log(err);
-                alert('Problem Createing Sanctuary');
+                alert('Problem Creating Sanctuary');
             });
     };
 

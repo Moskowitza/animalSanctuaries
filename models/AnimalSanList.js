@@ -1,6 +1,11 @@
 module.exports = function (sequelize, DataTypes) {
 
   const AnimalSanList = sequelize.define("AnimalSanList", {
+    id: {
+      autoIncrement: true,
+      primaryKey: true,
+      type: Sequelize.INTEGER
+  },
     SanctuaryName: {
       type: DataTypes.STRING,
       allowNull: false,
