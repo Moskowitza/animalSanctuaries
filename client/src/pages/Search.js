@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Container from "../components/Container";
 import SearchForm from "../components/SearchForm";
-// import SearchResults from "../components/SearchResults";
+import SearchResults from "../components/SearchResults";
 // import UserSearchResults from "../components/UserSearchResults";
 
 // import sanctuaries from "../sanctuaries.json";
@@ -79,7 +79,7 @@ class Search extends Component {
           {/* if logged in */}
 
             <div>
-              <p>You are currently logged in as {this.state.user.email}</p> */}
+              {/* <p>You are currently logged in as {this.state.user.email}</p> */}
               {filteredSanctuaries.map(sanctuary => (
             <SearchResults
               id={sanctuary.id}
