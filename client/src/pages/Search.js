@@ -88,6 +88,7 @@ class Search extends Component {
               name={sanctuary.SanctuaryName}
               website={sanctuary.animalWebsite}
               logo={sanctuary.SanctuaryImage}
+              userId={user.id}
             />
           ))}
             </div>

@@ -30,5 +30,8 @@ export default {
   getSanctuaries: function (data) {
     // Get all sanctuaries
     return axios.get("/auth/sanctuaries",data);
+  },
+  saveSearch:function(data){
+    return axios.post("/auth/saveSearch")
   }
 };
