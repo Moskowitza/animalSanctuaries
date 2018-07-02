@@ -1,11 +1,6 @@
 module.exports = function (sequelize, DataTypes) {
 
   const AnimalSanList = sequelize.define("AnimalSanList", {
-    id: {
-      type: Sequelize.INTEGER,
-      autoIncrement: true,
-      primaryKey: true
-    },
     SanctuaryName: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -13,24 +8,33 @@ module.exports = function (sequelize, DataTypes) {
         len: [1]
       }
     },
-    ImageLink: {
-      type: DataTypes.STRING,
+    SanctuaryImage: {
+      type: DataTypes.STRING
     },
     State: {
       type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [1]
+      }
     },
-    Phone: {
-      type: DataTypes.STRING,
-    },
-    Email: {
+    animalSanID: {
       type: DataTypes.TEXT,
+      allowNull: false
     },
-    Address: {
+    animalPhone: {
       type: DataTypes.STRING
     },
-    Website: {
+    animalSanEmail: {
       type: DataTypes.STRING
     },
+    animalSanAddress: {
+      type: DataTypes.STRING
+    },
+    animalWebsite: {
+      type: DataTypes.STRING
+    },
+
     Facebook: {
       type: DataTypes.STRING
     },
@@ -40,39 +44,30 @@ module.exports = function (sequelize, DataTypes) {
     Twitter: {
       type: DataTypes.STRING
     },
-    Youtube: {
-      type: DataTypes.STRING
-    },
-    Vimeo: {
-      type: DataTypes.STRING
-    },
-    Othermedia: {
-      type: DataTypes.STRING
-    },
-    VolunteerPage: {
-      type: DataTypes.STRING
-    },
-    VisitPage: {
+    youTube: {
       type: DataTypes.STRING
     },
     DonationPage: {
       type: DataTypes.STRING
     },
+    Volunteer: {
+      type: DataTypes.STRING
+    },
+    VisitationPage: {
+      type: DataTypes.STRING
+    },
+    animalBlog: {
+      type: DataTypes.STRING
+    },
+    listAnimal:{
+      type: DataTypes.STRING
+    },
     EventPage: {
       type: DataTypes.STRING
+    },
+    animalAbout: {
+      type: DataTypes.TEXT
     }
-    ,
-    BlogPage: {
-      type: DataTypes.STRING
-    },
-    AnimalPage: {
-      type: DataTypes.STRING
-    },
-    About: {
-      type: DataTypes.STRING
-    },
-    createdAt: Sequelize.DATE,
-    updatedAt: Sequelize.DATE,
   });
   return AnimalSanList;
 };
