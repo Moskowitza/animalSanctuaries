@@ -60,6 +60,14 @@ class Search extends Component {
 
   //if user is true we 
   saveSearch = event => {
+    event.preventDefault();
+    API.saveSearch({
+      id:this.state.sanctuary.id,
+      userId:this.state.user.id
+    })
+    .then(res=>{
+      console.log(res);
+    })
   }
 
   render() {
@@ -83,12 +91,13 @@ class Search extends Component {
               <div> 
               {filteredSanctuaries.map(sanctuary => (
             <UserSearchResults
-              id={sanctuary.id}
-              key={sanctuary.id}
+              id={sanctuary.sanId}
+              key={sanctuary.sanId}
               name={sanctuary.SanctuaryName}
               website={sanctuary.animalWebsite}
               logo={sanctuary.SanctuaryImage}
-              userId={this.state.user.id}
+              //pass in the user ID for associting
+              userId={user.userId}
             />
           ))}
             </div>
@@ -96,8 +105,8 @@ class Search extends Component {
               <div> 
               {filteredSanctuaries.map(sanctuary => (
             <SearchResults
-              id={sanctuary.id}
-              key={sanctuary.id}
+              id={sanctuary.sanId}
+              key={sanctuary.sanId}
               name={sanctuary.SanctuaryName}
               website={sanctuary.animalWebsite}
               logo={sanctuary.SanctuaryImage}
