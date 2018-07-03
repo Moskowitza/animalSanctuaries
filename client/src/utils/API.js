@@ -32,7 +32,7 @@ export default {
     return axios.get("/auth/sanctuaries",data);
   },
   saveSearch:function(data){
-    console.log("Our San Id "+JSON.stringify(data));
-    return axios.post("/auth/saveSearch")
+    console.log("Our id data "+data.sanId);
+    return axios.post("/auth/saveSearch",data)
   }
 };
