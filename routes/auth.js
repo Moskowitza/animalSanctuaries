@@ -76,12 +76,13 @@ module.exports = function (app, passport) {
         db.UserSanList.findAll({
             include: [{
                 model:AnimalSanList, 
-                // through: {
-                //     attributes: ['sanId','SanctuaryName'], 
-                //     where: { userId: req.body.userId } 
-                // }
+                through: {
+                    attributes: ['sanId','SanctuaryName'], 
+                    // where: { userId: req.body.userId } 
+                }
             }]
         }).then(function (data) {
+            console.log("Here we are, in authjs trying to get data"+data)
             res.json(data);
         });
     });

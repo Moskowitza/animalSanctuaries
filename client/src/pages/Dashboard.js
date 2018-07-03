@@ -13,6 +13,7 @@ class Dashboard extends Component {
 
   componentDidMount() {
     this.getUser()
+    // this.getSavedSanctuaries()
   }
   getUser = () => {
     API.getUser()
@@ -23,22 +24,21 @@ class Dashboard extends Component {
           user: res.data
         });
         console.log(this.state.user)
-      }).then(
-      this.getSavedSanctuaries()
-    )
+        this.getSavedSanctuaries();
+      })
   }
   getSavedSanctuaries = () => {
   // event.preventDefault();
     console.log("userId for join " + this.state.user.userId)
-    // API.getSavedSanctuaries(userId)
-    //   .then(res => {
-    //     //this does return the object with key pairs
-    //     console.log("dashboard sanctuaries: " + JSON.stringify(res.data))
-    //     this.setState({
-    //       sanctuaries: res.data
-    //     });
-    //     console.log(this.state.sanctuaries)
-    //   })
+    API.getSavedSanctuaries(this.state.user.userId)
+      .then(res => {
+        //this does return the object with key pairs
+        console.log("dashboard sanctuaries: " + JSON.stringify(res.data))
+        this.setState({
+          sanctuaries: res.data
+        });
+        console.log(this.state.sanctuaries)
+      })
   }
 
 
