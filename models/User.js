@@ -1,7 +1,7 @@
 module.exports = function (sequelize, Sequelize) {
 
     var User = sequelize.define('User', {
-        id: {
+        userId: {
             autoIncrement: true,
             primaryKey: true,
             type: Sequelize.INTEGER
@@ -51,7 +51,9 @@ module.exports = function (sequelize, Sequelize) {
         //User is the source
         //animal Sanctuary is the target
         User.belongsToMany(models.AnimalSanList, {
-            through:UserSanList
+            through:'UserSanList',
+            as:'Users',
+            foreignKey:'userId'
         });
       };
  

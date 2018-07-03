@@ -1,7 +1,7 @@
 module.exports = function (sequelize, Sequelize) {
 
   const AnimalSanList = sequelize.define("AnimalSanList", {
-    id: {
+    sanId: {
       autoIncrement: true,
       primaryKey: true,
       type: Sequelize.INTEGER
@@ -54,7 +54,7 @@ module.exports = function (sequelize, Sequelize) {
       type: Sequelize.STRING
     },
     VisitationPage: {
-      type: DataTypes.STRING
+      type: Sequelize.STRING
     },
     animalBlog: {
       type: Sequelize.STRING
@@ -77,7 +77,7 @@ module.exports = function (sequelize, Sequelize) {
     AnimalSanList.belongsToMany(models.User, {
       through:'UserSanList',
       as:'users',
-      foreignKey:'id'
+      foreignKey:'sanId'
     }); 
   };
 
