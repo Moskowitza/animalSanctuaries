@@ -39,23 +39,6 @@ app.use(passport.session()); // persistent login sessions
 
 
 
-//Sync Database
-// models.sequelize.sync().then(function() {
-
-//     console.log('Nice! Database looks fine')
-
-// }).catch(function(err) {
-
-//     console.log(err, "Something went wrong with the Database Update!")
-
-// });
-// Define API routes here
-//send login data to SQL
-// app.post("/api/login", (req, res) => {
-//   db.User.create(req.body).then(function (data) {
-//     res.json(data);
-//   });
-// });
 
 
 //Routes !!!! some problem here moved (app) need to pass passport to our authRoute
@@ -63,26 +46,22 @@ var authRoute = require('./routes/auth.js')(app, passport);
 //load passport strategies
 require('./config/passport/passport.js')(passport, db.User);
 
-// passport config
+///// passport config
 // const User = require('./models/User');
 // passport.use(new LocalStrategy(User.authenticate()));
 // passport.serializeUser(User.serializeUser());
 // passport.deserializeUser(User.deserializeUser());
 
 // var authRoute = require('./routes/auth.js')(app,passport);
-// Send every other request to the React app
-// Define any API routes before this runs
+//// Send every other request to the React app
+//// Define any API routes before this runs
 // app.get("*", (req, res) => {
 //   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 // });
 
-db.sequelize.sync().then(function () {
+db.sequelize.sync({force:true}).then(function () {
   app.listen(PORT, () => {
     console.log(`🌎 ==> Server now on port ${PORT}!`);
   });
 });
-
-// app.listen(PORT, () => {
-//   console.log(`🌎 ==> Server now on port ${PORT}!`);
-// });
 
