@@ -13,7 +13,7 @@ class Search extends Component {
     results: [],
     error: "",
     //add state user to save searches
-    user:{}
+    user: {}
   };
 
   // When the component mounts, get a list of all sanctuaries this.state.sanctuaries from the json file
@@ -33,18 +33,18 @@ class Search extends Component {
         this.setState({
           user: res.data
         });
-        console.log("USER: "+this.state.user)
+        console.log("USER: " + this.state.user)
       })
   }
   getSanctuaries = () => {
     API.getSanctuaries()
       .then(res => {
-        console.log("res from sanctuaries search"+res)
+        console.log("res from sanctuaries search" + res)
         //this does return the object with key pairs
         this.setState({
           sanctuaries: res.data
         });
-        console.log("Sanctuaries: "+this.state.sanctuaries)
+        console.log("Sanctuaries: " + this.state.sanctuaries)
       })
   }
 
@@ -59,7 +59,17 @@ class Search extends Component {
   };
 
   //if user is true we 
-  saveSearch = event => {
+  saveSearch = data => {
+    // event.preventDefault();
+    console.log("YOU CLICKED THE SAVE BUTTON sanID  "+data.sanId)//this works, 
+    console.log("YOU CLICKED THE SAVE BUTTON userID  "+data.userId)//this works, 
+    API.saveSearch({
+      sanId: data.sanId,
+      userId: data.userId
+    })
+      .then(res => {
+        console.log(res);
+      })
   }
 
   render() {
@@ -78,32 +88,35 @@ class Search extends Component {
             search={this.state.search}
           />
           {/* if logged in */}
-{this.state.user ?
+          {this.state.user ?
             (
-              <div> 
-              {filteredSanctuaries.map(sanctuary => (
-            <UserSearchResults
-              id={sanctuary.id}
-              key={sanctuary.id}
-              name={sanctuary.SanctuaryName}
-              website={sanctuary.animalWebsite}
-              logo={sanctuary.SanctuaryImage}
-              userId={this.state.user.id}
-            />
-          ))}
-            </div>
-            ):(
-              <div> 
-              {filteredSanctuaries.map(sanctuary => (
-            <SearchResults
-              id={sanctuary.id}
-              key={sanctuary.id}
-              name={sanctuary.SanctuaryName}
-              website={sanctuary.animalWebsite}
-              logo={sanctuary.SanctuaryImage}
-            />
-          ))}
-            </div>
+              <div>
+                {filteredSanctuaries.map(sanctuary => (
+                  <UserSearchResults
+                    sanId={sanctuary.sanId}
+                    key={sanctuary.sanId}
+                    name={sanctuary.SanctuaryName}
+                    website={sanctuary.animalWebsite}
+                    logo={sanctuary.SanctuaryImage}
+                    //pass in the user ID for associting
+                    userId={this.state.user.userId}
+                    onClick={()=>this.saveSearch({sanId:sanctuary.sanId,userId: this.state.user.userId})}
+                  />
+                ))}
+              </div>
+            ) : (
+              // if not logged in serve up the page without button link
+              <div>
+                {filteredSanctuaries.map(sanctuary => (
+                  <SearchResults
+                    id={sanctuary.sanId}
+                    key={sanctuary.sanId}
+                    name={sanctuary.SanctuaryName}
+                    website={sanctuary.animalWebsite}
+                    logo={sanctuary.SanctuaryImage}
+                  />
+                ))}
+              </div>
             )}
         </Container>
       </div>
