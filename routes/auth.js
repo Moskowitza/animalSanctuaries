@@ -66,7 +66,7 @@ module.exports = function (app, passport) {
     app.post('/auth/saveSearch', function (req, res) {
         db.UserSanList.create({
             userId: req.body.userId,
-            sanId: req.body.userId
+            sanId: req.body.sanId
         }).then(function (data) {
             res.json(data);
         });
