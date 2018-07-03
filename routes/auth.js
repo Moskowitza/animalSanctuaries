@@ -71,14 +71,15 @@ module.exports = function (app, passport) {
             res.json(data);
         });
     });
+    //This will crash the server 
     app.get('/auth/savedSanctuaries', function (req, res) {
         db.UserSanList.findAll({
             include: [{
-                model:db.AnimalSanList, 
-                through: {
-                    attributes: ['sanId','SanctuaryName'], 
-                    where: { userId: req.body.userId } 
-                }
+                model:AnimalSanList, 
+                // through: {
+                //     attributes: ['sanId','SanctuaryName'], 
+                //     where: { userId: req.body.userId } 
+                // }
             }]
         }).then(function (data) {
             res.json(data);
