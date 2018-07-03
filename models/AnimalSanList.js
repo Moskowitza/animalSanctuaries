@@ -1,73 +1,72 @@
-module.exports = function (sequelize, DataTypes) {
+module.exports = function (sequelize, Sequelize) {
 
   const AnimalSanList = sequelize.define("AnimalSanList", {
     id: {
       autoIncrement: true,
       primaryKey: true,
-      type: DataTypes.INTEGER
+      type: Sequelize.INTEGER
   },
     SanctuaryName: {
-      type: DataTypes.STRING,
+      type: Sequelize.STRING,
       allowNull: false,
       validate: {
         len: [1]
       }
     },
     SanctuaryImage: {
-      type: DataTypes.STRING
+      type: Sequelize.STRING
     },
     State: {
-      type: DataTypes.STRING,
+      type: Sequelize.STRING,
       allowNull: false,
       validate: {
         len: [1]
       }
     },
     animalPhone: {
-      type: DataTypes.STRING
+      type: Sequelize.STRING
     },
     animalSanEmail: {
-      type: DataTypes.STRING
+      type: Sequelize.STRING
     },
     animalSanAddress: {
-      type: DataTypes.STRING
+      type: Sequelize.STRING
     },
     animalWebsite: {
-      type: DataTypes.STRING
+      type: Sequelize.STRING
     },
-
     Facebook: {
-      type: DataTypes.STRING
+      type: Sequelize.STRING
     },
     Instagram: {
-      type: DataTypes.STRING
+      type: Sequelize.STRING
     },
     Twitter: {
-      type: DataTypes.STRING
+      type: Sequelize.STRING
     },
     youTube: {
-      type: DataTypes.STRING
+      type: Sequelize.STRING
     },
     DonationPage: {
-      type: DataTypes.STRING
+      type: Sequelize.STRING
     },
     Volunteer: {
-      type: DataTypes.STRING
+      type: Sequelize.STRING
     },
     VisitationPage: {
       type: DataTypes.STRING
     },
     animalBlog: {
-      type: DataTypes.STRING
+      type: Sequelize.STRING
     },
     listAnimal:{
-      type: DataTypes.STRING
+      type: Sequelize.STRING
     },
     EventPage: {
-      type: DataTypes.STRING
+      type: Sequelize.STRING
     },
     animalAbout: {
-      type: DataTypes.TEXT
+      type: Sequelize.TEXT
     }
   });
   AnimalSanList.associate = function(models) {
@@ -76,8 +75,9 @@ module.exports = function (sequelize, DataTypes) {
     //User is the source
     //animal Sanctuary is the target
     AnimalSanList.belongsToMany(models.User, {
-      through:UserSanList,
-      foreignKey:id
+      through:'UserSanList',
+      as:'users',
+      foreignKey:'id'
     }); 
   };
 
