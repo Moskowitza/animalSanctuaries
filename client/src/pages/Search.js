@@ -59,16 +59,17 @@ class Search extends Component {
   };
 
   //if user is true we 
-  saveSearch = event => {
-    event.preventDefault();
-    console.log("YOU CLICKED THE SAVE BUTTON"+this.sanid)//this works, we're hitting the path
-    API.saveSearch({
-      sanId: this.sanid,
-      userId: this.userid
-    })
-      .then(res => {
-        console.log(res);
-      })
+  saveSearch = (sanId) => {
+    // event.preventDefault();
+
+    console.log("YOU CLICKED THE SAVE BUTTON sanID"+sanId)//this works, we're hitting the path
+    // API.saveSearch({
+    //   sanId: this.sanid,
+    //   userId: this.userid
+    // })
+    //   .then(res => {
+    //     console.log(res);
+    //   })
   }
 
   render() {
@@ -99,7 +100,7 @@ class Search extends Component {
                     logo={sanctuary.SanctuaryImage}
                     //pass in the user ID for associting
                     userId={this.state.user.userId}
-                    onClick={this.saveSearch}
+                    onClick={this.saveSearch(this.sanId).bind()}
                   />
                 ))}
               </div>
