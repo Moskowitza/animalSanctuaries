@@ -1,7 +1,7 @@
 import React from "react";
 import "./UserSearchResults.css";
 
-const SearchResults = props => (
+const UserSearchResults = props => (
   <ul className="list-group search-results">
       <li key={props.key} className="list-group-item">
         <img alt="sanctuary" src={props.logo} className="img-fluid" />
@@ -11,4 +11,4 @@ const SearchResults = props => (
   </ul>
 );
 
-export default SearchResults;
+export default UserSearchResults;
