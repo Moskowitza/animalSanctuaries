@@ -6,7 +6,7 @@ const SearchResults = props => (
       <li key={props.key} className="list-group-item">
         <img alt="sanctuary" src={props.logo} className="img-fluid" />
         <h3>Sanctuary Name:{props.name}</h3>
-        <button id={props.userId}>save</button>
+        <button userid={props.userId} sanid={props.sanId} onClick={props.onClick}>save</button>
       </li>
   </ul>
 );

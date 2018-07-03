@@ -62,5 +62,12 @@ module.exports = function (app, passport) {
         }).then(function(data){
             res.json(data);
         });
-    })
+    });
+    app.put('/auth/saveSearch',function(req,res){
+        db.User.findOne({
+          where:  id=req.body.userId,
+          include: {model:AnimalSanList}
+        }).then()
+    });
+
 }
