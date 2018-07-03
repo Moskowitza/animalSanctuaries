@@ -3,14 +3,28 @@ import API from '../utils/API';
 import Container from "../components/Container";
 import Row from "../components/Row";
 import Col from "../components/Col";
+import SavedSanctuaries from "../components/SavedSanctuaries/SavedSanctuaries";
 
 class Dashboard extends Component {
   state = {
-    user: ""
+    user: "",
+    sanctuaries:""
   };
 
   componentDidMount() {
     this.getUser();
+    //this.getSavedSanctuaries()
+  }
+  getSavedSanctuaries = () => {
+    API.getSavedSanctuaries()
+      .then(res => {
+        //this does return the object with key pairs
+        console.log("dashboard" + JSON.stringify(res.data))
+        this.setState({
+          sanctuaries: res.data
+        });
+        console.log(this.state.sanctuaries)
+      })
   }
 
   getUser = () => {
@@ -57,6 +71,7 @@ class Dashboard extends Component {
               <div>
                 <p>You are currently logged in as {this.state.user.email}</p>
                 <a className="btn btn-default" onClick={this.logoutUser}>Logout</a>
+              <SavedSanctuaries></SavedSanctuaries>
               </div>
             ) : (
                 <div>

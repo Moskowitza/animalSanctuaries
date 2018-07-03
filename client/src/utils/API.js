@@ -34,5 +34,8 @@ export default {
   saveSearch:function(data){
     console.log("Our id data "+data.sanId);
     return axios.post("/auth/saveSearch",data)
+  },
+  getSavedSanctuaries:function(data){
+    return axios.get("/auth/savedSanctuaries",data)
   }
 };
