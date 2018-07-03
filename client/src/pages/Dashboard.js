@@ -3,16 +3,17 @@ import API from '../utils/API';
 import Container from "../components/Container";
 import Row from "../components/Row";
 import Col from "../components/Col";
+import SavedSanctuaries from "../components/SavedSanctuaries/SavedSanctuaries";
 
 class Dashboard extends Component {
   state = {
-    user: ""
+    user: {},
+    sanctuaries: []
   };
 
   componentDidMount() {
-    this.getUser();
+    this.getUser()
   }
-
   getUser = () => {
     API.getUser()
       .then(res => {
@@ -22,8 +23,25 @@ class Dashboard extends Component {
           user: res.data
         });
         console.log(this.state.user)
-      })
+      }).then(
+      this.getSavedSanctuaries()
+    )
   }
+  getSavedSanctuaries = () => {
+  // event.preventDefault();
+    console.log("userId for join " + this.state.user.userId)
+    // API.getSavedSanctuaries(userId)
+    //   .then(res => {
+    //     //this does return the object with key pairs
+    //     console.log("dashboard sanctuaries: " + JSON.stringify(res.data))
+    //     this.setState({
+    //       sanctuaries: res.data
+    //     });
+    //     console.log(this.state.sanctuaries)
+    //   })
+  }
+
+
   logoutUser = event => {
     event.preventDefault();
     API.logoutUser().then(res => {
@@ -57,6 +75,12 @@ class Dashboard extends Component {
               <div>
                 <p>You are currently logged in as {this.state.user.email}</p>
                 <a className="btn btn-default" onClick={this.logoutUser}>Logout</a>
+                {this.state.sanctuaries.map(sanctuary => (
+                  <SavedSanctuaries>
+                    key={sanctuary.sanId}
+                    name={sanctuary.SanctuaryName}
+                  </SavedSanctuaries>
+                ))}
               </div>
             ) : (
                 <div>

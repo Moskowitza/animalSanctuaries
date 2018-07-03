@@ -20,7 +20,7 @@ module.exports = function (app, passport) {
     // This comes from the session
     app.get('/auth/check', function (req, res) {
         if (req.user) {
-            res.json( req.user );
+            res.json(req.user);
         }
         else {
             res.json(false);
@@ -45,22 +45,44 @@ module.exports = function (app, passport) {
         failureRedirect: '/signin'
     }
     ));
-    app.get('/auth/logout',function(req,res){
+    app.get('/auth/logout', function (req, res) {
         req.logout();
         res.json(true);
     });
 
     //post a new sanctuary: this works
-    app.post('/auth/newSanctuary',function(req,res){
-        db.AnimalSanList.create(req.body).then(function(data) {
-            res.json(data);
-          });
-    });
-    //this does not seem to work
-    app.get('/auth/sanctuaries', function(req,res){
-        db.AnimalSanList.findAll({
-        }).then(function(data){
+    app.post('/auth/newSanctuary', function (req, res) {
+        db.AnimalSanList.create(req.body).then(function (data) {
             res.json(data);
         });
-    })
+    });
+    //this does not seem to work
+    app.get('/auth/sanctuaries', function (req, res) {
+        db.AnimalSanList.findAll({
+        }).then(function (data) {
+            res.json(data);
+        });
+    });
+    app.post('/auth/saveSearch', function (req, res) {
+        db.UserSanList.create({
+            userId: req.body.userId,
+            sanId: req.body.sanId
+        }).then(function (data) {
+            res.json(data);
+        });
+    });
+    app.get('/auth/savedSanctuaries', function (req, res) {
+        db.UserSanList.findAll({
+            include: [{
+                model:db.AnimalSanList, 
+                through: {
+                    attributes: ['sanId','SanctuaryName'], 
+                    where: { userId: req.body.userId } 
+                }
+            }]
+        }).then(function (data) {
+            res.json(data);
+        });
+    });
+
 }
