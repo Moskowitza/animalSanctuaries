@@ -1,7 +1,7 @@
 module.exports = function (sequelize, Sequelize) {
 
     var User = sequelize.define('User', {
-        id: {
+        userId: {
             autoIncrement: true,
             primaryKey: true,
             type: Sequelize.INTEGER
@@ -40,13 +40,22 @@ module.exports = function (sequelize, Sequelize) {
         last_login: {
             type: Sequelize.DATE
         },
- 
-
         status: {
             type: Sequelize.ENUM('active', 'inactive'),
             defaultValue: 'active'
         }
     });
+    User.associate = function(models) {
+        //Swap User for Post We're saying that a Post should belong to an Author
+        // A Post can't be created without an Author due to the foreign key constraint
+        //User is the source
+        //animal Sanctuary is the target
+        User.belongsToMany(models.AnimalSanList, {
+            through:'UserSanList',
+            as:'Users',
+            foreignKey:'userId'
+        });
+      };
  
     return User;
 }

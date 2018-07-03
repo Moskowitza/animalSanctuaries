@@ -1,14 +1,14 @@
-module.exports = function(sequelize, DataTypes) {
+module.exports = function(sequelize, Sequelize) {
     const Post = sequelize.define("Post", {
       title: {
-        type: DataTypes.STRING,
+        type: Sequelize.STRING,
         allowNull: false,
         validate: {
           len: [1]
         }
       },
       body: {
-        type: DataTypes.TEXT,
+        type: Sequelize.TEXT,
         allowNull: false,
         validate: {
           len: [1]
@@ -16,7 +16,7 @@ module.exports = function(sequelize, DataTypes) {
       },
       animalSanID:
       {
-        type: DataTypes.TEXT,
+        type: Sequelize.TEXT,
         allowNull: false,
 
       }

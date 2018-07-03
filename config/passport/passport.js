@@ -57,7 +57,7 @@ module.exports = function (passport, user) {
     ));
     //passport has to save a user ID in the session, and it uses this to manage retrieving the user details when needed.
     passport.serializeUser(function (user, done) {
-        done(null, user.id);
+        done(null, user.userId);
     });
     // deserialize user 
     passport.deserializeUser(function (id, done) {
