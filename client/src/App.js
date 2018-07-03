@@ -5,6 +5,7 @@ import About from "./pages/About";
 import Search from "./pages/Search";
 import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
+import NewSanctuary from "./pages/NewSanctuary";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Wrapper from "./components/Wrapper";
@@ -26,6 +27,7 @@ const App = () => (
         <Route exact path="/search" component={Search} />
         <Route exact path="/signin" component={Signin} />
         <Route exact path="/signup" component={Signup} />
+        <Route exact path="/newSanctuary" component={NewSanctuary} />
       </Wrapper>
       <Footer />
     </div>

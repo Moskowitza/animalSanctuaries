@@ -38,8 +38,6 @@ app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 
 
-//Models
-var models = require("./models");
 
 
 
@@ -61,7 +59,6 @@ require('./config/passport/passport.js')(passport, db.User);
 //   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 // });
 
-// .syn({ force: true }) to reset the tables
 db.sequelize.sync().then(function () {
   app.listen(PORT, () => {
     console.log(`🌎 ==> Server now on port ${PORT}!`);
