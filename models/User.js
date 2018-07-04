@@ -52,7 +52,7 @@ module.exports = function (sequelize, Sequelize) {
         //animal Sanctuary is the target
         User.belongsToMany(models.AnimalSanList, {
             through:'UserSanList',
-            as:'Users',
+            as:'sanctuaries',
             foreignKey:'userId'
         });
       };
