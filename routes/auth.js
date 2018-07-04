@@ -78,7 +78,7 @@ module.exports = function (app, passport) {
             include: [{
                 model: db.AnimalSanList, 
                 through: {
-                    attributes: ['sanId','SanctuaryName'],
+                    attributes: ['sanId','userId'],
                     where: { userId: req.body.userId } 
                 }
             }]
