@@ -52,36 +52,46 @@ module.exports = function (app, passport) {
 
     //post a new sanctuary: this works
     app.post('/auth/newSanctuary', function (req, res) {
-        db.AnimalSanList.create(req.body).then(function (data) {
+        db.Sanctuary.create(req.body).then(function (data) {
             res.json(data);
         });
     });
     //this does not seem to work
     app.get('/auth/sanctuaries', function (req, res) {
-        db.AnimalSanList.findAll({
+        db.Sanctuary.findAll({
         }).then(function (data) {
             res.json(data);
         });
     });
-    app.post('/auth/saveSearch', function (req, res) {
-        db.UserSanList.create({
-            userId: req.body.userId,
-            sanId: req.body.sanId
+    // app.post('/auth/saveSearch', function (req, res) {
+    //     db.UserSanList.create({
+    //         userId: req.body.userId,
+    //         sanId: req.body.sanId
+    //     }).then(function (data) {
+    //         res.json(data);
+    //     });
+    // });
+        app.post('/auth/saveSearch', function (req, res) {
+        user.addProject(project, { through: { status: 'started' }})
+        user.addSanctuaries(db.AnimalSanList,
+            {through:{
+                userId: req.body.userId,
+            }
         }).then(function (data) {
             res.json(data);
         });
     });
     //This will crash the server 
     app.get('/auth/savedSanctuaries', function (req, res) {
-        console.log("Here we are! in authjs trying to get data from user with ID "+JSON.stringify(req.body.userid))
-        db.User.findAll({
-            include: {
-                model: db.AnimalSanList, 
-                // through: {
-                //     // attributes: ['sanId','userId'],
-                //     where: { userId: req.body.userid} 
-                // }
-            }
+        console.log("Here we are! in authjs trying to get data from user with ID "+JSON.stringify(req.body))
+        db.AnimalSanList.findAll({
+            include: [{
+                model: db.User, 
+                through: {
+                    attributes: ['sanId','userId'],
+                    where: { userId: 1} 
+                }
+            }]
         }).then(function (data) {
             res.json(data);
         }).catch( error => res.json(error) );
