@@ -63,38 +63,45 @@ module.exports = function (app, passport) {
             res.json(data);
         });
     });
-    // app.post('/auth/saveSearch', function (req, res) {
-    //     db.UserSanList.create({
-    //         userId: req.body.userId,
-    //         sanId: req.body.sanId
-    //     }).then(function (data) {
-    //         res.json(data);
-    //     });
-    // });
-        app.post('/auth/saveSearch', function (req, res) {
-        user.addProject(project, { through: { status: 'started' }})
-        user.addSanctuaries(db.AnimalSanList,
-            {through:{
-                userId: req.body.userId,
-            }
-        }).then(function (data) {
-            res.json(data);
-        });
+    app.post('/auth/saveSearch', function (req, res) {
+        var userToAdd = db.User.findOne({where:{userId:req.body.userId}})
+        var sanToAdd = db.Sanctuary.findOne({where:{sanId:req.body.sanId}})
+        Promise.all([userToAdd, sanToAdd])
+            .then((results) => {
+                return results[0].addSanctuary(results[1]);
+            })
+            .then((moreResults) => {
+                res.json(moreResults);
+            })
     });
+
+    // app.post('/auth/saveSearch', function (req, res) {
+    //     console.log("our prototypes : " +db.User.prototype);
+    //     // user.addProject(project, { through: { status: 'started' }})
+    //     db.User.setSanctuaries(db.Sanctuary,
+    //         {
+    //             through: {
+    //                 sanId:req.body.sanId,
+    //                 userId: req.body.userId
+    //             }
+    //         }).then(function (data) {
+    //             res.json(data);
+    //         });
+    // });
     //This will crash the server 
     app.get('/auth/savedSanctuaries', function (req, res) {
-        console.log("Here we are! in authjs trying to get data from user with ID "+JSON.stringify(req.body))
+        console.log("Here we are! in authjs trying to get data from user with ID " + JSON.stringify(req.body))
         db.AnimalSanList.findAll({
             include: [{
-                model: db.User, 
+                model: db.User,
                 through: {
-                    attributes: ['sanId','userId'],
-                    where: { userId: 1} 
+                    attributes: ['sanId', 'userId'],
+                    where: { userId: 1 }
                 }
             }]
         }).then(function (data) {
             res.json(data);
-        }).catch( error => res.json(error) );
+        }).catch(error => res.json(error));
     });
 
 }
