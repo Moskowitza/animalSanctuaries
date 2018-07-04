@@ -46,13 +46,8 @@ module.exports = function (sequelize, Sequelize) {
         }
     });
     User.associate = function(models) {
-        //Swap User for Post We're saying that a Post should belong to an Author
-        // A Post can't be created without an Author due to the foreign key constraint
-        //User is the source
-        //animal Sanctuary is the target
         User.belongsToMany(models.AnimalSanList, {
             through:'UserSanList',
-            as:'sanctuaries',
             foreignKey:'userId'
         });
       };
