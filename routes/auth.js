@@ -75,13 +75,13 @@ module.exports = function (app, passport) {
     app.get('/auth/savedSanctuaries', function (req, res) {
         console.log("Here we are! in authjs trying to get data from user with ID "+JSON.stringify(req.body.userid))
         db.User.findAll({
-            include: [{
+            include: {
                 model: db.AnimalSanList, 
-                through: {
-                    // attributes: ['sanId','userId'],
-                    where: { userId: req.body.userid} 
-                }
-            }]
+                // through: {
+                //     // attributes: ['sanId','userId'],
+                //     where: { userId: req.body.userid} 
+                // }
+            }
         }).then(function (data) {
             res.json(data);
         }).catch( error => res.json(error) );
