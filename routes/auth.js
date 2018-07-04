@@ -73,13 +73,13 @@ module.exports = function (app, passport) {
     });
     //This will crash the server 
     app.get('/auth/savedSanctuaries', function (req, res) {
-        console.log("Here we are! in authjs trying to get data from user with ID "+req.body.userId)
+        console.log("Here we are! in authjs trying to get data from user with ID "+JSON.stringify(req.body.userid))
         db.User.findAll({
             include: [{
                 model: db.AnimalSanList, 
                 through: {
                     // attributes: ['sanId','userId'],
-                    where: { userId: req.body.userId} 
+                    where: { userId: req.body.userid} 
                 }
             }]
         }).then(function (data) {
