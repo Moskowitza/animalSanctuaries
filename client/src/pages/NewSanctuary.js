@@ -10,24 +10,24 @@ class NewSanctuary extends Component {
     //Setting the initial values of this.state.email and this.state.password
 
     state = {
-        SanctuaryName: "",
-        SanctuaryImage: "",
-        State: "",
-        animalPhone: "",
-        animalSanEmail: "",
-        animalSanAddress: "",
-        animalWebsite: "",
-        Facebook: "",
-        Instagram: "",
-        Twitter: "",
-        youTube: "",
-        DonationPage: "",
-        Volunteer: "",
-        VisitationPage: "",
-        animalBlog: "",
-        listAnimal: "",
-        EventPage: "",
-        animalAbout: "",
+        name: "",
+        image: "",
+        state: "",
+        // animalPhone: "",
+        // animalSanEmail: "",
+        // animalSanAddress: "",
+        // animalWebsite: "",
+        // Facebook: "",
+        // Instagram: "",
+        // Twitter: "",
+        // youTube: "",
+        // DonationPage: "",
+        // Volunteer: "",
+        // VisitationPage: "",
+        // animalBlog: "",
+        // listAnimal: "",
+        // EventPage: "",
+        // animalAbout: "",
     }
 
 
@@ -48,24 +48,24 @@ class NewSanctuary extends Component {
         // alert(`Username: ${this.state.username}\nPassword: ${this.state.password}`);
         // We need to have an HTTP request to our path
         API.saveSanctuary({
-            SanctuaryName: this.state.SanctuaryName,
-            SanctuaryImage: this.state.SanctuaryImage,
-            State: this.state.State,
-            animalPhone: this.state.animalPhone,
-            animalSanEmail: this.state.animalSanEmail,
-            animalSanAddress: this.state.animalSanAddress,
-            animalWebsite: this.state.animalWebsite,
-            Facebook: this.state.Facebook,
-            Instagram: this.state.Instagram,
-            Twitter: this.state.Twitter,
-            youTube: this.state.youTube,
-            DonationPage: this.state.DonationPage,
-            Volunteer: this.state.Volunteer,
-            VisitationPage: this.state.VisitationPage,
-            animalBlog: this.state.animalBlog,
-            listAnimal: this.state.listAnimal,
-            EventPage: this.state.EventPage,
-            animalAbout: this.state.animalAbout,
+            name: this.state.name,
+            image: this.state.image,
+            state: this.state.state
+            // animalPhone: this.state.animalPhone,
+            // animalSanEmail: this.state.animalSanEmail,
+            // animalSanAddress: this.state.animalSanAddress,
+            // animalWebsite: this.state.animalWebsite,
+            // Facebook: this.state.Facebook,
+            // Instagram: this.state.Instagram,
+            // Twitter: this.state.Twitter,
+            // youTube: this.state.youTube,
+            // DonationPage: this.state.DonationPage,
+            // Volunteer: this.state.Volunteer,
+            // VisitationPage: this.state.VisitationPage,
+            // animalBlog: this.state.animalBlog,
+            // listAnimal: this.state.listAnimal,
+            // EventPage: this.state.EventPage,
+            // animalAbout: this.state.animalAbout,
         })
             .then(res => {
 
@@ -101,28 +101,28 @@ class NewSanctuary extends Component {
                                     <label>Name</label>
                                     <input
                                         type="text"
-                                        name="SanctuaryName"
-                                        value={this.state.SanctuaryName}
+                                        name="name"
+                                        value={this.state.name}
                                         onChange={this.handleInputChange}
                                     />
                                     <br />
                                     <label>Image Link</label>
                                     <input
                                         type="text"
-                                        name="SanctuaryImage"
-                                        value={this.state.SanctuaryImage}
+                                        name="image"
+                                        value={this.state.image}
                                         onChange={this.handleInputChange}
                                     />
                                     <br />
                                     <label >State</label>
                                     <input
                                         type="text"
-                                        name="State"
-                                        value={this.state.State}
+                                        name="state"
+                                        value={this.state.state}
                                         onChange={this.handleInputChange}
                                     />
                                     <br />
-                                    <label >animalPhone</label>
+                                    {/* <label >animalPhone</label>
                                     <input
                                         type="text"
                                         name="animalPhone"
@@ -239,7 +239,7 @@ class NewSanctuary extends Component {
                                         name="animalAbout"
                                         value={this.state.animalAbout}
                                         onChange={this.handleInputChange}
-                                    />
+                                    /> */}
                                     <button onClick={this.handleFormSubmit}>Submit</button>
                                     <a className="btn" href='/'>Cancel</a>
                                 </span>

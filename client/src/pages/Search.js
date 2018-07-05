@@ -75,7 +75,7 @@ class Search extends Component {
   render() {
     let filteredSanctuaries = this.state.sanctuaries.filter(
       (sanctuary) => {
-        return sanctuary.SanctuaryName.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
+        return sanctuary.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
       }
     );
     return (
@@ -95,7 +95,7 @@ class Search extends Component {
                   <UserSearchResults
                     sanId={sanctuary.sanId}
                     key={sanctuary.sanId}
-                    name={sanctuary.SanctuaryName}
+                    name={sanctuary.name}
                     website={sanctuary.animalWebsite}
                     logo={sanctuary.SanctuaryImage}
                     //pass in the user ID for associting
