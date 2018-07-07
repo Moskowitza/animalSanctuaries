@@ -32,14 +32,12 @@ class Dashboard extends Component {
     // const data={
     //   userid:parameter.userId
     // };
-    API.getSavedSanctuaries({
-
-    })
+    API.getSavedSanctuaries(parameter)
       .then(res => {
         //this does return the object with key pairs
-        console.log("dashboard sanctuaries response : " + JSON.stringify(res.data.AnimalSanLists))
+        console.log("dashboard sanctuaries response : " + JSON.stringify(res.data.sanctuaries))
         this.setState({
-          sanctuaries: res.data.AnimalSanLists
+          sanctuaries: res.data
         });
         console.log("this.state.sanctuaries "+JSON.stringify(this.state.sanctuaries))
       })
@@ -82,7 +80,7 @@ class Dashboard extends Component {
                 {this.state.sanctuaries.map(sanctuary => (
                   <SavedSanctuaries>
                     key={sanctuary.sanId}
-                    name={sanctuary.SanctuaryName}
+                    name={sanctuary.name}
                   </SavedSanctuaries>
                 ))}
               </div>
