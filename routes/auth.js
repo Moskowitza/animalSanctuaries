@@ -74,16 +74,18 @@ module.exports = function (app, passport) {
     //This will crash the server 
     app.get('/auth/savedSanctuaries', function (req, res) {
         console.log("Here we are! in authjs trying to get data from user with ID "+JSON.stringify(req.body.userid))
-        db.User.findAll({
-            include: {
-                model: db.AnimalSanList, 
-                // through: {
-                //     // attributes: ['sanId','userId'],
-                //     where: { userId: req.body.userid} 
-                // }
-            }
+        db.AnimalSanList.findAll({
+            include: [{
+                model: db.User, 
+                through: {
+                    attributes: ['sanId','userId'],
+                    where: { userId: req.body.userid} 
+                }
+            }]
         }).then(function (data) {
             res.json(data);
+            //savedSanctuary result[object SequelizeInstance:User]
+            console.log("savedSanctuary result"+data)
         }).catch( error => res.json(error) );
     });
 

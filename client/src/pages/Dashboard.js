@@ -29,18 +29,16 @@ class Dashboard extends Component {
   getSavedSanctuaries = parameter => {
   // event.preventDefault();
     console.log("userId for join " + parameter.userId)
-    const data={
-      userid:parameter.userId
-    };
     API.getSavedSanctuaries({
-      userid:parameter.userId
+      userid : parameter.userId
     })
       .then(res => {
         //this does return the object with key pairs
-        console.log("dashboard sanctuaries response : " + JSON.stringify(res.data))
+        console.log("dashboard sanctuaries response : " + JSON.stringify(res.data.AnimalSanLists))
         this.setState({
-          sanctuaries: res.data
+          sanctuaries: res.data.AnimalSanLists
         });
+        console.log("this.state.sanctuaries "+JSON.stringify(this.state.sanctuaries))
       })
   }
 
