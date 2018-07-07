@@ -74,11 +74,11 @@ module.exports = function (app, passport) {
                 res.json(moreResults);
             })
     });
-    app.get('/auth/savedSanctuaries', function (req, res) {
-        console.log("in auth route " + req.body.userId)
-        var mySanctuaries = db.User.findOne({
+    app.get('/auth/savedSanctuaries/:id', function (req, res) {
+        console.log("HERE HERE HERE DID THIS SAY?" + req.params.id);
+        var mySanctuaries = db.User.findAll({
             where:
-                { userId: req.body.userId },
+                { userId: req.params.id },
             include: [{
                 model: db.Sanctuary,
                 as: "Sanctuaries",
