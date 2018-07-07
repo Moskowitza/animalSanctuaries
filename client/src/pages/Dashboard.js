@@ -23,24 +23,20 @@ class Dashboard extends Component {
         this.setState({
           user: res.data
         });
-        this.getSavedSanctuaries(res.data.userId);
+        this.getSavedSanctuaries({userId: this.state.user.userId});
       })
   }
-  getSavedSanctuaries = parameter => {
+  getSavedSanctuaries = data => {
   // event.preventDefault();
-    console.log("userId for join " + parameter)
-    // const data={
-    //   userid:parameter.userId
-    // };
-    API.getSavedSanctuaries({
-
-    })
+    console.log("userId for join " + data.userId)
+    API.getSavedSanctuaries(data)
       .then(res => {
         //this does return the object with key pairs
-        console.log("dashboard sanctuaries response : " + JSON.stringify(res.data))
+        console.log("dashboard sanctuaries response : " + JSON.stringify(res.data.sanctuaries))
         this.setState({
           sanctuaries: res.data
         });
+        console.log("this.state.sanctuaries "+JSON.stringify(this.state.sanctuaries))
       })
   }
 
@@ -81,7 +77,7 @@ class Dashboard extends Component {
                 {this.state.sanctuaries.map(sanctuary => (
                   <SavedSanctuaries>
                     key={sanctuary.sanId}
-                    name={sanctuary.SanctuaryName}
+                    name={sanctuary.name}
                   </SavedSanctuaries>
                 ))}
               </div>
