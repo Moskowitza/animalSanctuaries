@@ -88,9 +88,9 @@ module.exports = function (app, passport) {
             }],
         })
         Promise.all([mySanctuaries])
-            .then(function (data) {
-                console.log("data from savedSanc api call: "+data)
-                res.json(data);
+            .then(function (result) {
+                console.log("data from savedSanc api call: "+JSON.stringify(result[0][0].Sanctuaries));
+                res.json(result[0][0].Sanctuaries);
             }).catch(error => res.json(error));
     });
 

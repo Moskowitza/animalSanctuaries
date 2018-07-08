@@ -32,11 +32,11 @@ class Dashboard extends Component {
     API.getSavedSanctuaries(data)
       .then(res => {
         //this does return the object with key pairs
-        console.log("dashboard sanctuaries response : " + JSON.stringify(res.data.sanctuaries))
+        console.log("dashboard sanctuaries response : " + JSON.stringify(res.data))
         this.setState({
           sanctuaries: res.data
         });
-        console.log("this.state.sanctuaries "+JSON.stringify(this.state.sanctuaries))
+        console.log(this.state.sanctuaries);//returns an array of objects
       })
   }
 
@@ -75,10 +75,12 @@ class Dashboard extends Component {
                 <p>You are currently logged in as {this.state.user.email}</p>
                 <a className="btn btn-default" onClick={this.logoutUser}>Logout</a>
                 {this.state.sanctuaries.map(sanctuary => (
-                  <SavedSanctuaries>
+                  <SavedSanctuaries 
+                    id={sanctuary.sanId}
                     key={sanctuary.sanId}
+                    logo={sanctuary.image}
                     name={sanctuary.name}
-                  </SavedSanctuaries>
+                  />
                 ))}
               </div>
             ) : (
