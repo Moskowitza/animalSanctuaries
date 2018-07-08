@@ -44,7 +44,7 @@ class Search extends Component {
         this.setState({
           sanctuaries: res.data
         });
-        console.log("Sanctuaries: " + this.state.sanctuaries)
+        console.log("Sanctuaries: " + JSON.stringify(this.state.sanctuaries))
       })
   }
 
