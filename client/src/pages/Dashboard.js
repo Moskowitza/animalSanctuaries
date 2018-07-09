@@ -32,72 +32,65 @@ class Dashboard extends Component {
     API.getSavedSanctuaries(data)
       .then(res => {
         //this does return the object with key pairs
-        console.log("dashboard sanctuaries response : " + JSON.stringify(res.data.sanctuaries))
-       const ourSanctuaries=[];
-        // res.data.forEach??? HOW DO WE GET THE RESULTS INTO AN ARRAY
+        console.log("dashboard sanctuaries response : " + JSON.stringify(res.data))
         this.setState({
-          sanctuaries: ourSanctuaries
-        })
-    console.log("this.state.sanctuaries " + JSON.stringify(this.state.sanctuaries))
-  })
-}
+          sanctuaries: res.data
+        });
+        console.log(this.state.sanctuaries);//returns an array of objects
+      })
+  }
 
 
-logoutUser = event => {
-  event.preventDefault();
-  API.logoutUser().then(res => {
-    console.log(res.data);
-    if (res.data === true) {
-      this.setState({ user: null });
-    }
-  })
-    .catch(err => console.log(err));
-}
+  logoutUser = event => {
+    event.preventDefault();
+    API.logoutUser().then(res => {
+      console.log(res.data);
+      if (res.data === true) {
+        this.setState({ user: null });
+      }
+    })
+      .catch(err => console.log(err));
+  }
 
 
-render() {
-  return (
-    <div>
-      <Container style={{ marginTop: 30 }}>
-        <Row>
-          <Col size="md-12">
-            <h1>Welcome To animal sanctuaries!</h1>
-          </Col>
-        </Row>
-        <Row>
-          <Col size="md-12">
-            <p>
-              YOU MADE IT TO DASHBOARD, you must be logged in!!!
+  render() {
+    return (
+      <div>
+        <Container style={{ marginTop: 30 }}>
+          <Row>
+            <Col size="md-12">
+              <h1>Welcome To animal sanctuaries!</h1>
+            </Col>
+          </Row>
+          <Row>
+            <Col size="md-12">
+              <p></p>
+                YOU MADE IT TO DASHBOARD, you must be logged in!!!
                 <p>You are currently logged in as {this.state.user.email}</p>
-              <p>our sanctuaries {this.state.sanctuaries} </p>
-            </p>
-          </Col>
-        </Row>
-        <Row>
-          {this.state.user ? (
-            <div>
+                <a className="btn btn-default" onClick={this.logoutUser}>Logout</a>
+                {this.state.sanctuaries.map(sanctuary => (
 
-              <a className="btn btn-default" onClick={this.logoutUser}>Logout</a>
-              {this.state.sanctuaries.map(sanctuary => (
-                <SavedSanctuaries>
-                  key={sanctuary.sanId}
-                  name={sanctuary.name}
-                  image={sanctuary.image}
-                </SavedSanctuaries>
-              ))}
-            </div>
-          ) : (
-              <div>
-                <p className="lead"> Login or register to continue.</p>
-                <a className="btn btn-default" onClick={this.handleFormSubmit}>Login</a>&nbsp;
+                  <SavedSanctuaries
+                    id={sanctuary.sanId}
+                    key={sanctuary.sanId}
+                    logo={sanctuary.image}
+                    name={sanctuary.name}
+                  />
+                ))}
+
+                ) : (
+                <div>
+                  <p className="lead"> Login or register to continue.</p>
+                  <a className="btn btn-default" onClick={this.handleFormSubmit}>Login</a>&nbsp;
                     <a className="btn btn-default btn-primary" href="/signup">Register</a>
-              </div>
-            )}
-        </Row>
-      </Container>
+                </div>
+                )}
+                </Col>
+            </Row>
+          </Container>
     </div>
-  )
-}
-}
-
-export default Dashboard;
+          )
+        }
+        }
+        
+        export default Dashboard;
