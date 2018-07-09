@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Container from "../components/Container";
 import SearchForm from "../components/SearchForm";
+import SearchState from "../components/SearchState";
 import SearchResults from "../components/SearchResults";
 import UserSearchResults from "../components/UserSearchResults";
 
@@ -9,6 +10,7 @@ import API from "../utils/API";
 class Search extends Component {
   state = {
     search: "",
+    searchState:"",
     sanctuaries: [],
     results: [],
     error: "",
@@ -16,53 +18,39 @@ class Search extends Component {
     user: {}
   };
 
-  // When the component mounts, get a list of all sanctuaries this.state.sanctuaries from the json file
+  // getSanctuaries and getUser, if logged in
   componentDidMount() {
-    // this.setState({
-    //   sanctuaries: this.state.sanctuaries
-    // });
-    //also call our getUser function to see if the user is logged in
     this.getUser();
     this.getSanctuaries();
   };
-
   getUser = () => {
     API.getUser()
       .then(res => {
-        //this does return the object with key pairs
         this.setState({
           user: res.data
         });
-        console.log("USER: " + this.state.user)
       })
   }
   getSanctuaries = () => {
     API.getSanctuaries()
       .then(res => {
-        console.log("res from sanctuaries search" + res)
-        //this does return the object with key pairs
         this.setState({
           sanctuaries: res.data
         });
-        console.log("Sanctuaries: " + JSON.stringify(this.state.sanctuaries))
       })
   }
 
-  // handle any changes to the input fields
+  // handle any changes to the input Fields: Search
   handleInputChange = event => {
-    // Pull the name and value properties off of the event.target (the element which triggered the event)
     const { name, value } = event.target;
-    // Set the state for the appropriate input field
     this.setState({
       [name]: value
     });
   };
 
-  //if user is true we 
+  //If user is true we pass this to our onClick
+  //API will send data to the backend
   saveSearch = data => {
-    // event.preventDefault();
-    console.log("YOU CLICKED THE SAVE BUTTON sanID  "+data.sanId)//this works, 
-    console.log("YOU CLICKED THE SAVE BUTTON userID  "+data.userId)//this works, 
     API.saveSearch({
       sanId: data.sanId,
       userId: data.userId
@@ -73,6 +61,13 @@ class Search extends Component {
   }
 
   render() {
+    //This wont work: How would we extract the props we need back out of one mess array? 
+    //let names=this.state.sanctuaries.map((sanctuary)=>{return sanctuary.name})
+    // let states=this.state.sanctuaries.map((sanctuary)=>{return sanctuary.state})
+    // const searchFields = [...names,...states]
+    // console.log(`Seach fields ${searchFields}`)
+
+    //Our live filter function
     let filteredSanctuaries = this.state.sanctuaries.filter(
       (sanctuary) => {
         return sanctuary.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
@@ -83,13 +78,19 @@ class Search extends Component {
         <Container style={{ minHeight: "80%" }}>
           <h1 className="text-center">Search By Sanctuary Name:</h1>
           <p>You are currently logged in as {this.state.user.email}</p>
+          {/* SearchForm is for Name */}
           <SearchForm
             handleInputChange={this.handleInputChange}
             search={this.state.search}
           />
-          {/* if logged in */}
+          <SearchState             
+            handleInputChange={this.handleInputChange}
+            searchState={this.state.searchState}
+          />
+    
           {this.state.user ?
             (
+            // if LOGGED IN
               <div>
                 {filteredSanctuaries.map(sanctuary => (
                   <UserSearchResults
@@ -97,8 +98,8 @@ class Search extends Component {
                     key={sanctuary.sanId}
                     name={sanctuary.name}
                     website={sanctuary.animalWebsite}
-                    logo={sanctuary.SanctuaryImage}
-                    //pass in the user ID for associting
+                    logo={sanctuary.image}
+                    //userId comes from state, not our filteredSanctuaries array
                     userId={this.state.user.userId}
                     onClick={()=>this.saveSearch({sanId:sanctuary.sanId,userId: this.state.user.userId})}
                   />
@@ -111,9 +112,9 @@ class Search extends Component {
                   <SearchResults
                     id={sanctuary.sanId}
                     key={sanctuary.sanId}
-                    name={sanctuary.SanctuaryName}
+                    name={sanctuary.name}
                     website={sanctuary.animalWebsite}
-                    logo={sanctuary.SanctuaryImage}
+                    logo={sanctuary.image}
                   />
                 ))}
               </div>
