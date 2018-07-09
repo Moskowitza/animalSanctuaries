@@ -23,76 +23,81 @@ class Dashboard extends Component {
         this.setState({
           user: res.data
         });
-        this.getSavedSanctuaries({userId: this.state.user.userId});
+        this.getSavedSanctuaries({ userId: this.state.user.userId });
       })
   }
   getSavedSanctuaries = data => {
-  // event.preventDefault();
+    // event.preventDefault();
     console.log("userId for join " + data.userId)
     API.getSavedSanctuaries(data)
       .then(res => {
         //this does return the object with key pairs
         console.log("dashboard sanctuaries response : " + JSON.stringify(res.data.sanctuaries))
+       const ourSanctuaries=[];
+        // res.data.forEach??? HOW DO WE GET THE RESULTS INTO AN ARRAY
         this.setState({
-          sanctuaries: res.data
-        });
-        console.log("this.state.sanctuaries "+JSON.stringify(this.state.sanctuaries))
-      })
-  }
+          sanctuaries: ourSanctuaries
+        })
+    console.log("this.state.sanctuaries " + JSON.stringify(this.state.sanctuaries))
+  })
+}
 
 
-  logoutUser = event => {
-    event.preventDefault();
-    API.logoutUser().then(res => {
-      console.log(res.data);
-      if (res.data === true) {
-        this.setState({ user: null });
-      }
-    })
-      .catch(err => console.log(err));
-  }
+logoutUser = event => {
+  event.preventDefault();
+  API.logoutUser().then(res => {
+    console.log(res.data);
+    if (res.data === true) {
+      this.setState({ user: null });
+    }
+  })
+    .catch(err => console.log(err));
+}
 
 
-  render() {
-    return (
-      <div>
-        <Container style={{ marginTop: 30 }}>
-          <Row>
-            <Col size="md-12">
-              <h1>Welcome To animal sanctuaries!</h1>
-            </Col>
-          </Row>
-          <Row>
-            <Col size="md-12">
-              <p>
-                YOU MADE IT TO DASHBOARD, you must be logged in!!!
-          </p>
-            </Col>
-          </Row>
-          <Row>
-            {this.state.user ? (
-              <div>
+render() {
+  return (
+    <div>
+      <Container style={{ marginTop: 30 }}>
+        <Row>
+          <Col size="md-12">
+            <h1>Welcome To animal sanctuaries!</h1>
+          </Col>
+        </Row>
+        <Row>
+          <Col size="md-12">
+            <p>
+              YOU MADE IT TO DASHBOARD, you must be logged in!!!
                 <p>You are currently logged in as {this.state.user.email}</p>
-                <a className="btn btn-default" onClick={this.logoutUser}>Logout</a>
-                {this.state.sanctuaries.map(sanctuary => (
-                  <SavedSanctuaries>
-                    key={sanctuary.sanId}
-                    name={sanctuary.name}
-                  </SavedSanctuaries>
-                ))}
-              </div>
-            ) : (
-                <div>
-                  <p className="lead"> Login or register to continue.</p>
-                  <a className="btn btn-default" onClick={this.handleFormSubmit}>Login</a>&nbsp;
+              <p>our sanctuaries {this.state.sanctuaries} </p>
+            </p>
+          </Col>
+        </Row>
+        <Row>
+          {this.state.user ? (
+            <div>
+
+              <a className="btn btn-default" onClick={this.logoutUser}>Logout</a>
+              {this.state.sanctuaries.map(sanctuary => (
+                <SavedSanctuaries>
+                  key={sanctuary.sanId}
+                  name={sanctuary.name}
+                  image={sanctuary.image}
+                </SavedSanctuaries>
+              ))}
+            </div>
+          ) : (
+              <div>
+                <p className="lead"> Login or register to continue.</p>
+                <a className="btn btn-default" onClick={this.handleFormSubmit}>Login</a>&nbsp;
                     <a className="btn btn-default btn-primary" href="/signup">Register</a>
-                </div>
-              )}
-          </Row>
-        </Container>
-      </div>
-    )
-  }
+              </div>
+            )}
+        </Row>
+      </Container>
+    </div>
+  )
+}
 }
 
 export default Dashboard;

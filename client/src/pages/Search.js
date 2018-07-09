@@ -73,6 +73,15 @@ class Search extends Component {
   }
 
   render() {
+    //We want to filter not just sanctuary.name, but also sanctuary.state, sanctuary.animals
+    //Perhaps we can build a new array using a spread?
+    //const searchableFields = [...this.state.sancturaries.name,...this.state.sancturaries.state,...this.state.sancturaries.animals]
+    //then we'd filter searchableFields and later MAP that into our component
+    // let filteredSanctuaries = searchableFields.filter(
+    //   (field) => {
+    //     return field.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
+    //   }
+    // );
     let filteredSanctuaries = this.state.sanctuaries.filter(
       (sanctuary) => {
         return sanctuary.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
@@ -97,7 +106,7 @@ class Search extends Component {
                     key={sanctuary.sanId}
                     name={sanctuary.name}
                     website={sanctuary.animalWebsite}
-                    logo={sanctuary.SanctuaryImage}
+                    logo={sanctuary.image}
                     //pass in the user ID for associting
                     userId={this.state.user.userId}
                     onClick={()=>this.saveSearch({sanId:sanctuary.sanId,userId: this.state.user.userId})}
@@ -111,9 +120,9 @@ class Search extends Component {
                   <SearchResults
                     id={sanctuary.sanId}
                     key={sanctuary.sanId}
-                    name={sanctuary.SanctuaryName}
+                    name={sanctuary.name}
                     website={sanctuary.animalWebsite}
-                    logo={sanctuary.SanctuaryImage}
+                    logo={sanctuary.image}
                   />
                 ))}
               </div>
