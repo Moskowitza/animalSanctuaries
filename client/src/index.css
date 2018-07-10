@@ -1,13 +1,18 @@
 * {
   box-sizing: border-box;
+  
 }
 
 html,
-body,
 #root,
 #root > div,
 div[data-reactroot] {
   height: 100%;
   padding: 0;
   margin: 0;
+  
+}
+
+body{ background: url("http://absfreepic.com/absolutely_free_photos/small_photos/baby-lamb-2439x1626_15964.jpg");
+
 }
