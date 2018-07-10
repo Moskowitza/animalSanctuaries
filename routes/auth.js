@@ -93,5 +93,26 @@ module.exports = function (app, passport) {
                 res.json(result[0][0].Sanctuaries);
             }).catch(error => res.json(error));
     });
+    // Get one sanctuary
+    app.get('api/sanctuary/:id', function (req, res) {
+        console.log("GET ONE SANCTUARY" + req.params.id);
+        var profileSanctuary = db.User.findOne({
+            where:
+                { userId: req.params.id },
+            //*** If we want associated POSTS later, we'll need to use this
+            // include: [{
+            //     model: db.Post,
+            //     
+            //     through: {
+            //         attributes: ['name', 'image', 'state']
+            //     }
+            // }],
+        })
+        Promise.all([profileSanctuary])
+            .then(function (result) {
+                console.log("data from savedSanc api call: "+JSON.stringify(result[0][0].Sanctuaries));
+                res.json(result[0][0].Sanctuaries);
+            }).catch(error => res.json(error));
+    });
 
 }

@@ -39,5 +39,9 @@ export default {
     console.log("API API API SAVED id data "+JSON.stringify(data.userId));
 
     return axios.get(`/auth/savedSanctuaries/${data.userId}`);
-  }
+  },
+    // Get ONE sanctuary with the given id for the profile
+    getSanctuary: function(data) {
+      return axios.get(`/api/sanctuary/${data.sanId}`);
+    }
 };

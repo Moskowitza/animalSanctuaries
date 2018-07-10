@@ -23,11 +23,11 @@ class Dashboard extends Component {
         this.setState({
           user: res.data
         });
-        this.getSavedSanctuaries({userId: this.state.user.userId});
+        this.getSavedSanctuaries({ userId: this.state.user.userId });
       })
   }
   getSavedSanctuaries = data => {
-  // event.preventDefault();
+    // event.preventDefault();
     console.log("userId for join " + data.userId)
     API.getSavedSanctuaries(data)
       .then(res => {
@@ -111,3 +111,4 @@ class Dashboard extends Component {
 }
 
 export default Dashboard;
+

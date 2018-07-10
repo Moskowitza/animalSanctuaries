@@ -79,6 +79,7 @@ class Search extends Component {
     this.setState({
       selected: data
     })
+    // This fires off first, so we'll see the previous one
     console.log("Selected Sanctuary IS" +JSON.stringify(this.state.selected))
     
   }

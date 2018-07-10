@@ -10,6 +10,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Wrapper from "./components/Wrapper";
 import Header from "./components/Header";
+import SanctuaryProfile from "./components/SanctuaryProfile";
 
 
 const App = () => (
@@ -28,6 +29,7 @@ const App = () => (
         <Route exact path="/search" component={Search} />
         <Route exact path="/signin" component={Signin} />
         <Route exact path="/signup" component={Signup} />
+        <Route exact path="/sanctuary/:id" component={SanctuaryProfile} />
         <Route exact path="/newSanctuary" component={NewSanctuary} />
       </Wrapper>
       <Footer />
