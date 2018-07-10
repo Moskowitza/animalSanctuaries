@@ -69,7 +69,7 @@ class Signup extends Component {
         <Container>
           <Row className="justify-content-center">
             <Col size="md-12">
-              <div className="card w-100 h-100">
+              <div className="card w-50 h-50">
                 <div className="card-header text-center">
                   <p>Follow your favorite Animal Sanctuary!</p>
                   <p>Sign up for an account</p>
@@ -106,8 +106,8 @@ class Signup extends Component {
                         </p>
 
                         <p className="align-items-end">
-                          <button className="btn btn-info" onClick={this.handleFormSubmit}>
-                            Submit
+                        <button href="/dashboard" className="btn btn-info" onClick={this.handleFormSubmit}>
+                            Submit 
                           </button>
                           <a className="btn" href="/">
                             Cancel

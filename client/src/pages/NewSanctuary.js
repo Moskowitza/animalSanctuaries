@@ -93,7 +93,7 @@ class NewSanctuary extends Component {
                 <Container>
                     <Row className="justify-content-center">
                         <Col size="md-12">
-                        <div className="card">
+                            <div className="card w-50 h-50">
                             {/* FORM HAS ACTION TO SIGNUP route*/}
                                 <form action="/auth/newSanctuary">
                                     <div className="card-header">Register a New Sanctuary</div>

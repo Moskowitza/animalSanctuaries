@@ -72,33 +72,37 @@ class Dashboard extends Component {
           </Row>
 
           <Row className="center ">
-          <div className="card h-25">
-            <div className="card-body text-center">
-              {this.state.user ? <div>
-                  <p>
-                    You are currently logged in as {this.state.user.email}
-                  </p>
-                  <a className="btn btn-default" onClick={this.logoutUser}>
-                    Logout
-                  </a>
-                  {this.state.sanctuaries.map(sanctuary => (
-                    <SavedSanctuaries
-                      id={sanctuary.sanId}
-                      key={sanctuary.sanId}
-                      logo={sanctuary.image}
-                      name={sanctuary.name}
-                    />
-                  ))}
-                </div> : <div>
-                  <p className="lead"> Login or Register to continue to follow Animal Sanctuaries!</p>
-                  <a className="btn btn-default btn-info" href="/signin" onClick={this.handleFormSubmit}>
-                    Login
-                  </a>&nbsp;
-                  <a className="btn btn-default btn-primary" href="/signup">
-                    Register
-                  </a>
-                </div>}
-                </div>
+            <div className="card w-50 h-50">
+              <div className="card-body text-center">
+                {this.state.user ? <div>
+                    <p>
+                      You are currently logged in as {this.state.user.email}
+                    </p>
+                    <a className="btn btn-default" onClick={this.logoutUser}>
+                      Logout
+                    </a>
+                    {this.state.sanctuaries.map(sanctuary => (
+                      <SavedSanctuaries
+                        id={sanctuary.sanId}
+                        key={sanctuary.sanId}
+                        logo={sanctuary.image}
+                        name={sanctuary.name}
+                      />
+                    ))}
+                  </div> : <div>
+                    <p className="lead">
+                      {" "}
+                      Login or Register to continue to follow Animal
+                      Sanctuaries!
+                    </p>
+                    <a className="btn btn-default btn-info" href="/signin" onClick={this.handleFormSubmit}>
+                      Login
+                    </a>&nbsp;
+                    <a className="btn btn-default btn-primary" href="/signup">
+                      Register
+                    </a>
+                  </div>}
+              </div>
             </div>
           </Row>
         </Container>

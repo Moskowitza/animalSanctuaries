@@ -57,7 +57,7 @@ class Signin extends Component {
             <Row className="justify-content-start">
               <Col size="md-12" className="center ">
                 {/* FORM HAS ACTION TO SIGNIN route*/}
-                <div className="card w-40 h-50">
+                <div className="card w-50 h-50">
                   <div className="card-header">
                     Please Login or Return to the homepage
                   </div>
