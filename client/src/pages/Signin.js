@@ -4,6 +4,7 @@ import Container from "../components/Container";
 import API from "../utils/API";
 import Row from "../components/Row";
 import Col from "../components/Col";
+import Card from "../components/Card";
 
 // Switch this to REGISTER and create a seperate LOGIN
 class Signin extends Component {
@@ -51,24 +52,23 @@ class Signin extends Component {
 
 
     render() {
-      return (
-        <div>
+      return <div>
           <Container>
-            <Row className="justify-content-center">
-              <Col size="md-12">
+            <Row className="justify-content-start">
+              <Col size="md-12" className="center ">
                 {/* FORM HAS ACTION TO SIGNIN route*/}
-                <form className="card-body" /*action="/sigin" methdo="post"*/>
-
-                  <span>
-                    <p></p>
-                    <label>Email Address</label>
-                    <input
-                      type="text"
-                      name="email"
-                      value={this.state.email}
-                      onChange={this.handleInputChange}
-                    />
-                    {/* <label >User Name</label>
+                <div className="card w-50 h-50">
+                  <div className="card-header">
+                    Please Login or Return to the homepage
+                  </div>
+                  <div className="form-group">
+                    <form className="card-body">
+                      <span>
+                        <p> Email Address:</p>
+                        <p className="form-group">
+                          <input className="form-control" type="text" name="email" value={this.state.email} onChange={this.handleInputChange} />
+                        </p>
+                        {/* <label >User Name</label>
                   <input
                     type="text"
                     name="username"
@@ -76,23 +76,27 @@ class Signin extends Component {
                     onChange={this.handleInputChange}
 
                   /> */}
-                    <label>Password</label>
-                    <input
-                      type="text"
-                      name="password"
-                      value={this.state.password}
-                      onChange={this.handleInputChange}
-                    />
-                    <button type="submit" onClick={this.handleFormSubmit}>Submit</button>
-                    <a className="btn" href='/'>Cancel</a>
-                  </span>
-                </form>
+
+                        <p>Password:</p>
+                        <p>
+                        <input className="form-control" type="password" name="password" value={this.state.password} onChange={this.handleInputChange} />
+                        </p>
+                        <p />
+
+                        <button className="btn btn-default btn-info" type="submit" onClick={this.handleFormSubmit}>
+                          Login
+                        </button>
+                        <a className="btn" href="/">
+                          Cancel
+                        </a>
+                      </span>
+                    </form>
+                  </div>
+                </div>
               </Col>
             </Row>
           </Container>
-
-        </div>
-      );
+        </div>;
     }
   };
 

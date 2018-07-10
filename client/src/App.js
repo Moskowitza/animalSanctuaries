@@ -15,6 +15,7 @@ import SanctuaryProfile from "./components/SanctuaryProfile";
 
 const App = () => (
   <Router>
+    <body>
     <div>
       <Navbar />
       <Header>
@@ -33,6 +34,7 @@ const App = () => (
       </Wrapper>
       <Footer />
     </div>
+    </body>
   </Router>
 );
 

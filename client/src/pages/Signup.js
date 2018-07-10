@@ -65,62 +65,63 @@ class Signup extends Component {
 
 
   render() {
-    return (
-      <div>
+    return <div>
         <Container>
           <Row className="justify-content-center">
             <Col size="md-12">
-            {/* FORM HAS ACTION TO SIGNUP route*/}
-              <form className="card-body" action="/sigup">
+              <div className="card w-50 h-50">
+                <div className="card-header text-center">
+                  <p>Follow your favorite Animal Sanctuary!</p>
+                  <p>Sign up for an account</p>
+                </div>
+                {/* FORM HAS ACTION TO SIGNUP route*/}
 
-                <span>
-                  <p>SingUP PAGE</p>
-                  <label>Email Address</label>
-                  <input
-                    type="text"
-                    name="email"
-                    value={this.state.email}
-                    onChange={this.handleInputChange}
-                  />
-                  <label>Firstname</label>
-                  <input
-                    type="text"
-                    name="firstname"
-                    value={this.state.firstname}
-                    onChange={this.handleInputChange}
-                  />
-                  <label >Lastname</label>
-                  <input
-                    type="text"
-                    name="lastname"
-                    value={this.state.lastname}
-                    onChange={this.handleInputChange}
-                  />
-                  <label >User Name</label>
-                  <input
-                    type="text"
-                    name="username"
-                    value={this.state.username}
-                    onChange={this.handleInputChange}
+                <form className="text-center" action="/sigup">
+                  <div className="form-group">
+                    <div className="card-body text-left">
+                      <span>
+                        <label>Email Address:</label>
+                        <p>
+                          <input type="text" className="form-control" name="email" value={this.state.email} onChange={this.handleInputChange} />
+                        </p>
 
-                  />
-                  <label>Password</label>
-                  <input
-                    type="text"
-                    name="password"
-                    value={this.state.password}
-                    onChange={this.handleInputChange}
-                  />
-                  <button onClick={this.handleFormSubmit}>Submit</button>
-                  <a className="btn" href='/'>Cancel</a>
-                </span>
-              </form>
+                        <label> First Name:</label>
+                        <p>
+                          <input type="text" className="form-control" name="firstname" value={this.state.firstname} onChange={this.handleInputChange} />
+                        </p>
+
+                        <label>Last Name: </label>
+                        <p>
+                          <input type="text" className="form-control" name="lastname" value={this.state.lastname} onChange={this.handleInputChange} />
+                        </p>
+
+                        <label>Username: </label>
+                        <p>
+                          <input type="text" className="form-control" name="username" value={this.state.username} onChange={this.handleInputChange} />
+                        </p>
+
+                        <label> Password: </label>
+                        <p>
+                          <input type="password" className="form-control" name="password" value={this.state.password} onChange={this.handleInputChange} />
+                        </p>
+
+                        <p className="align-items-end">
+                        <button href="/dashboard" className="btn btn-info" onClick={this.handleFormSubmit}>
+                            Submit 
+                          </button>
+                          <a className="btn" href="/">
+                            Cancel
+                          </a>
+                        </p>
+                      </span>
+                    </div>
+                  </div>
+                </form>
+              </div>
             </Col>
           </Row>
         </Container>
-
-      </div>
-    );
+      </div>;
   }
 };
 

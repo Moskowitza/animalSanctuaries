@@ -96,7 +96,9 @@ class Search extends Component {
     );
     return (
       <div>
+      
         <Container style={{ minHeight: "80%" }}>
+      
           <h1 className="text-center">Search By Sanctuary Name:</h1>
           <p>You are currently logged in as {this.state.user.email}</p>
           {/* SearchForm is for Name */}
@@ -140,6 +142,7 @@ class Search extends Component {
                 ))}
               </div>
             )}
+  
         </Container>
       </div>
     );

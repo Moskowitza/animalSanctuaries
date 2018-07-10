@@ -1,0 +1,12 @@
+.Container  {
+  min-height: 100px;
+    
+   
+    padding: 20px 0;
+}
+
+h1{
+    text-align: center;
+    color:white;
+    font-family: 'Monoton', cursive;
+}
