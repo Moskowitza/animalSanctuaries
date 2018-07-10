@@ -94,11 +94,11 @@ module.exports = function (app, passport) {
             }).catch(error => res.json(error));
     });
     // Get one sanctuary
-    app.get('api/sanctuary/:id', function (req, res) {
+    app.get('api/sanctuary/id', function (req, res) {
         console.log("GET ONE SANCTUARY" + req.params.id);
-        var profileSanctuary = db.User.findOne({
+        db.Sanctuary.findOne({
             where:
-                { userId: req.params.id },
+                { sanId: req.params.id },
             //*** If we want associated POSTS later, we'll need to use this
             // include: [{
             //     model: db.Post,
@@ -108,10 +108,10 @@ module.exports = function (app, passport) {
             //     }
             // }],
         })
-        Promise.all([profileSanctuary])
+        // Promise.all([profileSanctuary])
             .then(function (result) {
-                console.log("data from savedSanc api call: "+JSON.stringify(result[0][0].Sanctuaries));
-                res.json(result[0][0].Sanctuaries);
+                console.log("data from profileSanctuary api call: "+JSON.stringify(result));
+                res.json(result);
             }).catch(error => res.json(error));
     });
 
