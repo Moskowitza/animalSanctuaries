@@ -93,35 +93,44 @@ class NewSanctuary extends Component {
                 <Container>
                     <Row className="justify-content-center">
                         <Col size="md-12">
+                        <div className="card">
                             {/* FORM HAS ACTION TO SIGNUP route*/}
-                            <form className="card-body" action="/sigup">
-
-                                <span>
-                                    <p>Register a New Sanctuary</p>
+                                <form action="/auth/newSanctuary">
+                                    <div className="card-header">Register a New Sanctuary</div>
+                                    <span className="card-body" >
+    
+                                    <p>
                                     <label>Name</label>
                                     <input
+                                        className="form-control"
                                         type="text"
                                         name="name"
                                         value={this.state.name}
                                         onChange={this.handleInputChange}
                                     />
-                                    <br />
+                                    </p>
+                                    <p>
                                     <label>Image Link</label>
                                     <input
+                                        className="form-control"
                                         type="text"
                                         name="image"
                                         value={this.state.image}
                                         onChange={this.handleInputChange}
                                     />
-                                    <br />
+                                    </p>
+                                    <p>
+
                                     <label >State</label>
                                     <input
+                                        className="form-control"
                                         type="text"
                                         name="state"
                                         value={this.state.state}
                                         onChange={this.handleInputChange}
                                     />
-                                    <br />
+                                    </p>
+                                   
                                     {/* <label >animalPhone</label>
                                     <input
                                         type="text"
@@ -240,10 +249,11 @@ class NewSanctuary extends Component {
                                         value={this.state.animalAbout}
                                         onChange={this.handleInputChange}
                                     /> */}
-                                    <button onClick={this.handleFormSubmit}>Submit</button>
+                                    <button className="btn btn-primary" onClick={this.handleFormSubmit}>Register</button>
                                     <a className="btn" href='/'>Cancel</a>
                                 </span>
                             </form>
+                        </div>
                         </Col>
                     </Row>
                 </Container>

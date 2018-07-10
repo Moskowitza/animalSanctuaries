@@ -14,6 +14,7 @@ import Header from "./components/Header";
 
 const App = () => (
   <Router>
+    <body>
     <div>
       <Navbar />
       <Header>
@@ -31,6 +32,7 @@ const App = () => (
       </Wrapper>
       <Footer />
     </div>
+    </body>
   </Router>
 );
 
