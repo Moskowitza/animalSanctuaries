@@ -5,7 +5,7 @@ import "./SearchForm.css";
 const SearchForm = props => (
   <form className="search">
     <div className="form-group">
-      <label htmlFor="Name">Sanctuary Name:</label>
+      <label htmlFor="name">Sanctuary Name:</label>
       <p>Search: {props.search}</p>
       <input
         value={props.search}

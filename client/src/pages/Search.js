@@ -3,12 +3,14 @@ import Container from "../components/Container";
 import SearchForm from "../components/SearchForm";
 import SearchState from "../components/SearchState";
 import SearchResults from "../components/SearchResults";
+// import SanctuaryProfile from "../components/SanctuaryProfile";
 import UserSearchResults from "../components/UserSearchResults";
 
 // import sanctuaries from "../sanctuaries.json";
 import API from "../utils/API";
 class Search extends Component {
   state = {
+    selected: "",
     search: "",
     searchState:"",
     sanctuaries: [],
@@ -18,27 +20,40 @@ class Search extends Component {
     user: {}
   };
 
-  // getSanctuaries and getUser, if logged in
-  componentDidMount() {
-    this.getUser();
-    this.getSanctuaries();
-  };
-  getUser = () => {
-    API.getUser()
-      .then(res => {
-        this.setState({
-          user: res.data
-        });
-      })
-  }
-  getSanctuaries = () => {
-    API.getSanctuaries()
-      .then(res => {
-        this.setState({
-          sanctuaries: res.data
-        });
-      })
-  }
+    // getSanctuaries and getUser, if logged in
+    componentDidMount() {
+      this.getUser();
+      this.getSanctuaries();
+    };
+    getUser = () => {
+      API.getUser()
+        .then(res => {
+          this.setState({
+            user: res.data
+          });
+        })
+    }
+    getSanctuaries = () => {
+      API.getSanctuaries()
+        .then(res => {
+          this.setState({
+            sanctuaries: res.data
+          });
+        })
+    }
+  // We need to shift this page to view Profiles. 
+  // handlePageChange = page => {
+  //   this.setState({ currentPage: page });
+  // };
+
+  // renderPage = () => {
+  //   if (this.state.currentPage === "Search") {
+  //     return <Search />;
+  //   } else if (this.state.currentPage === "SanctuaryProfile") {
+  //     return <SanctuaryProfile />;
+  //   }
+  // };
+
 
   // handle any changes to the input Fields: Search
   handleInputChange = event => {
@@ -58,6 +73,14 @@ class Search extends Component {
       .then(res => {
         console.log(res);
       })
+  }
+  //we need to pick a sanctuary that for a profile we'll view
+  selectSanctuary=data=>{
+    this.setState({
+      selected: data
+    })
+    console.log("Selected Sanctuary IS" +JSON.stringify(this.state.selected))
+    
   }
 
   render() {
@@ -101,7 +124,8 @@ class Search extends Component {
                     logo={sanctuary.image}
                     //userId comes from state, not our filteredSanctuaries array
                     userId={this.state.user.userId}
-                    onClick={()=>this.saveSearch({sanId:sanctuary.sanId,userId: this.state.user.userId})}
+                    select={()=>this.selectSanctuary({sanId:sanctuary.sanId})}
+                    save={()=>this.saveSearch({sanId:sanctuary.sanId,userId: this.state.user.userId})}
                   />
                 ))}
               </div>
@@ -110,7 +134,7 @@ class Search extends Component {
               <div>
                 {filteredSanctuaries.map(sanctuary => (
                   <SearchResults
-                    id={sanctuary.sanId}
+                    sanId={sanctuary.sanId}
                     key={sanctuary.sanId}
                     name={sanctuary.name}
                     website={sanctuary.animalWebsite}
