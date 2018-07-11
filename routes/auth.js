@@ -94,7 +94,7 @@ module.exports = function (app, passport) {
             }).catch(error => res.json(error));
     });
     // Get one sanctuary
-    app.get('api/sanctuary/id', function (req, res) {
+    app.get('/api/sanctuary/:id', function (req, res) {
         console.log("GET ONE SANCTUARY" + req.params.id);
         db.Sanctuary.findOne({
             where:
@@ -114,5 +114,14 @@ module.exports = function (app, passport) {
                 res.json(result);
             }).catch(error => res.json(error));
     });
+    // app.post('/auth/newComment',function(req,res){
+    //     var userCommenting = db.User.findOne({ where: { userId: req.body.userId } }),
+    //     var sanCommented = db.Sanctuary.findOne({ where: { sanId: req.body.sanId } })
+    //     Promise.all([userCommenting, sanCommented])
+    //     .then((result)=>{
+    //         results[0].addPost(results[1]);
+    //         db.Post.create(comment=req.body.comment);
+    //     })
+    // })
 
 }

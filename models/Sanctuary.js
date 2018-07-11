@@ -30,6 +30,9 @@ module.exports = function (sequelize, Sequelize) {
       as: 'Subscribers',
       foreignKey: 'sanId'
     });
+    Sanctuary.hasMany(models.Post, {
+      as: 'comments',
+    });
   };
   return Sanctuary;
 };
