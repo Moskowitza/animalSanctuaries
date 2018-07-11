@@ -13,10 +13,10 @@ module.exports = function (sequelize, Sequelize) {
     });
     Post.associate = function(models) {
         Post.belongsTo(models.User, {
-            foreignKey:'userId'
+            // foreignKey:'userId'
         });
         Post.belongsTo(models.Sanctuary, {
-            foreignKey:'sanId'
+            // foreignKey:'sanId'
         });
       };
     return Post;
