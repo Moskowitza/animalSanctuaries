@@ -78,9 +78,14 @@ class Dashboard extends Component {
                     <p>
                       You are currently logged in as {this.state.user.email}
                     </p>
-                    <a className="btn btn-default" onClick={this.logoutUser}>
-                      Logout
-                    </a>
+                    <p>
+                      <a className="btn btn-info" href="/search">
+                        Search
+                      </a> &nbsp;
+                      <button className="btn btn-danger" onClick={this.logoutUser}>
+                        Logout
+                      </button>
+                    </p>
                     {this.state.sanctuaries.map(sanctuary => (
                       <SavedSanctuaries
                         id={sanctuary.sanId}
