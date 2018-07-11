@@ -45,9 +45,10 @@ module.exports = function (sequelize, Sequelize) {
             as:'Sanctuaries',
             foreignKey:'userId'
         });
-        User.hasMany(models.Post, {
-            as:'myPosts',
-        });
+        // User.hasMany(models.Post, {
+        //     // as:'myPosts',
+        //     // foreignKey: 'sanId'
+        // });
       };
     return User;
 }
