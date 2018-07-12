@@ -114,14 +114,19 @@ module.exports = function (app, passport) {
                 res.json(result);
             }).catch(error => res.json(error));
     });
-    // app.post('/auth/newComment',function(req,res){
-    //     var userCommenting = db.User.findOne({ where: { userId: req.body.userId } }),
-    //     var sanCommented = db.Sanctuary.findOne({ where: { sanId: req.body.sanId } })
-    //     Promise.all([userCommenting, sanCommented])
-    //     .then((result)=>{
-    //         results[0].addPost(results[1]);
-    //         db.Post.create(comment=req.body.comment);
-    //     })
-    // })
+    app.post('/auth/newComment',function(req,res){
+        console.log("in authjs "+JSON.stringify(req.body))
+        const userCommenting = db.User.findOne({ where: { userId: req.body.userId } });
+        const sanCommented = db.Sanctuary.findOne({ where: { sanId: req.body.sanId } });
+        Promise.all([userCommenting, sanCommented])
+        .then((result)=>{
+            // results[0].addPost(results[1]);
+            db.Post.create(req.body);
+        })
+        .then(function (result) {
+            console.log("Result from adding a post: "+JSON.stringify(result));
+            res.json(result);
+        }).catch(error => res.json(error));
+    })
 
 }
