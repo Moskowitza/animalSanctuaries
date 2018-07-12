@@ -3,14 +3,12 @@ import Container from "../components/Container";
 import SearchForm from "../components/SearchForm";
 import SearchState from "../components/SearchState";
 import SearchResults from "../components/SearchResults";
-// import SanctuaryProfile from "../components/SanctuaryProfile";
 import UserSearchResults from "../components/UserSearchResults";
 
 // import sanctuaries from "../sanctuaries.json";
 import API from "../utils/API";
 class Search extends Component {
   state = {
-    selected: "",
     search: "",
     searchState:"",
     sanctuaries: [],
@@ -75,14 +73,13 @@ class Search extends Component {
       })
   }
   //we need to pick a sanctuary that for a profile we'll view
-  selectSanctuary=data=>{
-    this.setState({
-      selected: data
-    })
-    // This fires off first, so we'll see the previous one
-    console.log("Selected Sanctuary IS" +JSON.stringify(this.state.selected))
-    
-  }
+  // selectSanctuary=data=>{
+  //   this.setState({
+  //     selected: data
+  //   })
+  //   // This fires off first, so we'll see the previous one
+  //   .then(console.log("Selected Sanctuary IS" +JSON.stringify(this.state.selected)));
+  // }
 
   render() {
     //This wont work: How would we extract the props we need back out of one mess array? 
@@ -127,7 +124,6 @@ class Search extends Component {
                     logo={sanctuary.image}
                     //userId comes from state, not our filteredSanctuaries array
                     userId={this.state.user.userId}
-                    select={()=>this.selectSanctuary({sanId:sanctuary.sanId})}
                     save={()=>this.saveSearch({sanId:sanctuary.sanId,userId: this.state.user.userId})}
                   />
                 ))}

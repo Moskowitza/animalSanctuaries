@@ -71,21 +71,22 @@ class Dashboard extends Component {
             </Col>
           </Row>
 
-          <Row className="center ">
+          <Row className="center">
             <div className="card w-50 h-50">
               <div className="card-body text-center">
-                {this.state.user ? <div>
+                {this.state.user ? 
+                <div>
                     <p>
                       You are currently logged in as {this.state.user.email}
                     </p>
-                    <p>
+                    
                       <a className="btn btn-info" href="/search">
                         Search
                       </a> &nbsp;
-                      <button className="btn btn-danger" onClick={this.logoutUser}>
+                      <a className="btn btn-danger" onClick={this.logoutUser} href="/">
                         Logout
-                      </button>
-                    </p>
+                      </a>
+                    
                     {this.state.sanctuaries.map(sanctuary => (
                       <SavedSanctuaries
                         id={sanctuary.sanId}
@@ -100,10 +101,10 @@ class Dashboard extends Component {
                       Login or Register to continue to follow Animal
                       Sanctuaries!
                     </p>
-                    <a className="btn btn-default btn-info" href="/signin" onClick={this.handleFormSubmit}>
+                    <a className="btn btn-info" href="/signin" onClick={this.handleFormSubmit}>
                       Login
                     </a>&nbsp;
-                    <a className="btn btn-default btn-primary" href="/signup">
+                    <a className="btn btn-primary" href="/signup">
                       Register
                     </a>
                   </div>}

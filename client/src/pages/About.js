@@ -27,11 +27,9 @@ const About = () => (
           </p>
         </Col>
 
-        <CardBtn>hello</CardBtn>
+  
       </Row>
-      <Row>
-      <CardBtn />
-      </Row>
+   
     </Container>
   </body>
 );

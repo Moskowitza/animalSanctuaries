@@ -249,7 +249,7 @@ class NewSanctuary extends Component {
                                         value={this.state.animalAbout}
                                         onChange={this.handleInputChange}
                                     /> */}
-                                    <button className="btn btn-primary" onClick={this.handleFormSubmit}>Register</button>
+                                        <a className="btn btn-primary" onClick={this.handleFormSubmit} action="/auth/newSanctuary">Add New Sanctuary</a>
                                     <a className="btn" href='/'>Cancel</a>
                                 </span>
                             </form>
