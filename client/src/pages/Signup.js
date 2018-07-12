@@ -106,8 +106,8 @@ class Signup extends Component {
                         </p>
 
                         <p className="align-items-end">
-                        <button href="/dashboard" className="btn btn-info" onClick={this.handleFormSubmit}>
-                            Submit 
+                          <button className="btn btn-info" onClick={this.handleFormSubmit} href="/dashboard">
+                            Submit
                           </button>
                           <a className="btn" href="/">
                             Cancel

@@ -59,20 +59,29 @@ class SanctuaryProfile extends Component {
     render() {
         return (
             <div>
-                <div className="card">
-                <div className="card-body">
-             
-                <h1>Santuary Profile Page</h1>
-                <img alt="sanctuary" src={this.state.sanctuary.logo} className="img-fluid" />
+            <div className="card w-50 h-50 text-center">  
+            <h3>Santuary Profile Page</h3>
+            </div>
+                <div className="card w-50 h-50">
+                <div className="card-body text-center">
+                <img alt="sanctuary" src={this.state.sanctuary.image} className="img-fluid" />
                 <h3>Sanctuary Name:{this.state.sanctuary.name}</h3>
-                <aside>Details:
+              </div>
+              </div>
+                <div className="card w-50 h-50">
+                  <div className="card-body text-center">
+                <p>Details:
                     <ul>
-                        <li> address:{this.state.sanctuary.address}</li>
-                        <li> Facebook:{this.state.sanctuary.facebook}</li>
-                        <li> Instagram:{this.state.sanctuary.instagram}</li>
+                        <li> Address: {this.state.sanctuary.animalAddress}</li>
+                        <li> Facebook: {this.state.sanctuary.Facebook}</li>
+                        <li> Instagram: {this.state.sanctuary.Instagram}</li>
 
                     </ul>
-                </aside>
+                </p>
+                </div>
+                </div>
+            <div className="card w-75 h-75">
+                <div className= "card-body">
                 <label>Add Comment:</label>
                         <p>
                           <input type="text" className="form-control" name="comment" value={this.state.comment} onChange={this.handleInputChange} />
@@ -82,7 +91,7 @@ class SanctuaryProfile extends Component {
                         </button>
                 <Link to="/Search">← Back to Search</Link>
                 </div>
-                </div>
+              </div>
             </div>
         )
     }

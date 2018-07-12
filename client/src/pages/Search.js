@@ -98,11 +98,17 @@ class Search extends Component {
       <div>
       
         <Container style={{ minHeight: "80%" }}>
-      
-          <h1 className="text-center">Search By Sanctuary Name:</h1>
-          <p>You are currently logged in as {this.state.user.email}</p>
+          <div className="card w-50 h-50">
+          
+          <p className="card-body text-center">You are currently logged in as {this.state.user.email}</p>
           {/* SearchForm is for Name */}
-          <SearchForm
+         
+          </div>
+          <div className="card w-100">
+          <div className="card-body">
+          <p className="text-center">Search for a Sanctuary by NAME or STATE below</p>
+              <form className="form-group">
+          <SearchForm className= "form-control"
             handleInputChange={this.handleInputChange}
             search={this.state.search}
           />
@@ -110,7 +116,7 @@ class Search extends Component {
             handleInputChange={this.handleInputChange}
             searchState={this.state.searchState}
           />
-    
+          </form>
           {this.state.user ?
             (
             // if LOGGED IN
@@ -142,7 +148,8 @@ class Search extends Component {
                 ))}
               </div>
             )}
-  
+            </div>
+          </div>
         </Container>
       </div>
     );

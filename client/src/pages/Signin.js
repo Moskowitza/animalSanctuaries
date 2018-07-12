@@ -83,9 +83,9 @@ class Signin extends Component {
                         </p>
                         <p />
 
-                        <button className="btn btn-default btn-info" type="submit" onClick={this.handleFormSubmit}>
+                        <a className="btn btn-default btn-info" type="submit" onClick={this.handleFormSubmit} href="/dashboard">
                           Login
-                        </button>
+                        </a>
                         <a className="btn" href="/">
                           Cancel
                         </a>
