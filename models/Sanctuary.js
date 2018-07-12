@@ -45,6 +45,10 @@ module.exports = function (sequelize, Sequelize) {
       type: Sequelize.STRING},
     YouTube: {
       type: Sequelize.STRING
+    },
+    DonationPage: {
+      type: Sequelize.STRING
+
     }
   });
   Sanctuary.associate = function (models) {

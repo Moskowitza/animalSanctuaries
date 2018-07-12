@@ -63,11 +63,13 @@ class Dashboard extends Component {
           </Row>
           <Row>
             <Col size="md-12">
+            <div className="card w-50 h-50">
               <p className="text-center">
                 Please login to see all the Animal Sanctuaries you are
                 currently following or reigister with us below to start
                 following some animal sanctuary
               </p>
+            </div>
             </Col>
           </Row>
 

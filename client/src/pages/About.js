@@ -11,12 +11,12 @@ const About = () => (
     <Container style={{ marginTop: 30 }}>
       <Row>
         <Col size="md-12">
+        <div>
           <h1>Welcome To animal sanctuaries!</h1>
-        </Col>
-      </Row>
-      <Row>
-        <Col size="md-12">
-          <p>
+        </div>
+        <div className = "card w-100">
+
+          <p className = "card-body text-center">
             Farm animal sanctuaries are safe havens for animals who have endured
             the victimization of factory farming. Visiting a sanctuary is an
             absolute must for anyone truly devoted to animal protection. The
@@ -24,10 +24,16 @@ const About = () => (
             an incredibly moving experience. Very few animals trapped in factory
             farms and our food system ever experience freedom, but sanctuaries
             offer an island of kindness in this sea of cruelty.
+         </p>
+            <p className="card-body text-center">
+            Click the search button to find animal sacturaries
+            <br/>
+            <a href="/search" className="btn btn-info"> Search</a>
           </p>
-        </Col>
 
-  
+
+        </div>
+        </Col>
       </Row>
    
     </Container>
