@@ -10,11 +10,19 @@ class SanctuaryProfile extends Component {
         comment:""
     }
     componentDidMount() {
+      this.getUser();
         API.getSanctuary(this.props.match.params.id)
             .then(res => this.setState({ sanctuary: res.data }))
             .catch(err => console.log(err));
     }
-
+    getUser = () => {
+      API.getUser()
+        .then(res => {
+          this.setState({
+            user: res.data
+          });
+        })
+    }
 
   // handle any changes to the input fields
   handleInputChange = event => {
@@ -28,16 +36,13 @@ class SanctuaryProfile extends Component {
   };
   handleFormSubmit = event => {
     event.preventDefault();
+    var data = {comment: this.state.comment,
+    userId:this.state.user.userId,
+    sanId:this.state.sanctuary.sanId}
+
     // alert(`Username: ${this.state.username}\nPassword: ${this.state.password}`);
     // We need to have an HTTP request to our path
-    API.saveComment({
-        // we'll send over the user making the comment, 
-        //the sanctuary being commented to and
-        //The comment text
-      comment: this.state.comment,
-      userId:this.state.user.userId,
-      sanId:this.state.sanctuary.sanId
-    })
+    API.saveComment(data)
       .then(res => {
         if ( res.data === true ) {
             // do what? I guess render the comment section, we'll get there
