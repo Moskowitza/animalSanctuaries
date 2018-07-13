@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Container from "../components/Container";
+import Row from "../components/Row";
 import SearchForm from "../components/SearchForm";
 import SearchState from "../components/SearchState";
 import SearchResults from "../components/SearchResults";
@@ -98,29 +99,37 @@ class Search extends Component {
       <div>
       
         <Container style={{ minHeight: "80%" }}>
+        <Row>
           <div className="card w-50 h-50">
           
           <p className="card-body text-center">You are currently logged in as {this.state.user.email}</p>
           {/* SearchForm is for Name */}
          
           </div>
+          </Row>
+          <Row>
           <div className="card w-100">
           <div className="card-body">
           <p className="text-center">Search for a Sanctuary by NAME or STATE below</p>
-              <form className="form-group">
+            
           <SearchForm className= "form-control"
             handleInputChange={this.handleInputChange}
             search={this.state.search}
           />
+          </div>
+          </div>
+          </Row>
           {/* <SearchState             
             handleInputChange={this.handleInputChange}
             searchState={this.state.searchState}
           /> */}
-          </form>
+          <Row>
+            <div className="card w-100 h-100">
+              <div className="card-body">
           {this.state.user ?
             (
             // if LOGGED IN
-              <div>
+              <div className ="card">
                 {filteredSanctuaries.map(sanctuary => (
                   <UserSearchResults
                     sanId={sanctuary.sanId}
@@ -151,6 +160,7 @@ class Search extends Component {
             )}
             </div>
           </div>
+          </Row>
         </Container>
       </div>
     );
