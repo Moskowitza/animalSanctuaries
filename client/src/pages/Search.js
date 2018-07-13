@@ -112,10 +112,10 @@ class Search extends Component {
             handleInputChange={this.handleInputChange}
             search={this.state.search}
           />
-          <SearchState             
+          {/* <SearchState             
             handleInputChange={this.handleInputChange}
             searchState={this.state.searchState}
-          />
+          /> */}
           </form>
           {this.state.user ?
             (
@@ -134,6 +134,7 @@ class Search extends Component {
                   />
                 ))}
               </div>
+
             ) : (
               // if not logged in serve up the page without button link
               <div>

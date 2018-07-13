@@ -61,17 +61,8 @@ class Dashboard extends Component {
               <h1>Welcome To animal sanctuaries!</h1>
             </Col>
           </Row>
-          <Row>
-            <Col size="md-12">
-            <div className="card w-50 h-50">
-              <p className="text-center">
-                Please login to see all the Animal Sanctuaries you are
-                currently following or reigister with us below to start
-                following some animal sanctuary
-              </p>
-            </div>
-            </Col>
-          </Row>
+          
+
 
           <Row className="center">
             <div className="card w-50 h-50">
@@ -95,6 +86,8 @@ class Dashboard extends Component {
                         key={sanctuary.sanId}
                         logo={sanctuary.image}
                         name={sanctuary.name}
+                        sanId={sanctuary.sanId}
+
                       />
                     ))}
                   </div> : <div>
