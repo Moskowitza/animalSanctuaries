@@ -64,8 +64,8 @@ module.exports = function (app, passport) {
         });
     });
     app.post('/auth/saveSearch', function (req, res) {
-        var userToAdd = db.User.findOne({ where: { userId: req.body.userId } })
-        var sanToAdd = db.Sanctuary.findOne({ where: { sanId: req.body.sanId } })
+        const userToAdd = db.User.findOne({ where: { userId: req.body.userId } });
+        const sanToAdd = db.Sanctuary.findOne({ where: { sanId: req.body.sanId } });
         Promise.all([userToAdd, sanToAdd])
             .then((results) => {
                 return results[0].addSanctuary(results[1]);
@@ -128,5 +128,14 @@ module.exports = function (app, passport) {
             res.json(result);
         }).catch(error => res.json(error));
     })
+    app.get('/api/getComments:id',function(req,res){
+        console.log("GET COMMENTS WITH San ID" + JSON.stringify(req.params));
 
+        db.Post.findAll({
+            where: {sanId:req.params.id},
+        }).then(function(result){
+            console.log("COMMENTS from api call: "+JSON.stringify(result));
+            res.json(result);
+        }).catch(error => res.json(error));
+    })
 }

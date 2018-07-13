@@ -46,5 +46,8 @@ export default {
     },
     saveComment: function(comment){
       return axios.post("/auth/newComment", comment);
+    },
+    getComments: function(id){
+      return axios.get(`/api/getComments${id}`);
     }
 };

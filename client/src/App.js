@@ -7,11 +7,10 @@ import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
 import NewSanctuary from "./pages/NewSanctuary";
 import Navbar from "./components/Navbar";
-import Footer from "./components/Footer";
 import Wrapper from "./components/Wrapper";
 import Header from "./components/Header";
 import SanctuaryProfile from "./components/SanctuaryProfile";
-
+import Footer from "./components/Footer";
 
 const App = () => (
   <Router>
