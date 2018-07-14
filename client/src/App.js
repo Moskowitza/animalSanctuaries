@@ -13,7 +13,7 @@ import SanctuaryProfile from "./components/SanctuaryProfile";
 import Footer from "./components/Footer";
 
 const App = () => (
-  <Router>
+  <BrowserRouter>
     <body>
       <Navbar />
       <Header>
@@ -32,7 +32,7 @@ const App = () => (
       </Wrapper>
       <Footer />
     </body>
-  </Router>
+  </BrowserRouter>
 );
 
 export default App;
