@@ -1,5 +1,5 @@
 .header {
-    background:linear-gradient(to bottom right, blue, purple, plum);
+    background:linear-gradient(to bottom right, #5F9EA0,  Green, rgb(160, 221, 211));
     padding: 20px 0;
 }
 h1{
