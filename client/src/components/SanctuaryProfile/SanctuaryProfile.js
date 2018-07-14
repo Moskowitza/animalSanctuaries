@@ -16,9 +16,7 @@ class SanctuaryProfile extends Component {
     API.getSanctuary(this.props.match.params.id)
       .then(res => this.setState({ sanctuary: res.data }))
       .catch(err => console.log(err));
-    API.getComments(this.props.match.params.id)
-      .then(res => this.setState({ existingComments: res.data }))
-      .catch(err => console.log(err))
+    this.getComments();
   }
   getUser = () => {
     API.getUser()
@@ -28,9 +26,11 @@ class SanctuaryProfile extends Component {
         });
       })
   }
-  // getComments = () => {
-
-  // }
+  getComments = () => {
+    API.getComments(this.props.match.params.id)
+      .then(res => this.setState({ existingComments: res.data }))
+      .catch(err => console.log(err))
+  }
 
 
   // handle any changes to the input fields
@@ -116,20 +116,28 @@ class SanctuaryProfile extends Component {
           </div>
         </div>
         <div className="card w-75 h-75">
-          <div className="card-body">
-            <label>Add Comment:</label>
-            <p>
-              <input type="text" className="form-control" name="comment" value={this.state.comment} onChange={this.handleInputChange} />
-            </p>
-            <button className="btn btn-default btn-info" type="submit" onClick={this.handleFormSubmit}>
-              Save Comment
+
+          {this.state.user ?
+            (
+              <div className="card-body">
+                <label>Add Comment:</label>
+                <p>
+                  <input type="text" className="form-control" name="comment" value={this.state.comment} onChange={this.handleInputChange} />
+                </p>
+                <button className="btn btn-default btn-info" type="submit" onClick={this.handleFormSubmit}>
+                  Save Comment
                         </button>
-            <Link to="/Search">← Back to Search</Link>
-          </div>
+                <Link to="/Search">← Back to Search</Link>
+              </div>
+            ) : (
+              <div>
+                log in to comment
+              </div>
+            )}
         </div>
       </div >
-    )
-  }
-}
-
+        )
+      }
+    }
+    
 export default SanctuaryProfile;

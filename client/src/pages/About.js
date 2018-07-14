@@ -2,8 +2,8 @@ import React from "react";
 import Container from "../components/Container";
 import Row from "../components/Row";
 import Col from "../components/Col";
-import CardBtn from "../components/CardBtn"
-
+import CardBtn from "../components/CardBtn";
+import { Link } from "react-router-dom";
 
 
 const About = () => (
@@ -28,8 +28,11 @@ const About = () => (
             <p className="card-body text-center">
             Click the search button to find animal sacturaries
             <br/>
-            <a href="/search" className="btn btn-info"> Search</a>
+            <Link to="/search" className="nav-link">
+            Search
+          </Link>
           </p>
+          
 
 
         </div>
