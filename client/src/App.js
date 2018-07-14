@@ -15,7 +15,6 @@ import Footer from "./components/Footer";
 const App = () => (
   <Router>
     <body>
-    
       <Navbar />
       <Header>
         <h1> Animal Sanctuaries</h1>
@@ -32,7 +31,6 @@ const App = () => (
         <Route exact path="/newSanctuary" component={NewSanctuary} />
       </Wrapper>
       <Footer />
-    
     </body>
   </Router>
 );

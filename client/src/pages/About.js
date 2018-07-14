@@ -7,7 +7,7 @@ import CardBtn from "../components/CardBtn"
 
 
 const About = () => (
-  <body>
+  <div>
     <Container style={{ marginTop: 30 }}>
       <Row>
         <Col size="md-12">
@@ -37,7 +37,7 @@ const About = () => (
       </Row>
    
     </Container>
-  </body>
+  </div>
 );
 
 export default About;
