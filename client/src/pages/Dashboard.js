@@ -55,56 +55,58 @@ class Dashboard extends Component {
 
   render() {
     return <div>
-        <Container style={{ marginTop: 30 }}>
+        <Container>
           <Row>
-            <Col size="md-12">
+          <Col size="md-12">
+              <p></p>
+            
               <h1>Welcome To animal sanctuaries!</h1>
             </Col>
           </Row>
-          
 
-
-          <Row className="center">
-            <div className="card w-50 h-50">
-              <div className="card-body text-center">
-                {this.state.user ? 
-                <div>
-                    <p>
-                      You are currently logged in as {this.state.user.email}
-                    </p>
-                    
+        <Row className="center">
+            <Col size="md1-2">
+              <div className="card w-50 h-50">
+                <div className="card-body text-center">
+                  {this.state.user ? <div>
+                      <p>
+                        You are currently logged in as{" "}
+                        {this.state.user.email}
+                      </p>
                       <a className="btn btn-info" href="/search">
                         Search
                       </a> &nbsp;
                       <a className="btn btn-danger" onClick={this.logoutUser} href="/">
                         Logout
                       </a>
-                    
-                    {this.state.sanctuaries.map(sanctuary => (
-                      <SavedSanctuaries
-                        id={sanctuary.sanId}
-                        key={sanctuary.sanId}
-                        logo={sanctuary.image}
-                        name={sanctuary.name}
-                        sanId={sanctuary.sanId}
-
-                      />
-                    ))}
-                  </div> : <div>
-                    <p className="lead">
-                      {" "}
-                      Login or Register to continue to follow Animal
-                      Sanctuaries!
-                    </p>
-                    <a className="btn btn-info" href="/signin" onClick={this.handleFormSubmit}>
-                      Login
-                    </a>&nbsp;
-                    <a className="btn btn-primary" href="/signup">
-                      Register
-                    </a>
-                  </div>}
+                      
+                      {this.state.sanctuaries.map(sanctuary => (
+                        <SavedSanctuaries
+                          id={sanctuary.sanId}
+                          key={sanctuary.sanId}
+                          logo={sanctuary.image}
+                          name={sanctuary.name}
+                          state={sanctuary.state}
+                          sanId={sanctuary.sanId}
+                        />
+                      ))}
+                    </div> : <div>
+                      <p className="lead">
+                        {" "}
+                        Login or Register to continue to follow Animal
+                        Sanctuaries!
+                      </p>
+                      <a className="btn btn-info" href="/signin" onClick={this.handleFormSubmit}>
+                        Login
+                      </a>&nbsp;
+                      <a className="btn btn-primary" href="/signup">
+                        Register
+                      </a>
+                    </div>}
+                </div>
+              
               </div>
-            </div>
+            </Col>
           </Row>
         </Container>
       </div>;
