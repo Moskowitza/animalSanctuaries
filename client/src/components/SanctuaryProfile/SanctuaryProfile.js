@@ -68,6 +68,13 @@ class SanctuaryProfile extends Component {
         console.log(err);
         alert('Problem Commenting!');
       });
+      //get comments again
+      this.getComments()
+      //something to reset value
+          // Set the state for the appropriate input field
+    this.setState({
+      comment: ""
+    });
   };
 
   // const data = new FormData(event.target);
@@ -130,14 +137,14 @@ class SanctuaryProfile extends Component {
                 <Link to="/Search">← Back to Search</Link>
               </div>
             ) : (
-              <div>
+              <div className="card-body">
                 log in to comment
               </div>
             )}
         </div>
       </div >
-        )
-      }
-    }
-    
+    )
+  }
+}
+
 export default SanctuaryProfile;
