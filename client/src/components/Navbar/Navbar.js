@@ -1,15 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
+import { BrowserRouter as Router } from "react-router-dom";
 
 // Depending on the current path, this component sets the "active" class on the appropriate navigation link item
 const Navbar = props => (
-  <nav className="navbar navbar-expand-lg navbar-light bg-light">
+  <nav className="nav-item dropdown navbar navbar-expand-lg navbar-dark bg-dark">
+    <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+      <span className="navbar-toggler-icon"></span>
+    </button>
+    <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
     <Link className="navbar-brand" to="/">
       Home
     </Link>
     <div>
-      <ul className="navbar-nav">
+        <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
         <li
           className={
             window.location.pathname === "/" ||
@@ -44,7 +49,7 @@ const Navbar = props => (
             Search
           </Link>
         </li>
-       
+
         <li
           className={
             window.location.pathname === "/singin"
@@ -56,7 +61,7 @@ const Navbar = props => (
             Sign In
           </Link>
         </li>
-        
+
         <li
           className={
             window.location.pathname === "/signup"
@@ -81,6 +86,7 @@ const Navbar = props => (
         </li>
       </ul>
     </div>
+  </div>
   </nav>
 );
 

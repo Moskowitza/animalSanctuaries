@@ -95,29 +95,26 @@ class Search extends Component {
         return sanctuary.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
       }
     );
-    return (
-      <div>
-      
+    return <div>
         <Container style={{ minHeight: "80%" }}>
-        <Row>
-          <div className="card w-50 h-50">
-          
-          <p className="card-body text-center">You are currently logged in as {this.state.user.email}</p>
-          {/* SearchForm is for Name */}
-         
-          </div>
+          <Row>
+            <div className="card w-50 h-50">
+              <p className="card-body text-center">
+                You are currently logged in as {this.state.user.email}
+              </p>
+              {/* SearchForm is for Name */}
+            </div>
           </Row>
           <Row>
-          <div className="card w-100">
-          <div className="card-body">
-          <p className="text-center">Search for a Sanctuary by NAME or STATE below</p>
-            
-          <SearchForm className= "form-control"
-            handleInputChange={this.handleInputChange}
-            search={this.state.search}
-          />
-          </div>
-          </div>
+            <div className="card w-100">
+              <div className="card-body">
+                <p className="text-center">
+                  Search for a Sanctuary by NAME or STATE below
+                </p>
+
+                <SearchForm className="form-control" handleInputChange={this.handleInputChange} search={this.state.search} />
+              </div>
+            </div>
           </Row>
           {/* <SearchState             
             handleInputChange={this.handleInputChange}
@@ -126,44 +123,42 @@ class Search extends Component {
           <Row>
             <div className="card w-100 h-100">
               <div className="card-body">
-          {this.state.user ?
-            (
-            // if LOGGED IN
-              <div className ="card">
-                {filteredSanctuaries.map(sanctuary => (
-                  <UserSearchResults
-                    sanId={sanctuary.sanId}
-                    key={sanctuary.sanId}
-                    name={sanctuary.name}
-                    website={sanctuary.animalWebsite}
-                    logo={sanctuary.image}
-                    //userId comes from state, not our filteredSanctuaries array
-                    userId={this.state.user.userId}
-                    save={()=>this.saveSearch({sanId:sanctuary.sanId,userId: this.state.user.userId})}
-                  />
-                ))}
+                {this.state.user ? // if LOGGED IN
+                  <div>
+                    {filteredSanctuaries.map(sanctuary => (
+                      <UserSearchResults
+                        sanId={sanctuary.sanId}
+                        key={sanctuary.sanId}
+                        name={sanctuary.name}
+                        website={sanctuary.animalWebsite}
+                        logo={sanctuary.image}
+                        //userId comes from state, not our filteredSanctuaries array
+                        userId={this.state.user.userId}
+                        save={() =>
+                          this.saveSearch({
+                            sanId: sanctuary.sanId,
+                            userId: this.state.user.userId
+                          })
+                        }
+                      />
+                    ))}
+                  </div> : // if not logged in serve up the page without button link
+                  <div>
+                    {filteredSanctuaries.map(sanctuary => (
+                      <SearchResults
+                        sanId={sanctuary.sanId}
+                        key={sanctuary.sanId}
+                        name={sanctuary.name}
+                        website={sanctuary.animalWebsite}
+                        logo={sanctuary.image}
+                      />
+                    ))}
+                  </div>}
               </div>
-
-            ) : (
-              // if not logged in serve up the page without button link
-              <div>
-                {filteredSanctuaries.map(sanctuary => (
-                  <SearchResults
-                    sanId={sanctuary.sanId}
-                    key={sanctuary.sanId}
-                    name={sanctuary.name}
-                    website={sanctuary.animalWebsite}
-                    logo={sanctuary.image}
-                  />
-                ))}
-              </div>
-            )}
             </div>
-          </div>
           </Row>
         </Container>
-      </div>
-    );
+      </div>;
   }
 }
 
