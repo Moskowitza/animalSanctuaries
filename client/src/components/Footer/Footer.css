@@ -1,16 +1,9 @@
 .footer {
   min-height: 50px;
   position: relative;
-<<<<<<< HEAD
-  background:snow;
-  clear : both;
-  z-index : 10;
-  margin-top: -3em;
-=======
   background:linear-gradient(to bottom right,#5F9EA0,  Green, rgb(160, 221, 211) );
   padding: 20px 0;
 
->>>>>>> f86740d8fa2ca10b4bbb1e01eb5eb75b49ad13c3
 }
 
 .footer span {
