@@ -9,7 +9,8 @@ const path = require("path");
 var bodyParser = require('body-parser');
 var sequelize = require('sequelize');
 // import the dot-env module to handle environment variables.
-var env = require('dotenv').load();
+// var env = require('dotenv').load();
+require("dotenv").config();
 
 
 const PORT = process.env.PORT || 3001;
