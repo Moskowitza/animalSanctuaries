@@ -35,6 +35,7 @@ class SanctuaryProfile extends Component {
 
   // handle any changes to the input fields
   handleInputChange = event => {
+    event.preventDefault()
     // Pull the name and value properties off of the event.target (the element which triggered the event)
     const { name, value } = event.target;
 
@@ -54,27 +55,25 @@ class SanctuaryProfile extends Component {
     // alert(`Username: ${this.state.username}\nPassword: ${this.state.password}`);
     // We need to have an HTTP request to our path
     API.saveComment(data)
-      .then(res => {
-        if (res.data === true) {
-          // do what? I guess render the comment section, we'll get there
-          //   this.props.history.push("/dashboard");
-          // this.history.pushState(null, 'comment');
-        }
-        else {
-          // however you want to handle an error.
-        }
-      })
+      .then(res => this.getComments())
+      //   {
+      //   if (res.data === true) {
+      //     // do what? I guess render the comment section, we'll get there
+      //     //   this.props.history.push("/dashboard");
+      //     // this.history.pushState(null, 'comment');
+          
+      //   }
+      //   // else {
+      //   //   // however you want to handle an error.
+      //   // }
+      // })
+      //get them again
+      // .then(this.getComments())
+      .then(this.setState({ comment: "" }))
       .catch(err => {
         console.log(err);
         alert('Problem Commenting!');
       });
-      //get comments again
-      this.getComments()
-      //something to reset value
-          // Set the state for the appropriate input field
-    this.setState({
-      comment: ""
-    });
   };
 
   // const data = new FormData(event.target);
@@ -133,7 +132,7 @@ class SanctuaryProfile extends Component {
                 </p>
                 <button className="btn btn-default btn-info" type="submit" onClick={this.handleFormSubmit}>
                   Save Comment
-                        </button>
+                </button>
                 <Link to="/Search">← Back to Search</Link>
               </div>
             ) : (
