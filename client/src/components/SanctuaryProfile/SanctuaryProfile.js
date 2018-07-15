@@ -16,9 +16,7 @@ class SanctuaryProfile extends Component {
     API.getSanctuary(this.props.match.params.id)
       .then(res => this.setState({ sanctuary: res.data }))
       .catch(err => console.log(err));
-    API.getComments(this.props.match.params.id)
-      .then(res => this.setState({ existingComments: res.data }))
-      .catch(err => console.log(err))
+    this.getComments();
   }
   getUser = () => {
     API.getUser()
@@ -28,13 +26,16 @@ class SanctuaryProfile extends Component {
         });
       })
   }
-  // getComments = () => {
-
-  // }
+  getComments = () => {
+    API.getComments(this.props.match.params.id)
+      .then(res => this.setState({ existingComments: res.data }))
+      .catch(err => console.log(err))
+  }
 
 
   // handle any changes to the input fields
   handleInputChange = event => {
+    event.preventDefault()
     // Pull the name and value properties off of the event.target (the element which triggered the event)
     const { name, value } = event.target;
 
@@ -54,16 +55,21 @@ class SanctuaryProfile extends Component {
     // alert(`Username: ${this.state.username}\nPassword: ${this.state.password}`);
     // We need to have an HTTP request to our path
     API.saveComment(data)
-      .then(res => {
-        if (res.data === true) {
-          // do what? I guess render the comment section, we'll get there
-          //   this.props.history.push("/dashboard");
-          // this.history.pushState(null, 'comment');
-        }
-        else {
-          // however you want to handle an error.
-        }
-      })
+      .then(res => this.getComments())
+      //   {
+      //   if (res.data === true) {
+      //     // do what? I guess render the comment section, we'll get there
+      //     //   this.props.history.push("/dashboard");
+      //     // this.history.pushState(null, 'comment');
+          
+      //   }
+      //   // else {
+      //   //   // however you want to handle an error.
+      //   // }
+      // })
+      //get them again
+      // .then(this.getComments())
+      .then(this.setState({ comment: "" }))
       .catch(err => {
         console.log(err);
         alert('Problem Commenting!');
@@ -116,16 +122,24 @@ class SanctuaryProfile extends Component {
           </div>
         </div>
         <div className="card w-75 h-75">
-          <div className="card-body">
-            <label>Add Comment:</label>
-            <p>
-              <input type="text" className="form-control" name="comment" value={this.state.comment} onChange={this.handleInputChange} />
-            </p>
-            <button className="btn btn-default btn-info" type="submit" onClick={this.handleFormSubmit}>
-              Save Comment
-                        </button>
-            <Link to="/Search">← Back to Search</Link>
-          </div>
+
+          {this.state.user ?
+            (
+              <div className="card-body">
+                <label>Add Comment:</label>
+                <p>
+                  <input type="text" className="form-control" name="comment" value={this.state.comment} onChange={this.handleInputChange} />
+                </p>
+                <button className="btn btn-default btn-info" type="submit" onClick={this.handleFormSubmit}>
+                  Save Comment
+                </button>
+                <Link to="/Search">← Back to Search</Link>
+              </div>
+            ) : (
+              <div className="card-body">
+                log in to comment
+              </div>
+            )}
         </div>
       </div >
     )
