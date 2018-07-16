@@ -75,7 +75,6 @@ module.exports = function (app, passport) {
             })
     });
     app.get('/auth/savedSanctuaries/:id', function (req, res) {
-        console.log("HERE HERE HERE DID THIS SAY?" + req.params.id);
         var mySanctuaries = db.User.findAll({
             where:
                 { userId: req.params.id },
@@ -89,8 +88,27 @@ module.exports = function (app, passport) {
         })
         Promise.all([mySanctuaries])
             .then(function (result) {
-                console.log("data from savedSanc api call: "+JSON.stringify(result[0][0].Sanctuaries));
+                console.log("data from savedSanc api call: " + JSON.stringify(result[0][0].Sanctuaries));
                 res.json(result[0][0].Sanctuaries);
+            }).catch(error => res.json(error));
+    });
+    // Get user's own comments for Dashboard
+    app.get('/auth/userComments/:id', function (req, res) {
+      var myComments= db.Post.findAll({
+            where:
+                { userId: req.params.id }
+            // include: [{
+            //     model: db.Sanctuaries,
+            //     as: "Sanctuaries",
+            //     through: {
+            //         attributes: ['sanId']
+            //     }
+            // }],
+            })
+            Promise.all([myComments])
+            .then(function (result) {
+                res.json(result[0])
+                console.log("This user comments" + res)
             }).catch(error => res.json(error));
     });
     // Get one sanctuary
@@ -99,43 +117,36 @@ module.exports = function (app, passport) {
         db.Sanctuary.findOne({
             where:
                 { sanId: req.params.id },
-            //*** If we want associated POSTS later, we'll need to use this
-            // include: [{
-            //     model: db.Post,
-            //     
-            //     through: {
-            //         attributes: ['name', 'image', 'state']
-            //     }
-            // }],
         })
-        // Promise.all([profileSanctuary])
             .then(function (result) {
-                console.log("data from profileSanctuary api call: "+JSON.stringify(result));
+                console.log("data from profileSanctuary api call: " + JSON.stringify(result));
                 res.json(result);
             }).catch(error => res.json(error));
     });
-    app.post('/auth/newComment',function(req,res){
-        console.log("in authjs "+JSON.stringify(req.body))
+    app.post('/auth/newComment', function (req, res) {
+        console.log("in authjs " + JSON.stringify(req.body))
         const userCommenting = db.User.findOne({ where: { userId: req.body.userId } });
         const sanCommented = db.Sanctuary.findOne({ where: { sanId: req.body.sanId } });
         Promise.all([userCommenting, sanCommented])
-        .then((result)=>{
-            // results[0].addPost(results[1]);
-            db.Post.create(req.body);
-        })
-        .then(function (result) {
-            console.log("Result from adding a post: "+JSON.stringify(result));
-            res.json(result);
-        }).catch(error => res.json(error));
+            .then((result) => {
+                // results[0].addPost(results[1]);
+                db.Post.create(req.body);
+            })
+            .then(function (result) {
+                console.log("Result from adding a post: " + JSON.stringify(result));
+                res.json(result);
+            }).catch(error => res.json(error));
     })
-    app.get('/api/getComments:id',function(req,res){
+    // get comments for Sanctuary Profile
+    app.get('/api/getComments:id', function (req, res) {
         console.log("GET COMMENTS WITH San ID" + JSON.stringify(req.params));
 
         db.Post.findAll({
-            where: {sanId:req.params.id},
-        }).then(function(result){
-            console.log("COMMENTS from api call: "+JSON.stringify(result));
+            where: { sanId: req.params.id },
+        }).then(function (result) {
+            console.log("COMMENTS from api call: " + JSON.stringify(result));
             res.json(result);
         }).catch(error => res.json(error));
     })
+
 }
