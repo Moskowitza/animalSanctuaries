@@ -95,20 +95,23 @@ module.exports = function (app, passport) {
     // Get user's own comments for Dashboard
     app.get('/auth/userComments/:id', function (req, res) {
       var myComments= db.Post.findAll({
-            where:
-                { userId: req.params.id },
+        where: { userId: req.params.id },
             include: [{
-                model: db.Sanctuaries,
-                as: "Sanctuaries",
-                through: {
-                    attributes: ['sanId']
-                }
+                model: db.Sanctuary,
+                as: "Sanctuary",
+                // through: {
+                //     attributes: ['sanId'],
+                //     where: { userId: req.params.id },
+                // }   
             }],
             })
             Promise.all([myComments])
             .then(function (result) {
-                res.json(result[0].Sanctuaries)
-                console.log("########" + result[0].Sanctuarieses)
+                console.log("#######################################")
+                console.log("#######################################")
+                console.log("########" + JSON.stringify(result[0]))
+                res.json(result[0])
+                // console.log("########" + result[0].Posts)
             }).catch(error => res.json(error));
     });
     // Get one sanctuary
