@@ -36,7 +36,7 @@ class Dashboard extends Component {
     // event.preventDefault();
     API.getSavedSanctuaries(data)
       .then(res => {
-        console.log("my loaded Sanctuaries" + JSON.stringify(res.data))
+        // console.log("my loaded Sanctuaries" + JSON.stringify(res.data))
         this.setState({
           sanctuaries: res.data
         });
@@ -52,7 +52,7 @@ class Dashboard extends Component {
           usercomments: res.data
         });
       })
-      .then(console.log("this state comments" +this.state.mycomments))
+      .then(console.log("################" +this.state.usercomments))
   }
   logoutUser = event => {
     event.preventDefault();
@@ -79,7 +79,7 @@ class Dashboard extends Component {
         </Row>
 
         <Row className="Center">
-          <Col size="md-10">
+          <Col size="md-12">
             <div className="card w-50 h-50">
               <div className="card-body text-center">
                 {this.state.user ?
@@ -98,12 +98,14 @@ class Dashboard extends Component {
                       />
                     ))}
 
-                    <Col size="md-4">
+                    <Col size="md-12">
                       <h3>My Comments</h3>
                       {this.state.usercomments.map(obj =>
                         (<SavedComments
                           key={obj.postId}
+                          sanctuary={obj.Sanctuary.name}
                           comment={obj.comment} />))}
+                          
                     </Col>
                   </div>
                   :
