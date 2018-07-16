@@ -4,13 +4,14 @@ import Container from "../components/Container";
 import Row from "../components/Row";
 import Col from "../components/Col";
 import SavedSanctuaries from "../components/SavedSanctuaries/SavedSanctuaries";
-import Comments from "../components/Comments";
+import SavedComments from "../components/SavedComments";
+
 
 class Dashboard extends Component {
   state = {
     user: {},
-    sanctuaries: [],
-    myComments: []
+    usercomments: [],
+    sanctuaries: []
   };
 
   componentDidMount() {
@@ -30,32 +31,29 @@ class Dashboard extends Component {
       })
   }
 
-  getMyComments = data => {
-    // event.preventDefault();
-    console.log("userId for myComments " + data.userId)
-    API.getMyComments(data)
-      .then(res => {
-        this.setState({
-          myComments: res.data
-        });
-      })
-    console.log(`my loaded comments {this.state.myComments}`)
-  }
+
   getSavedSanctuaries = data => {
     // event.preventDefault();
-
     API.getSavedSanctuaries(data)
       .then(res => {
-        //this does return the object with key pairs
-        console.log("dashboard sanctuaries response : " + JSON.stringify(res.data))
+        console.log("my loaded Sanctuaries" + JSON.stringify(res.data))
         this.setState({
           sanctuaries: res.data
         });
-        console.log(this.state.sanctuaries);//returns an array of objects
       })
   }
 
-
+  getMyComments = data => {
+    // event.preventDefault();
+    API.getMyComments(data)
+      .then(res => {
+        console.log("mycomments "+JSON.stringify(res.data))
+        this.setState({
+          usercomments: res.data
+        });
+      })
+      .then(console.log("this state comments" +this.state.mycomments))
+  }
   logoutUser = event => {
     event.preventDefault();
     API.logoutUser().then(res => {
@@ -69,8 +67,8 @@ class Dashboard extends Component {
 
 
   render() {
-    const comments = this.state.myComments;
-    console.log("comments: " + comments)
+
+
     return <div>
       <Container>
         <Row>
@@ -99,6 +97,14 @@ class Dashboard extends Component {
                         sanId={sanctuary.sanId}
                       />
                     ))}
+
+                    <Col size="md-4">
+                      <h3>My Comments</h3>
+                      {this.state.usercomments.map(obj =>
+                        (<SavedComments
+                          key={obj.postId}
+                          comment={obj.comment} />))}
+                    </Col>
                   </div>
                   :
                   <div>
@@ -119,10 +125,6 @@ class Dashboard extends Component {
             </div>
           </Col>
 
-          <Col size="md-4">
-            <h3>My Comments</h3>
-            {this.state.myComments.map(obj => (<Comments key={obj.postId} comment={obj.comment} />))}
-          </Col>
         </Row>
 
       </Container>

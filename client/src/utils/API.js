@@ -35,7 +35,7 @@ export default {
     return axios.post("/auth/saveSearch", data)
   },
   getSavedSanctuaries: function (data) {
-    console.log("API API API SAVED id data " + JSON.stringify(data.userId));
+    console.log("Get my Sanctuaries " + JSON.stringify(data.userId));
     return axios.get(`/auth/savedSanctuaries/${data.userId}`);
   },
   getMyComments: function (data) {

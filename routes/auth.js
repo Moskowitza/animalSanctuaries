@@ -94,14 +94,21 @@ module.exports = function (app, passport) {
     });
     // Get user's own comments for Dashboard
     app.get('/auth/userComments/:id', function (req, res) {
-        console.log("HERE HERE HERE DID THIS SAY?" + req.params.id);
-        db.Post.findAll({
+      var myComments= db.Post.findAll({
             where:
                 { userId: req.params.id }
-        })
+            // include: [{
+            //     model: db.Sanctuaries,
+            //     as: "Sanctuaries",
+            //     through: {
+            //         attributes: ['sanId']
+            //     }
+            // }],
+            })
+            Promise.all([myComments])
             .then(function (result) {
-                res.json(result);
-                console.log("usercomments"+result)
+                res.json(result[0])
+                console.log("This user comments" + res)
             }).catch(error => res.json(error));
     });
     // Get one sanctuary
@@ -130,6 +137,7 @@ module.exports = function (app, passport) {
                 res.json(result);
             }).catch(error => res.json(error));
     })
+    // get comments for Sanctuary Profile
     app.get('/api/getComments:id', function (req, res) {
         console.log("GET COMMENTS WITH San ID" + JSON.stringify(req.params));
 
