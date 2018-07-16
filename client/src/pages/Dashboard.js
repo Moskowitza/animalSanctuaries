@@ -36,7 +36,7 @@ class Dashboard extends Component {
     // event.preventDefault();
     API.getSavedSanctuaries(data)
       .then(res => {
-        console.log("my loaded Sanctuaries" + JSON.stringify(res.data))
+        // console.log("my loaded Sanctuaries" + JSON.stringify(res.data))
         this.setState({
           sanctuaries: res.data
         });

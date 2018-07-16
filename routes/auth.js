@@ -96,19 +96,19 @@ module.exports = function (app, passport) {
     app.get('/auth/userComments/:id', function (req, res) {
       var myComments= db.Post.findAll({
             where:
-                { userId: req.params.id }
-            // include: [{
-            //     model: db.Sanctuaries,
-            //     as: "Sanctuaries",
-            //     through: {
-            //         attributes: ['sanId']
-            //     }
-            // }],
+                { userId: req.params.id },
+            include: [{
+                model: db.Sanctuaries,
+                as: "Sanctuaries",
+                through: {
+                    attributes: ['sanId']
+                }
+            }],
             })
             Promise.all([myComments])
             .then(function (result) {
-                res.json(result[0])
-                console.log("This user comments" + res)
+                res.json(result[0].Sanctuaries)
+                console.log("########" + result[0].Sanctuarieses)
             }).catch(error => res.json(error));
     });
     // Get one sanctuary
