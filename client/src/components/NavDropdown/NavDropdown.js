@@ -67,11 +67,11 @@ class NavDropdown extends Component {
                   Sign up
                 </Link>
                 </li>
-              <li>
+              {/* <li>
                 <Link to="/newSanctuary" className="nav-link">
                   New Sanctuary
                 </Link>
-                </li>
+                </li> */}
                 </ul>
               </div>
             </nav>
