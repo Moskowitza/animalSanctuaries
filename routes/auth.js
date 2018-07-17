@@ -94,8 +94,8 @@ module.exports = function (app, passport) {
     });
     // Get user's own comments for Dashboard
     app.get('/auth/userComments/:id', function (req, res) {
-      var myComments= db.Post.findAll({
-        where: { userId: req.params.id },
+        var myComments = db.Post.findAll({
+            where: { userId: req.params.id },
             include: [{
                 model: db.Sanctuary,
                 as: "Sanctuary",
@@ -104,8 +104,8 @@ module.exports = function (app, passport) {
                 //     where: { userId: req.params.id },
                 // }   
             }],
-            })
-            Promise.all([myComments])
+        })
+        Promise.all([myComments])
             .then(function (result) {
                 console.log("#######################################")
                 console.log("#######################################")
@@ -139,17 +139,27 @@ module.exports = function (app, passport) {
                 console.log("Result from adding a post: " + JSON.stringify(result));
                 res.json(result);
             }).catch(error => res.json(error));
-    })
+    });
+    // User Deletes their own comment
+    app.delete('/api/deleteComment:id', function (req, res) {
+        console.log("$$$$$$$$$$we made it here")
+        db.Post.destroy({
+            where: {postId: req.params.id} 
+         }).then(function (result) {
+            console.log("COMMENTS from api call: " + JSON.stringify(result));
+            res.json(result);
+        }).catch(error => res.json(error));
+    });
+
     // get comments for Sanctuary Profile
     app.get('/api/getComments:id', function (req, res) {
         console.log("GET COMMENTS WITH San ID" + JSON.stringify(req.params));
-
         db.Post.findAll({
             where: { sanId: req.params.id },
         }).then(function (result) {
             console.log("COMMENTS from api call: " + JSON.stringify(result));
             res.json(result);
         }).catch(error => res.json(error));
-    })
+    });
 
 }

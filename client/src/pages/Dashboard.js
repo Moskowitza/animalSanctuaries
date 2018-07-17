@@ -52,8 +52,8 @@ class Dashboard extends Component {
           usercomments: res.data
         });
       })
-      .then(console.log("################" +this.state.usercomments))
   }
+
   logoutUser = event => {
     event.preventDefault();
     API.logoutUser().then(res => {
@@ -64,7 +64,15 @@ class Dashboard extends Component {
     })
       .catch(err => console.log(err));
   }
-
+  deleteComment = data => {
+    API.deleteComment({
+      postId: data.postId
+      })
+      .then(res => {
+        console.log(res)
+      })
+      .then(this.getMyComments({ userId: this.state.user.userId }))
+  }
 
   render() {
 
@@ -104,7 +112,13 @@ class Dashboard extends Component {
                         (<SavedComments
                           key={obj.postId}
                           sanctuary={obj.Sanctuary.name}
-                          comment={obj.comment} />))}
+                          comment={obj.comment}
+                          delete={() =>
+                          this.deleteComment({
+                            postId: obj.postId
+                            }
+                            )}
+                           />))}
                           
                     </Col>
                   </div>
