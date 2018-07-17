@@ -47,7 +47,7 @@ class Dashboard extends Component {
     // event.preventDefault();
     API.getMyComments(data)
       .then(res => {
-        console.log("mycomments "+JSON.stringify(res.data))
+        console.log("mycomments " + JSON.stringify(res.data))
         this.setState({
           usercomments: res.data
         });
@@ -67,7 +67,7 @@ class Dashboard extends Component {
   deleteComment = data => {
     API.deleteComment({
       postId: data.postId
-      })
+    })
       .then(res => {
         console.log(res)
       })
@@ -75,78 +75,81 @@ class Dashboard extends Component {
   }
 
   render() {
+    return ( <div>
+     
+        <Container>
+          <Row>
+            <Col size="md-12" ClassName="Center">
+              <p></p>
+              <h1>Welcome To animal sanctuaries!</h1>
+            </Col>
+          </Row>
+        </Container>
 
 
-    return <div>
-      <Container>
-        <Row>
-          <Col size="md-12">
-            <p></p>
-            <h1>Welcome To animal sanctuaries!</h1>
-          </Col>
-        </Row>
+        {this.state.user ? (
+          <Container>
 
-        <Row className="Center">
-          <Col size="md-12">
-            <div className="card w-50 h-50">
-              <div className="card-body text-center">
-                {this.state.user ?
-                  <div>
-                    <p>You are currently logged in as{" "}{this.state.user.email}</p>
-                    <a className="btn btn-info" href="/search"> Search</a> &nbsp;
-                      <a className="btn btn-danger" onClick={this.logoutUser} href="/">Logout </a>
-                    {this.state.sanctuaries.map(sanctuary => (
-                      <SavedSanctuaries
-                        id={sanctuary.sanId}
-                        key={sanctuary.sanId}
-                        logo={sanctuary.image}
-                        name={sanctuary.name}
-                        state={sanctuary.state}
-                        sanId={sanctuary.sanId}
-                      />
-                    ))}
+            <Row className="Center">
+              <Col size="md-12" ClassName="Center">
+                <div>
+                  <p>You are currently logged in as{" "}{this.state.user.email}</p>
+                  <a className="btn btn-info" href="/search"> Search</a> &nbsp;
+                <a className="btn btn-danger" onClick={this.logoutUser} href="/">Logout </a>
+                </div>
+              </Col>
+            </Row>
 
-                    <Col size="md-12">
-                      <h3>My Comments</h3>
-                      {this.state.usercomments.map(obj =>
-                        (<SavedComments
-                          key={obj.postId}
-                          sanctuary={obj.Sanctuary.name}
-                          comment={obj.comment}
-                          delete={() =>
-                          this.deleteComment({
-                            postId: obj.postId
-                            }
-                            )}
-                           />))}
-                          
-                    </Col>
-                  </div>
-                  :
-                  <div>
+            <Row>
+
+              <Col size="md-6">
+                {this.state.sanctuaries.map(sanctuary => (
+                  <SavedSanctuaries
+                    id={sanctuary.sanId}
+                    key={sanctuary.sanId}
+                    logo={sanctuary.image}
+                    name={sanctuary.name}
+                    state={sanctuary.state}
+                    sanId={sanctuary.sanId}
+                  />
+                ))}
+              </Col>
+
+              <Col size="md-6" >
+                <h3>My Comments</h3>
+                {this.state.usercomments.map(obj =>
+                  (<SavedComments
+                    key={obj.postId}
+                    sanctuary={obj.Sanctuary.name}
+                    comment={obj.comment}
+                    delete={() => this.deleteComment({ postId: obj.postId })}
+                  />
+                  ))}
+
+              </Col>
+              
+            </Row>
+          </Container>
+        ) : (
+            <Container>
+              <Row className="Center">
+                <Col size="md-12" className="Center">
+                  <div className="Center">
                     <p className="lead">
                       {" "}
-                      Login or Register to continue to follow Animal
-                      Sanctuaries!
-                      </p>
-                    <a className="btn btn-info" href="/signin" onClick={this.handleFormSubmit}>
-                      Login
-                      </a>&nbsp;
-                      <a className="btn btn-primary" href="/signup">
-                      Register
-                      </a>
-                  </div>}
-              </div>
+                      Login or Register to continue to follow Animal Sanctuaries!</p>
+                    <a className="btn btn-info" href="/signin" onClick={this.handleFormSubmit}>Login</a>&nbsp;
+                    <a className="btn btn-primary" href="/signup">Register</a>
 
-            </div>
-          </Col>
-
-        </Row>
-
-      </Container>
-    </div>;
+                  </div>
+                </Col>
+              </Row>
+            </Container>
+          )}
+        }
+          </div>
+    )
   }
 }
-
 export default Dashboard;
 
