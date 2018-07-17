@@ -81,7 +81,7 @@ class Dashboard extends Component {
           <Row>
             <Col size="md-12" ClassName="Center">
               <p></p>
-              <h1>Welcome To animal sanctuaries!</h1>
+              <h1>Welcome To Animal Sanctuaries!</h1>
             </Col>
           </Row>
         </Container>
@@ -136,6 +136,8 @@ class Dashboard extends Component {
             <Container>
               <Row className="Center">
                 <Col size="md-12" className="Center">
+                <div className="card h-75 w-75 center">
+                <div className="card-body text-center">
                   <div className="Center">
                     <p className="lead">
                       {" "}
@@ -143,6 +145,8 @@ class Dashboard extends Component {
                     <a className="btn btn-info" href="/signin" onClick={this.handleFormSubmit}>Login</a>&nbsp;
                     <a className="btn btn-primary" href="/signup">Register</a>
 
+                  </div>
+                  </div>
                   </div>
                 </Col>
               </Row>

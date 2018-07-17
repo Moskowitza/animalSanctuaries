@@ -9,7 +9,7 @@ const UserSearchResults = props => (
       className="list-group-item" /*onClick={props.select}*/
     >
       <img alt="sanctuary" src={props.logo} className="img-fluid" />
-      <h3>Sanctuary Name:{props.name}</h3>
+      <h4>Sanctuary Name:{props.name}</h4>
       <button
         className="btn btn-outline-success active"
         aria-pressed="true"
