@@ -5,6 +5,7 @@ import API from "../utils/API";
 import Row from "../components/Row";
 import Col from "../components/Col";
 import Card from "../components/Card";
+import { Link } from "react-router-dom";
 
 // Switch this to REGISTER and create a seperate LOGIN
 class Signin extends Component {
@@ -76,19 +77,18 @@ class Signin extends Component {
                     onChange={this.handleInputChange}
 
                   /> */}
-
                         <p>Password:</p>
                         <p>
-                        <input className="form-control" type="password" name="password" value={this.state.password} onChange={this.handleInputChange} />
+                          <input className="form-control" type="password" name="password" value={this.state.password} onChange={this.handleInputChange} />
                         </p>
                         <p />
-
-                        <a className="btn btn-default btn-info" type="submit" onClick={this.handleFormSubmit} href="/dashboard">
+                      <Link className="btn btn-primary" to="/dashboard" onClick={this.handleFormSubmit}>
                           Login
-                        </a>
-                        <a className="btn" href="/">
+                        </Link>
+                        &nbsp;
+                        <Link className="btn" to="/">
                           Cancel
-                        </a>
+                        </Link>
                       </span>
                     </form>
                   </div>
