@@ -86,23 +86,25 @@ class Dashboard extends Component {
           </Row>
         </Container>
 
-
         {this.state.user ? (
           <Container>
 
-            <Row className="Center">
-              <Col size="md-12" ClassName="Center">
-                <div>
+            <Row className="center">
+              <Col size="md-12" ClassName="center">
+              <div className="card h-75 w-75 center">
+                <div className="card-body text-center">
                   <p>You are currently logged in as{" "}{this.state.user.email}</p>
                   <a className="btn btn-info" href="/search"> Search</a> &nbsp;
                 <a className="btn btn-danger" onClick={this.logoutUser} href="/">Logout </a>
+                </div>  
                 </div>
               </Col>
             </Row>
-
+            <Row><Col size="md-12" /><div className="card-body" /></Row>
             <Row>
 
               <Col size="md-6">
+              <h3>My Sanctuaries</h3>
                 {this.state.sanctuaries.map(sanctuary => (
                   <SavedSanctuaries
                     id={sanctuary.sanId}
@@ -127,7 +129,7 @@ class Dashboard extends Component {
                   ))}
 
               </Col>
-              
+
             </Row>
           </Container>
         ) : (
@@ -145,7 +147,8 @@ class Dashboard extends Component {
                 </Col>
               </Row>
             </Container>
-          )}
+          )
+          }
         }
           </div>
     )
