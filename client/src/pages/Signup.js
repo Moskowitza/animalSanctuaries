@@ -4,6 +4,7 @@ import Container from "../components/Container";
 import API from "../utils/API";
 import Row from "../components/Row";
 import Col from "../components/Col";
+import { Link } from "react-router-dom";
 
 // Switch this to REGISTER and create a seperate LOGIN
 class Signup extends Component {
@@ -106,12 +107,13 @@ class Signup extends Component {
                         </p>
 
                         <p className="align-items-end">
-                          <button className="btn btn-info" onClick={this.handleFormSubmit} href="/dashboard">
+                          <Link className="btn btn-info" onClick={this.handleFormSubmit} to="/dashboard">
                             Submit
-                          </button>
-                          <a className="btn" href="/">
+                          </Link>
+                          &nbsp;
+                          <Link className="btn" to="/">
                             Cancel
-                          </a>
+                          </Link>
                         </p>
                       </span>
                     </div>

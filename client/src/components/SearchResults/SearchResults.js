@@ -7,10 +7,9 @@ const SearchResults = props => (
     <li key={props.sanId} className="list-group-item">
       <img alt="sanctuary" src={props.logo} className="img-fluid" />
       <h3>Sanctuary Name:{props.name}</h3>
+      <h3>Sanctuary Website: <a href={props.website}>Click me! </a> </h3>
       <Link to={"/sanctuary/" + props.sanId}>
-        <strong>
-          view profile
-        </strong>
+        <strong>view profile</strong>
       </Link>
     </li>
   </ul>

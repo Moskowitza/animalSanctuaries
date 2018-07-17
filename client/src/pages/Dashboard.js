@@ -89,7 +89,7 @@ class Dashboard extends Component {
         {this.state.user ? (
           <Container>
 
-            <Row className="center">
+            <Row>
               <Col size="md-12" ClassName="center">
               <div className="card h-75 w-75 center">
                 <div className="card-body text-center">
@@ -155,4 +155,3 @@ class Dashboard extends Component {
   }
 }
 export default Dashboard;
-

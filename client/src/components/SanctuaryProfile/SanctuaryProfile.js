@@ -3,6 +3,11 @@ import { Link } from "react-router-dom";
 import API from "../../utils/API";
 import "./SanctuaryProfile.css";
 import Comments from "../Comments";
+import Row from "../Row";
+import Col from "../Col";
+import Container from "../Container"
+
+
 
 class SanctuaryProfile extends Component {
   state = {
@@ -79,70 +84,101 @@ class SanctuaryProfile extends Component {
   // const data = new FormData(event.target);
 
   render() {
-    return (
-      <div>
-        <div className="card w-50 h-50 text-center">
-          <h3>Santuary Profile Page</h3>
-        </div>
-        <div className="card w-50 h-50">
-          <div className="card-body text-center">
-            <img alt="sanctuary" src={this.state.sanctuary.image} className="img-fluid" />
-            <h3>Sanctuary Name:{this.state.sanctuary.name}</h3>
-          </div>
-        </div>
-        <div className="card w-50 h-50">
-          <div className="card-body text-center">
-            <p>Details:
+    return <div>
+        <Container>
+          <Row>
+            <div className="card w-75 h-75 text-center">
+              <h3>{this.state.sanctuary.name} Profile Page</h3>
+            </div>
+          </Row>
+          <Row>
+            <Col size="md-6">
+              <div className="card w-100 h-100">
+                <div className="card-body text-center">
+                  <img alt="sanctuary" src={this.state.sanctuary.image} className="img-fluid" />
+                  <h3>
+                    Sanctuary Website: <a
+                      href={this.state.sanctuary.animalWebsite}
+                    >
+                      Click Here!{" "}
+                    </a>
+                  </h3>
+
+                  <p className="text-left">
+                   <strong> Details:</strong>
                     <ul>
-                <li> Address: {this.state.sanctuary.animalAddress}</li>
-                <li> Facebook: {this.state.sanctuary.Facebook}</li>
-                <li> Instagram: {this.state.sanctuary.Instagram}</li>
-
-              </ul>
-            </p>
-          </div>
-          <div className="card-body text-center">
-            {this.state.existingComments ?
-              (
-                <div>
-                  <p>Comments:</p>
-                  {this.state.existingComments.map(comment => (
-                    <Comments
-                      key={comment.postId}
-                      comment={comment.comment}
-                    />
-                  ))}
+                      <li>
+                        {" "}
+                        <b>Address:</b> {this.state.sanctuary.animalAddress}{" "}
+                      <i class="material-icons">location_on</i>
+                      </li>
+                      <li>
+                        {" "}
+                        <b>Facebook:</b> <a href={this.state.sanctuary.Facebook}>
+                          {" "}
+                          <i class="material-icons">link</i>
+                        </a>
+                      </li>
+                      <li>
+                        {" "}
+                       <b> Instagram:</b> <a href={this.state.sanctuary.Instagram}>
+                          {" "}
+                          <i class="material-icons">link</i>
+                        </a>
+                      </li>
+                    <li>
+                      {" "}
+                      <b> Donation:</b> <a href={this.state.sanctuary.DonationPage}>
+                        {" "}
+                        <i class="material-icons">link</i>
+                      </a>
+                    </li>
+                    </ul>
+                  </p>
                 </div>
+              </div>
+            </Col>
 
-              ) : (
-                <div>
-                  <p> no comments </p>
+            <Col size="md-6">
+              <div className="card w-100 h-100">
+                <div className="card-body text-center">
+                  {this.state.existingComments ? <div>
+                      <p>Comments:</p>
+                      {this.state.existingComments.map(comment => (
+                        <Comments
+                          key={comment.postId}
+                          comment={comment.comment}
+                        />
+                      ))}
+                    </div> : <div>
+                      <p> no comments </p>
+                    </div>}
                 </div>
-              )}
-          </div>
-        </div>
-        <div className="card w-75 h-75">
-
-          {this.state.user ?
-            (
-              <div className="card-body">
-                <label>Add Comment:</label>
-                <p>
-                  <input type="text" className="form-control" name="comment" value={this.state.comment} onChange={this.handleInputChange} />
-                </p>
-                <button className="btn btn-default btn-info" type="submit" onClick={this.handleFormSubmit}>
-                  Save Comment
-                </button>
-                <Link to="/Search">← Back to Search</Link>
               </div>
-            ) : (
-              <div className="card-body">
-                log in to comment
-              </div>
-            )}
-        </div>
-      </div >
-    )
+            </Col>
+          </Row>
+   
+          <Row>
+            <Col size="md-12">
+              <div className="card-body" />
+              {this.state.user ? <div className="card w-75 h-75">
+                  <div className="card-body">
+                    <label>Add Comment:</label>
+                    <p>
+                      <input type="text" className="form-control" name="comment" value={this.state.comment} onChange={this.handleInputChange} />
+                    </p>
+                    <button className="btn btn-default btn-info" type="submit" onClick={this.handleFormSubmit}>
+                      Save Comment
+                    </button>
+                    <Link to="/Search">← Back to Search</Link>
+                  </div>
+                </div> : <div className="card w-75 h-75">
+                  <div className="card-body">log in to comment</div>
+                </div>}
+            </Col>
+          </Row>
+        </Container>
+      </div>;
   }
 }
 

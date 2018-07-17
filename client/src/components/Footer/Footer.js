@@ -5,9 +5,9 @@ const Footer = () => (
   <footer className="footer d-flex align-items-center">
     <span>
       <div>
-        Animal Sanctuaries 2018 by{" "}
+        Animal Sanctuaries 2018 by &nbsp;
         <a href="https://github.com/Moskowitza">Moskowitza </a>
-        & &nbsp;
+        &nbsp;& &nbsp;
         <a href="https://github.com/JudieT215">JudieT215 </a>
       </div>
     </span>
