@@ -4,6 +4,7 @@ import Container from "../components/Container";
 import API from "../utils/API";
 import Row from "../components/Row";
 import Col from "../components/Col";
+import { Link } from "react-router-dom";
 
 // Switch this to REGISTER and create a seperate LOGIN
 class NewSanctuary extends Component {
@@ -249,8 +250,8 @@ class NewSanctuary extends Component {
                                         value={this.state.animalAbout}
                                         onChange={this.handleInputChange}
                                     /> */}
-                                        <a className="btn btn-primary" onClick={this.handleFormSubmit} action="/auth/newSanctuary">Add New Sanctuary</a>
-                                    <a className="btn" href='/'>Cancel</a>
+                                        <Link className="btn btn-info" onClick={this.handleFormSubmit} to="/auth/newSanctuary">Add New Sanctuary</Link>
+                                    <Link className="btn" to='/'>Cancel</Link>
                                 </span>
                             </form>
                         </div>

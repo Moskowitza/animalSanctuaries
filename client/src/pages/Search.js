@@ -4,7 +4,9 @@ import Row from "../components/Row";
 import SearchForm from "../components/SearchForm";
 import SearchState from "../components/SearchState";
 import SearchResults from "../components/SearchResults";
-import UserSearchResults from "../components/UserSearchResults";
+import UserSearchResults from "../components/UserSearchResults"; 
+import { Link } from "react-router-dom";
+
 
 // import sanctuaries from "../sanctuaries.json";
 import API from "../utils/API";

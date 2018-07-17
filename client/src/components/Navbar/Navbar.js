@@ -6,10 +6,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 // Depending on the current path, this component sets the "active" class on the appropriate navigation link item
 const Navbar = props => (
   <nav className="nav-item dropdown navbar navbar-expand-lg navbar-dark bg-dark">
-    <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-      <span className="navbar-toggler-icon"></span>
-    </button>
-    <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
+ 
     <Link className="navbar-brand" to="/">
       Home
     </Link>
@@ -86,7 +83,7 @@ const Navbar = props => (
         </li>
       </ul>
     </div>
-  </div>
+
   </nav>
 );
 
