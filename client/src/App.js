@@ -18,6 +18,7 @@ const App = () => (
     <body>
      
       <NavDropdown />
+      <Navbar />
       <Header>
         <h1> Animal Sanctuaries</h1>
         <h2> Website for Animal lovers</h2>

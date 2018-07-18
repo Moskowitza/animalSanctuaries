@@ -1,12 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
+import MediaQuery from 'react-responsive';
+
 import { BrowserRouter as Router } from "react-router-dom";
 
 // Depending on the current path, this component sets the "active" class on the appropriate navigation link item
 const Navbar = props => (
+  <MediaQuery query="(min-device-width: 1224px)">
+
   <nav className="nav-item dropdown navbar navbar-expand-lg navbar-dark bg-dark">
- 
     <Link className="navbar-brand" to="/">
       Home
     </Link>
@@ -83,8 +86,9 @@ const Navbar = props => (
         </li>
       </ul>
     </div>
+    </nav>
+    </MediaQuery>
 
-  </nav>
 );
 
 export default Navbar;
