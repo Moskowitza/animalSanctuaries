@@ -14,7 +14,7 @@ import Footer from "./components/Footer";
 import NavDropdown from "./components/NavDropdown";
 
 const App = () => (
-  <BrowserRouter>
+<Router>
     <body>
      
       <NavDropdown />
@@ -34,7 +34,7 @@ const App = () => (
       </Wrapper>
       <Footer />
     </body>
-  </BrowserRouter>
+  </Router>
 );
 
 export default App;
