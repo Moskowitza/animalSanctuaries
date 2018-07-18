@@ -31,15 +31,15 @@ export default {
     return axios.get("/auth/sanctuaries", data);
   },
   saveSearch: function (data) {
-    console.log("Our id data " + data.sanId);
     return axios.post("/auth/saveSearch", data)
   },
   getSavedSanctuaries: function (data) {
-    console.log("API API API SAVED id data " + JSON.stringify(data.userId));
     return axios.get(`/auth/savedSanctuaries/${data.userId}`);
   },
+  getMyComments: function (data) {
+    return axios.get(`/auth/userComments/${data.userId}`);
+  },
   getSanctuary: function (id) {
-    console.log("GET A SANCTUARY " + JSON.stringify(id));
     return axios.get("/api/sanctuary/" + id);
   },
   saveComment: function (comment) {
@@ -47,5 +47,9 @@ export default {
   },
   getComments: function (id) {
     return axios.get(`/api/getComments${id}`);
+  },
+  deleteComment: function (data) {
+    console.log("@@@@@@@@@@"+data.postId)
+    return axios.delete(`/api/deleteComment${data.postId}`);
   }
 };

@@ -4,7 +4,9 @@ import Row from "../components/Row";
 import SearchForm from "../components/SearchForm";
 import SearchState from "../components/SearchState";
 import SearchResults from "../components/SearchResults";
-import UserSearchResults from "../components/UserSearchResults";
+import UserSearchResults from "../components/UserSearchResults"; 
+import { Link } from "react-router-dom";
+
 
 // import sanctuaries from "../sanctuaries.json";
 import API from "../utils/API";
@@ -97,16 +99,25 @@ class Search extends Component {
     );
     return <div>
         <Container style={{ minHeight: "80%" }}>
+          {this.state.user ? (
           <Row>
             <div className="card w-50 h-50">
               <p className="card-body text-center">
                 You are currently logged in as {this.state.user.email}
               </p>
-              {/* SearchForm is for Name */}
             </div>
           </Row>
+          ):(
           <Row>
-            <div className="card w-100">
+            <div className="card w-50 h-50">
+              <p className="card-body text-center">
+                Log in to save sanctuaries to your dashboard
+              </p>
+            </div>
+          </Row>
+          )}
+          <Row>
+            <div className="card w-100 h-50">
               <div className="card-body">
                 <p className="text-center">
                   Search for a Sanctuary by NAME or STATE below

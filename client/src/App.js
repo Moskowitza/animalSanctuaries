@@ -11,11 +11,13 @@ import Wrapper from "./components/Wrapper";
 import Header from "./components/Header";
 import SanctuaryProfile from "./components/SanctuaryProfile";
 import Footer from "./components/Footer";
+import NavDropdown from "./components/NavDropdown";
 
 const App = () => (
   <BrowserRouter>
     <body>
-      <Navbar />
+     
+      <NavDropdown />
       <Header>
         <h1> Animal Sanctuaries</h1>
         <h2> Website for Animal lovers</h2>
