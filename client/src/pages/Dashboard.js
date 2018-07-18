@@ -5,7 +5,7 @@ import Row from "../components/Row";
 import Col from "../components/Col";
 import SavedSanctuaries from "../components/SavedSanctuaries/SavedSanctuaries";
 import SavedComments from "../components/SavedComments";
-
+import {Link} from "react-router-dom";
 
 class Dashboard extends Component {
   state = {
@@ -94,8 +94,13 @@ class Dashboard extends Component {
               <div className="card h-75 w-75 center">
                 <div className="card-body text-center">
                   <p>You are currently logged in as{" "}{this.state.user.email}</p>
-                  <a className="btn btn-info" href="/search"> Search</a> &nbsp;
-                <a className="btn btn-danger" onClick={this.logoutUser} href="/">Logout </a>
+                  <Link to="/search" className="btn btn-info">
+                search
+              </Link>
+              &nbsp;
+              <Link to="/" className="btn btn-danger" onClick={this.logoutUser} >
+                Logout
+              </Link>
                 </div>  
                 </div>
               </Col>
@@ -142,8 +147,13 @@ class Dashboard extends Component {
                     <p className="lead">
                       {" "}
                       Login or Register to continue to follow Animal Sanctuaries!</p>
-                    <a className="btn btn-info" href="/signin" onClick={this.handleFormSubmit}>Login</a>&nbsp;
-                    <a className="btn btn-primary" href="/signup">Register</a>
+                      <Link to="/signin" className="btn btn-info">
+                Login
+              </Link>   
+              &nbsp;                       
+              <Link to="/signin" className="btn btn-primary">
+                Register
+              </Link>
 
                   </div>
                   </div>
