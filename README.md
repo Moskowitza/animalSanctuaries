@@ -1,29 +1,15 @@
-# Create React Express App
+# Animal Sanctuaries
+A React app using SQL to make finding and following Farm & Animal sanctuaries fun
+## About
+[FarmSacntuaries Herokuapp](https://farmsanctuaries.herokuapp.com/)
+## Current Features
+* Search over 100 farm sanctuaries in the US
+### Subscriber features
+* Save farm sanctiares to your dashboard
+* Comments enabled for subscribers
+* Remove comments from your dashboard
+* Sanctuary profile pages have commenting and userful links
 
-## About This Boilerplate
-
-This setup allows for a Node/Express/React app which can be easily deployed to Heroku.
-
-The front-end React app will auto-reload as it's updated via webpack dev server, and the backend Express app will auto-reload independently with nodemon.
-
-## Starting the app locally
-
-Start by installing front and backend dependencies. While in this directory, run the following command:
-
-```
-yarn install
-``
-
-This should install node modules within the server and the client folder.
-
-After both installations complete, run the following command in your terminal:
-
-```
-yarn start
-```
-
-Your app should now be running on <http://localhost:3000>. The Express server should intercept any AJAX requests from the client.
-
-## Deployment (Heroku)
-
-To deploy, simply add and commit your changes, and push to Heroku. As is, the NPM scripts should take care of the rest.
+### Under Construction
+* Browser history: Currently a single page app.
+* Improved Search: Adding Location and Animal Types to search box
