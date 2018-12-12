@@ -37,7 +37,7 @@ class Dashboard extends Component {
           sanctuaries: res.data
         });
         console.log(this.state.sanctuaries);//returns an array of objects
-      })
+      }).catch(err => console.log(err))
   }
 
 
@@ -54,62 +54,64 @@ class Dashboard extends Component {
 
 
   render() {
+    const mySanctuaries = this.state.sanctuaries
+    console.log(`mySanctuaryies${mySanctuaries}`)
     return <div>
-        <Container>
-          <Row>
+      <Container>
+        <Row>
           <Col size="md-12">
-              <p></p>
-            
-              <h1>Welcome To animal sanctuaries!</h1>
-            </Col>
-          </Row>
+            <p></p>
+
+            <h1>Welcome To animal sanctuaries!</h1>
+          </Col>
+        </Row>
 
         <Row className="center">
-            <Col size="md1-2">
-              <div className="card w-50 h-50">
-                <div className="card-body text-center">
-                  {this.state.user ? <div>
-                      <p>
-                        You are currently logged in as{" "}
-                        {this.state.user.email}
-                      </p>
-                      <a className="btn btn-info" href="/search">
-                        Search
+          <Col size="md1-2">
+            <div className="card w-50 h-50">
+              <div className="card-body text-center">
+                {this.state.user ? <div>
+                  <p>
+                    You are currently logged in as{" "}
+                    {this.state.user.email}
+                  </p>
+                  <a className="btn btn-info" href="/search">
+                    Search
                       </a> &nbsp;
                       <a className="btn btn-danger" onClick={this.logoutUser} href="/">
-                        Logout
+                    Logout
                       </a>
-                      
-                      {this.state.sanctuaries.map(sanctuary => (
-                        <SavedSanctuaries
-                          id={sanctuary.sanId}
-                          key={sanctuary.sanId}
-                          logo={sanctuary.image}
-                          name={sanctuary.name}
-                          state={sanctuary.state}
-                          sanId={sanctuary.sanId}
-                        />
-                      ))}
-                    </div> : <div>
-                      <p className="lead">
-                        {" "}
-                        Login or Register to continue to follow Animal
+
+                  {mySanctuaries.map(sanctuary => (
+                    <SavedSanctuaries
+                      id={sanctuary.sanId}
+                      key={sanctuary.sanId}
+                      logo={sanctuary.image}
+                      name={sanctuary.name}
+                      state={sanctuary.state}
+                      sanId={sanctuary.sanId}
+                    />
+                  ))}
+                </div> : <div>
+                    <p className="lead">
+                      {" "}
+                      Login or Register to continue to follow Animal
                         Sanctuaries!
                       </p>
-                      <a className="btn btn-info" href="/signin" onClick={this.handleFormSubmit}>
-                        Login
+                    <a className="btn btn-info" href="/signin" onClick={this.handleFormSubmit}>
+                      Login
                       </a>&nbsp;
                       <a className="btn btn-primary" href="/signup">
-                        Register
+                      Register
                       </a>
-                    </div>}
-                </div>
-              
+                  </div>}
               </div>
-            </Col>
-          </Row>
-        </Container>
-      </div>;
+
+            </div>
+          </Col>
+        </Row>
+      </Container>
+    </div>;
   }
 }
 

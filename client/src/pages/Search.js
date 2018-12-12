@@ -11,7 +11,7 @@ import API from "../utils/API";
 class Search extends Component {
   state = {
     search: "",
-    searchState:"",
+    searchState: "",
     sanctuaries: [],
     results: [],
     error: "",
@@ -19,28 +19,26 @@ class Search extends Component {
     user: {}
   };
 
-    // getSanctuaries and getUser, if logged in
-    componentDidMount() {
-      this.getUser();
-      this.getSanctuaries();
-    };
-    getUser = () => {
-      API.getUser()
-        .then(res => {
-          this.setState({
-            user: res.data
-          });
-        })
-    }
-    getSanctuaries = () => {
-      API.getSanctuaries()
-        .then(res => {
-          this.setState({
-            sanctuaries: res.data
-          });
-        })
-    }
-  // We need to shift this page to view Profiles. 
+  // getSanctuaries and getUser, if logged in
+  componentDidMount() {
+    this.getUser();
+    this.getSanctuaries();
+  }
+  getUser = () => {
+    API.getUser().then(res => {
+      this.setState({
+        user: res.data
+      });
+    });
+  };
+  getSanctuaries = () => {
+    API.getSanctuaries().then(res => {
+      this.setState({
+        sanctuaries: res.data
+      });
+    });
+  };
+  // We need to shift this page to view Profiles.
   // handlePageChange = page => {
   //   this.setState({ currentPage: page });
   // };
@@ -52,7 +50,6 @@ class Search extends Component {
   //     return <SanctuaryProfile />;
   //   }
   // };
-
 
   // handle any changes to the input Fields: Search
   handleInputChange = event => {
@@ -68,11 +65,10 @@ class Search extends Component {
     API.saveSearch({
       sanId: data.sanId,
       userId: data.userId
-    })
-      .then(res => {
-        console.log(res);
-      })
-  }
+    }).then(res => {
+      console.log(res);
+    });
+  };
   //we need to pick a sanctuary that for a profile we'll view
   // selectSanctuary=data=>{
   //   this.setState({
@@ -83,19 +79,22 @@ class Search extends Component {
   // }
 
   render() {
-    //This wont work: How would we extract the props we need back out of one mess array? 
+    //This wont work: How would we extract the props we need back out of one mess array?
     //let names=this.state.sanctuaries.map((sanctuary)=>{return sanctuary.name})
     // let states=this.state.sanctuaries.map((sanctuary)=>{return sanctuary.state})
     // const searchFields = [...names,...states]
     // console.log(`Seach fields ${searchFields}`)
 
     //Our live filter function
-    let filteredSanctuaries = this.state.sanctuaries.filter(
-      (sanctuary) => {
-        return sanctuary.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
-      }
-    );
-    return <div>
+    let filteredSanctuaries = this.state.sanctuaries.filter(sanctuary => {
+      return (
+        sanctuary.name
+          .toLowerCase()
+          .indexOf(this.state.search.toLowerCase()) !== -1
+      );
+    });
+    return (
+      <div>
         <Container style={{ minHeight: "80%" }}>
           <Row>
             <div className="card w-50 h-50">
@@ -112,7 +111,11 @@ class Search extends Component {
                   Search for a Sanctuary by NAME or STATE below
                 </p>
 
-                <SearchForm className="form-control" handleInputChange={this.handleInputChange} search={this.state.search} />
+                <SearchForm
+                  className="form-control"
+                  handleInputChange={this.handleInputChange}
+                  search={this.state.search}
+                />
               </div>
             </div>
           </Row>
@@ -123,7 +126,7 @@ class Search extends Component {
           <Row>
             <div className="card w-100 h-100">
               <div className="card-body">
-                {this.state.user ? // if LOGGED IN
+                {this.state.user ? ( // if LOGGED IN
                   <div>
                     {filteredSanctuaries.map(sanctuary => (
                       <UserSearchResults
@@ -142,7 +145,8 @@ class Search extends Component {
                         }
                       />
                     ))}
-                  </div> : // if not logged in serve up the page without button link
+                  </div> // if not logged in serve up the page without button link
+                ) : (
                   <div>
                     {filteredSanctuaries.map(sanctuary => (
                       <SearchResults
@@ -153,12 +157,14 @@ class Search extends Component {
                         logo={sanctuary.image}
                       />
                     ))}
-                  </div>}
+                  </div>
+                )}
               </div>
             </div>
           </Row>
         </Container>
-      </div>;
+      </div>
+    );
   }
 }
 
