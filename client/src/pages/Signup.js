@@ -9,7 +9,6 @@ import { Link } from "react-router-dom";
 // Switch this to REGISTER and create a seperate LOGIN
 class Signup extends Component {
   //Setting the initial values of this.state.email and this.state.password
-
   state = {
     username: "",
     password: "",
@@ -18,12 +17,10 @@ class Signup extends Component {
     lastname: ""
   }
 
-
   // handle any changes to the input fields
   handleInputChange = event => {
     // Pull the name and value properties off of the event.target (the element which triggered the event)
     const { name, value } = event.target;
-
     // Set the state for the appropriate input field
     this.setState({
       [name]: value
@@ -43,20 +40,21 @@ class Signup extends Component {
       lastname: this.state.lastname
     })
       .then(res => {
-
-        if ( res.data === true ) {
-          this.props.history.push("/dashboard");
-        }
-        else {
+        console.log(`res ${res.data}`);
+        window.location.replace(res.data);
+       // if ( res === true ) {
+         
+          // this.props.history.push("/dashboard");
+       // }
+       // else {
           // however you want to handle an error.
-        }
+        //}
         // console.log(res);
-       
         // this.history.pushState(null, 'login');
       })
       .catch(err => {
         console.log(err);
-        alert('Problem signing in');
+        alert(`Problem signing in: ${err}`);
       });
   };
 

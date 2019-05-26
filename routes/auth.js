@@ -1,24 +1,19 @@
 const authController = require('../controllers/authcontroller.js');
 const db = require('../models');
-// var passport = require('passport');
-// when we hit path /signup, auth controller calls a route, in this one case we just have signup
-module.exports = function(app, passport) {
+const passport = require('../config/passport/passport');
+
+module.exports = function(app) {
   // GET routes to render our handlebar pages
-  app.get('/signup', authController.signup);
-  app.get('/signin', authController.signin);
-  //     //WE need a logout
+  app.get('/signup', authController.getsignup); // redirect to "/singup"
+  app.get('/signin', authController.getsignin);
   app.get('/logout', authController.logout);
+
+  app.post('/auth/signin', passport.authenticate('local'), authController.signinpost);
 
   // POST route to implement passport and sign up a user
   /** Since we need passport, we need to pass it to this method.
    * We can import passport in this script OR pass it from server.js. NOTE WE TAKE IN APP, Passport as params */
-  app.post(
-    '/auth/signup',
-    passport.authenticate('local-signup', {
-      successRedirect: '/dashboard', // GET path defined below
-      failureRedirect: '/signup',
-    })
-  );
+  app.post('/auth/signup', authController.authSignup);
   // This comes from the session
   app.get('/auth/check', (req, res) => {
     if (req.user) {
@@ -27,8 +22,6 @@ module.exports = function(app, passport) {
       res.json(false);
     }
   });
-
-  // Our successful redirect needs a get path. wow.
 
   // A function to see if we're logged in to protect the routes
   // we pass it back to the dashboard get route
@@ -52,13 +45,13 @@ module.exports = function(app, passport) {
 
   // post a new sanctuary: this works
   app.post('/auth/newSanctuary', (req, res) => {
-    db.Sanctuary.create(req.body).then((data) => {
+    db.Sanctuary.create(req.body).then(data => {
       res.json(data);
     });
   });
   // this does not seem to work
   app.get('/auth/sanctuaries', (req, res) => {
-    db.Sanctuary.findAll({}).then((data) => {
+    db.Sanctuary.findAll({}).then(data => {
       res.json(data);
     });
   });
@@ -72,7 +65,7 @@ module.exports = function(app, passport) {
       });
   });
   app.get('/auth/savedSanctuaries/:id', (req, res) => {
-    let mySanctuaries = db.User.findAll({
+    const mySanctuaries = db.User.findAll({
       where: { userId: req.params.id },
       include: [
         {
@@ -85,18 +78,15 @@ module.exports = function(app, passport) {
       ],
     });
     Promise.all([mySanctuaries])
-      .then((result) => {
-        console.log(
-          "data from savedSanc api call: " +
-            JSON.stringify(result[0][0].Sanctuaries)
-        );
+      .then(result => {
+        console.log(`data from savedSanc api call: ${JSON.stringify(result[0][0].Sanctuaries)}`);
         res.json(result[0][0].Sanctuaries);
       })
       .catch(error => res.json(error));
   });
   // Get user's own comments for Dashboard
   app.get('/auth/userComments/:id', (req, res) => {
-    let myComments = db.Post.findAll({
+    const myComments = db.Post.findAll({
       where: { userId: req.params.id },
       include: [
         {
@@ -110,10 +100,10 @@ module.exports = function(app, passport) {
       ],
     });
     Promise.all([myComments])
-      .then((result) => {
-        console.log("#######################################");
-        console.log("#######################################");
-        console.log("########" + JSON.stringify(result[0]));
+      .then(result => {
+        console.log('#######################################');
+        console.log('#######################################');
+        console.log(`########${JSON.stringify(result[0])}`);
         res.json(result[0]);
         // console.log("########" + result[0].Posts)
       })
@@ -121,20 +111,18 @@ module.exports = function(app, passport) {
   });
   // Get one sanctuary
   app.get('/api/sanctuary/:id', (req, res) => {
-    console.log('GET ONE SANCTUARY' + req.params.id);
+    console.log(`GET ONE SANCTUARY${req.params.id}`);
     db.Sanctuary.findOne({
       where: { sanId: req.params.id },
     })
-      .then((result) => {
-        console.log(
-          "data from profileSanctuary api call: " + JSON.stringify(result)
-        );
+      .then(result => {
+        console.log(`data from profileSanctuary api call: ${JSON.stringify(result)}`);
         res.json(result);
       })
       .catch(error => res.json(error));
   });
   app.post('/auth/newComment', (req, res) => {
-    console.log('in authjs ' + JSON.stringify(req.body));
+    console.log(`in authjs ${JSON.stringify(req.body)}`);
     const userCommenting = db.User.findOne({
       where: { userId: req.body.userId },
     });
@@ -146,8 +134,8 @@ module.exports = function(app, passport) {
         // results[0].addPost(results[1]);
         db.Post.create(req.body);
       })
-      .then((result) => {
-        console.log("Result from adding a post: " + JSON.stringify(result));
+      .then(result => {
+        console.log(`Result from adding a post: ${JSON.stringify(result)}`);
         res.json(result);
       })
       .catch(error => res.json(error));
@@ -158,8 +146,8 @@ module.exports = function(app, passport) {
     db.Post.destroy({
       where: { postId: req.params.id },
     })
-      .then((result) => {
-        console.log("COMMENTS from api call: " + JSON.stringify(result));
+      .then(result => {
+        console.log(`COMMENTS from api call: ${JSON.stringify(result)}`);
         res.json(result);
       })
       .catch(error => res.json(error));
@@ -167,14 +155,27 @@ module.exports = function(app, passport) {
 
   // get comments for Sanctuary Profile
   app.get('/api/getComments:id', (req, res) => {
-    console.log('GET COMMENTS WITH San ID' + JSON.stringify(req.params));
+    console.log(`GET COMMENTS WITH San ID${JSON.stringify(req.params)}`);
     db.Post.findAll({
       where: { sanId: req.params.id },
     })
-      .then((result) => {
-        console.log("COMMENTS from api call: " + JSON.stringify(result));
+      .then(result => {
+        console.log(`COMMENTS from api call: ${JSON.stringify(result)}`);
         res.json(result);
       })
       .catch(error => res.json(error));
+  });
+  app.get('/api/user_data', function(req, res) {
+    if (!req.user) {
+      // The user is not logged in, send back an empty object
+      res.json({});
+    } else {
+      // Otherwise send back the user's email and id
+      // Sending back a password, even a hashed password, isn't a good idea
+      res.json({
+        email: req.user.email,
+        id: req.user.id,
+      });
+    }
   });
 };

@@ -82,7 +82,7 @@ class Signin extends Component {
                           <input className="form-control" type="password" name="password" value={this.state.password} onChange={this.handleInputChange} />
                         </p>
                         <p />
-                      <Link className="btn btn-primary" to="/dashboard" onClick={this.handleFormSubmit}>
+                          <Link className="btn btn-primary" to="/dashboard" onClick={this.handleFormSubmit}>
                           Login
                         </Link>
                         &nbsp;
