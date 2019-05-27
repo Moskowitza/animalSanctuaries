@@ -32,12 +32,11 @@
     "mysql2": "^1.5.3",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
-    "passport-local-sequelize": "^0.8.0",
     "react": "^16.4.1",
     "react-bootstrap": "^0.32.1",
     "react-dom": "^16.4.1",
     "react-responsive": "^5.0.0",
-    "sequelize": "^4.38.0",
+    "sequelize": "^5.8.6",
     "yarn": "^1.7.0"
   }
 }

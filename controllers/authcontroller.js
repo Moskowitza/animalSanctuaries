@@ -1,7 +1,7 @@
 // Simlply render pages when asked by our route
 // const exports = (module.exports = {});
 const db = require('../models');
-const passport = require('../config/passport/passport');
+const passport = require('../config/passport/passport').default;
 
 exports.getsignup = function(req, res) {
   res.redirect('/signup');
