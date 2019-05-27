@@ -1,66 +1,61 @@
-module.exports = function (sequelize, Sequelize) {
-
-  const Sanctuary = sequelize.define("Sanctuary", {
-    sanId: {
+module.exports = function(sequelize, Sequelize) {
+  const Sanctuary = sequelize.define('Sanctuary', {
+    sanId:{
       autoIncrement: true,
       primaryKey: true,
-      type: Sequelize.INTEGER
+      type: Sequelize.INTEGER,
     },
-    name: {
+    name:{
       type: Sequelize.STRING,
       allowNull: false,
       validate: {
-        len: [1]
-      }
+        len: [1],
+      },
     },
     image: {
-      type: Sequelize.STRING
+      type: Sequelize.STRING,
     },
     state: {
       type: Sequelize.STRING,
       allowNull: false,
       validate: {
-        len: [1]
-      }
+        len: [1],
+      },
     },
     animalPhone: {
-      type: Sequelize.STRING
+      type: Sequelize.STRING,
     },
     animalEmail: {
-      type: Sequelize.STRING
+      type: Sequelize.STRING,
     },
     animalAddress: {
-      type: Sequelize.STRING
+      type: Sequelize.STRING,
     },
     animalWebsite: {
-      type: Sequelize.STRING
+      type: Sequelize.STRING,
     },
     Facebook: {
-      type: Sequelize.STRING
+      type: Sequelize.STRING,
     },
     Instagram: {
-      type: Sequelize.STRING
+      type: Sequelize.STRING,
     },
     Twitter: { 
-      type: Sequelize.STRING},
+      type: Sequelize.STRING,
+    },
     YouTube: {
-      type: Sequelize.STRING
+      type: Sequelize.STRING,
     },
     DonationPage: {
-      type: Sequelize.STRING
-
-    }
+      type: Sequelize.STRING,
+    },
   });
-  Sanctuary.associate = function (models) {
+  Sanctuary.associate = models => {
     Sanctuary.belongsToMany(models.User, {
       through: 'UserSanList',
       as: 'Subscribers',
-      foreignKey: 'sanId'
+      foreignKey: 'sanId',
     });
-    // Sanctuary.hasMany(models.Post, {
-    //   // as: 'comments',
-    //   // foreignKey: 'sanId'
-    // });
   };
   return Sanctuary;
 };
