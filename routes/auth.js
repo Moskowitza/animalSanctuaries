@@ -1,6 +1,6 @@
 const authController = require('../controllers/authcontroller.js');
 const db = require('../models');
-const passport = require('../config/passport/passport').default;
+const passport = require('../config/passport/passport');
 
 module.exports = function(app) {
   // GET routes to render our handlebar pages

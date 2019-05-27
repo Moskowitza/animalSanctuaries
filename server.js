@@ -30,7 +30,7 @@ if (process.env.NODE_ENV === 'production') {
 require('./routes/auth.js')(app);
 // load passport strategies
 
-db.sequelize.sync({force:true}).then(function() {});
+db.sequelize.sync().then(function() {});
 app.listen(PORT, () => {
   console.log(`🌎 ==> Server now on port ${PORT}!`);
 });
