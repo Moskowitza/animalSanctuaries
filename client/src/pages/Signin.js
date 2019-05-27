@@ -1,24 +1,22 @@
-import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
-import Container from "../components/Container";
-import API from "../utils/API";
-import Row from "../components/Row";
-import Col from "../components/Col";
-import Card from "../components/Card";
-import { Link } from "react-router-dom";
+import React, { Component } from 'react';
+import { withRouter, Link } from 'react-router-dom';
+import Container from '../components/Container';
+import API from '../utils/API';
+import Row from '../components/Row';
+import Col from '../components/Col';
+import Card from '../components/Card';
 
 // Switch this to REGISTER and create a seperate LOGIN
 class Signin extends Component {
-  //Setting the initial values of this.state.email and this.state.password
+  // Setting the initial values of this.state.email and this.state.password
 
   state = {
     email: '',
-    password: ''
+    password: '',
     // email: "",
     // firstname: "",
     // lastname: ""
   };
-
 
   // handle any changes to the input fields
   handleInputChange = event => {
@@ -26,50 +24,54 @@ class Signin extends Component {
     const { name, value } = event.target;
     // Set the state for the appropriate input field
     this.setState({
-      [name]: value
+      [name]: value,
     });
   };
 
   // When the form is submitted, prevent the default event and alert the username and password
   handleFormSubmit = event => {
+    const { email, password } = this.state;
     event.preventDefault();
-    if (this.state.email && this.state.password) {
+    if (email && password) {
       // alert(`Username: ${this.state.username}\nPassword: ${this.state.password}`);
       // We need to have an HTTP request to our path
       API.loginUser({
-        email: this.state.email,
-        password: this.state.password
+        email,
+        password,
       })
         .then(res => {
           console.log(res);
-          this.props.history.push("/dashboard");
+          this.props.history.push('/dashboard');
           // this.history.pushState(null, 'login');
         })
         .catch(err => console.log(err));
-    };
-  }
-    // const data = new FormData(event.target);
+    }
+  };
+  // const data = new FormData(event.target);
 
-
-
-    render() {
-      return <div>
-          <Container>
-            <Row className="justify-content-start">
-              <Col size="md-12" className="center ">
-                {/* FORM HAS ACTION TO SIGNIN route*/}
-                <div className="card w-50 h-50">
-                  <div className="card-header">
-                    Please Login or Return to the homepage
-                  </div>
-                  <div className="form-group">
-                    <form className="card-body">
-                      <span>
-                        <p> Email Address:</p>
-                        <p className="form-group">
-                          <input className="form-control" type="text" name="email" value={this.state.email} onChange={this.handleInputChange} />
-                        </p>
-                        {/* <label >User Name</label>
+  render() {
+    return (
+      <div>
+        <Container>
+          <Row className="justify-content-start">
+            <Col size="md-12" className="center ">
+              {/* FORM HAS ACTION TO SIGNIN route */}
+              <div className="card w-50 h-50">
+                <div className="card-header">Please Login or Return to the homepage</div>
+                <div className="form-group">
+                  <form className="card-body">
+                    <span>
+                      <p> Email Address:</p>
+                      <p className="form-group">
+                        <input
+                          className="form-control"
+                          type="text"
+                          name="email"
+                          value={this.state.email}
+                          onChange={this.handleInputChange}
+                        />
+                      </p>
+                      {/* <label >User Name</label>
                   <input
                     type="text"
                     name="username"
@@ -77,28 +79,34 @@ class Signin extends Component {
                     onChange={this.handleInputChange}
 
                   /> */}
-                        <p>Password:</p>
-                        <p>
-                          <input className="form-control" type="password" name="password" value={this.state.password} onChange={this.handleInputChange} />
-                        </p>
-                        <p />
+                      <p>Password:</p>
+                      <p>
+                        <input
+                          className="form-control"
+                          type="password"
+                          name="password"
+                          value={this.state.password}
+                          onChange={this.handleInputChange}
+                        />
+                      </p>
+                      <p />
                       <Link className="btn btn-primary" to="/dashboard" onClick={this.handleFormSubmit}>
-                          Login
-                        </Link>
-                        &nbsp;
-                        <Link className="btn" to="/">
-                          Cancel
-                        </Link>
-                      </span>
-                    </form>
-                  </div>
+                        Login
+                      </Link>
+                      &nbsp;
+                      <Link className="btn" to="/">
+                        Cancel
+                      </Link>
+                    </span>
+                  </form>
                 </div>
-              </Col>
-            </Row>
-          </Container>
-        </div>;
-    }
-  };
+              </div>
+            </Col>
+          </Row>
+        </Container>
+      </div>
+    );
+  }
+}
 
-
-  export default withRouter(Signin);
+export default withRouter(Signin);
