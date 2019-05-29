@@ -1,19 +1,12 @@
 import React from "react";
 import "./SavedComments.css";
-import { Link } from "react-router-dom";
 
 const SavedComments = props => (
   <ul className="list-group search-results">
       <li key={props.postId} className="list-group-item">
         <p>Sanctuary Name:{props.sanctuary}</p>
         <p>comment:{props.comment}</p>
-        <button onClick={props.delete}>delete comment</button>
-        {/* <Link to={"/sanctuary/" + props.sanId}>
-        <strong>
-          view profile
-        </strong>
-      </Link> */}
-      
+        <button onClick={props.delete}>delete comment</button>      
       </li>
   </ul>
 );

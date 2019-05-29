@@ -51,6 +51,7 @@ module.exports = function(app) {
   });
   // this does not seem to work
   app.get('/auth/sanctuaries', (req, res) => {
+    console.log('in get /auth/sanctuaries')
     db.Sanctuary.findAll({}).then(data => {
       res.json(data);
     });

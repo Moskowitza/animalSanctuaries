@@ -88,7 +88,6 @@ class Dashboard extends Component {
 
         {this.state.user ? (
           <Container>
-
             <Row>
               <Col size="md-12" ClassName="center">
               <div className="card h-75 w-75 center">
@@ -107,7 +106,6 @@ class Dashboard extends Component {
             </Row>
             <Row><Col size="md-12" /><div className="card-body" /></Row>
             <Row>
-
               <Col size="md-6">
               <h3>My Sanctuaries</h3>
                 {this.state.sanctuaries.map(sanctuary => (
@@ -121,7 +119,6 @@ class Dashboard extends Component {
                   />
                 ))}
               </Col>
-
               <Col size="md-6" >
                 <h3>My Comments</h3>
                 {this.state.usercomments.map(obj =>
@@ -132,9 +129,7 @@ class Dashboard extends Component {
                     delete={() => this.deleteComment({ postId: obj.postId })}
                   />
                   ))}
-
               </Col>
-
             </Row>
           </Container>
         ) : (
@@ -154,7 +149,6 @@ class Dashboard extends Component {
               <Link to="/signin" className="btn btn-primary">
                 Register
               </Link>
-
                   </div>
                   </div>
                   </div>
@@ -162,7 +156,7 @@ class Dashboard extends Component {
               </Row>
             </Container>
           )
-          }
+          
         }
           </div>
     )

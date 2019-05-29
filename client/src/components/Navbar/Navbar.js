@@ -1,26 +1,30 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
-import MediaQuery from 'react-responsive';
+// import MediaQuery from 'react-responsive';
 
-import { BrowserRouter as Router } from "react-router-dom";
+// import { BrowserRouter as Router } from "react-router-dom";
 
 // Depending on the current path, this component sets the "active" class on the appropriate navigation link item
 const Navbar = props => (
-  <MediaQuery query="(min-device-width: 1224px)">
+  // <MediaQuery query="(min-device-width: 1224px)">
 
-  <nav className="nav-item dropdown navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
     <Link className="navbar-brand" to="/">
       Home
     </Link>
-    <div>
-        <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
+    
+        <ul className="navbar-nav">
         <li
-          className={
-            window.location.pathname === "/" ||
-            window.location.pathname === "/about"
-              ? "nav-item active"
-              : "nav-item"
+          className={ "nav-item"
+            // window.location.pathname === "/" ||
+            // window.location.pathname === "/about"
+            //   ? "nav-item active"
+            //   : "nav-item"
           }
         >
           <Link to="/" className="nav-link">
@@ -28,10 +32,10 @@ const Navbar = props => (
           </Link>
         </li>
         <li
-          className={
-            window.location.pathname === "/dashboard"
-              ? "nav-item active"
-              : "nav-item"
+          className={ "nav-item"
+            // window.location.pathname === "/dashboard"
+            //   ? "nav-item active"
+            //   : "nav-item"
           }
         >
           <Link to="/dashboard" className="nav-link">
@@ -39,10 +43,10 @@ const Navbar = props => (
           </Link>
         </li>
         <li
-          className={
-            window.location.pathname === "/search"
-              ? "nav-item active"
-              : "nav-item"
+          className={ "nav-item"
+            // window.location.pathname === "/search"
+            //   ? "nav-item active"
+            //   : "nav-item"
           }
         >
           <Link to="/search" className="nav-link">
@@ -51,10 +55,10 @@ const Navbar = props => (
         </li>
 
         <li
-          className={
-            window.location.pathname === "/singin"
-              ? "nav-item active"
-              : "nav-item"
+          className={  "nav-item"
+            // window.location.pathname === "/singin"
+            //   ? "nav-item active"
+            //   : "nav-item"
           }
         >
           <Link to="/signin" className="nav-link">
@@ -63,10 +67,10 @@ const Navbar = props => (
         </li>
 
         <li
-          className={
-            window.location.pathname === "/signup"
-              ? "nav-item active"
-              : "nav-item"
+          className={  "nav-item"
+            // window.location.pathname === "/signup"
+            //   ? "nav-item active"
+            //   : "nav-item"
           }
         >
           <Link to="/signup" className="nav-link">
@@ -74,10 +78,10 @@ const Navbar = props => (
           </Link>
         </li>
         <li
-          className={
-            window.location.pathname === "/newSanctuary"
-              ? "nav-item active"
-              : "nav-item"
+          className={  "nav-item"
+            // window.location.pathname === "/newSanctuary"
+            //   ? "nav-item active"
+            //   : "nav-item"
           }
         >
           <Link to="/newSanctuary" className="nav-link">
@@ -87,7 +91,7 @@ const Navbar = props => (
       </ul>
     </div>
     </nav>
-    </MediaQuery>
+    // </MediaQuery>
 
 );
 

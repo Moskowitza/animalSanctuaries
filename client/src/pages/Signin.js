@@ -4,7 +4,7 @@ import Container from '../components/Container';
 import API from '../utils/API';
 import Row from '../components/Row';
 import Col from '../components/Col';
-import Card from '../components/Card';
+// import Card from '../components/Card';
 
 // Switch this to REGISTER and create a seperate LOGIN
 class Signin extends Component {

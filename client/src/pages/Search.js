@@ -2,10 +2,8 @@ import React, { Component } from "react";
 import Container from "../components/Container";
 import Row from "../components/Row";
 import SearchForm from "../components/SearchForm";
-import SearchState from "../components/SearchState";
 import SearchResults from "../components/SearchResults";
 import UserSearchResults from "../components/UserSearchResults"; 
-import { Link } from "react-router-dom";
 
 
 // import sanctuaries from "../sanctuaries.json";
@@ -18,7 +16,7 @@ class Search extends Component {
     results: [],
     error: "",
     //add state user to save searches
-    user: {}
+    user: []
   };
 
     // getSanctuaries and getUser, if logged in
@@ -35,6 +33,7 @@ class Search extends Component {
         })
     }
     getSanctuaries = () => {
+      console.log('getting sanctuaries')
       API.getSanctuaries()
         .then(res => {
           this.setState({
@@ -98,9 +97,9 @@ class Search extends Component {
       }
     );
     return <div>
-        <Container style={{ minHeight: "80%" }}>
-          {this.state.user ? (
-          <Row>
+        <Container fluid={false} style={{ minHeight: "80%" }}>
+          {this.state.user.id ? (
+          <Row fluid={true}>
             <div className="card w-50 h-50">
               <p className="card-body text-center">
                 You are currently logged in as {this.state.user.email}
@@ -108,12 +107,10 @@ class Search extends Component {
             </div>
           </Row>
           ):(
-          <Row>
-            <div className="card w-50 h-50">
+          <Row fluid={true} className="card" style={{ margin: "10px" }}>
               <p className="card-body text-center">
                 Log in to save sanctuaries to your dashboard
               </p>
-            </div>
           </Row>
           )}
           <Row>

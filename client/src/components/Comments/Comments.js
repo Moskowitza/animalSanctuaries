@@ -1,6 +1,5 @@
 import React from "react";
 import "./Comments.css";
-import { Link } from "react-router-dom";
 
 const Comments = props => (
   <ul className="list-group search-results">

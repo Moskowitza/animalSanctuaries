@@ -11,19 +11,18 @@ import Wrapper from "./components/Wrapper";
 import Header from "./components/Header";
 import SanctuaryProfile from "./components/SanctuaryProfile";
 import Footer from "./components/Footer";
-import NavDropdown from "./components/NavDropdown";
+// import NavDropdown from "./components/NavDropdown";
 
 const App = () => (
 <Router>
-    <body>
-     
-      <NavDropdown />
+      {/* <NavDropdown /> */}
       <Navbar />
       <Header>
         <h1> Animal Sanctuaries</h1>
         <h2> Website for Animal lovers</h2>
       </Header>
       <Wrapper>
+      
         <Route exact path="/" component={About} />
         <Route exact path="/about" component={About} />
         <Route exact path="/dashboard" component={Dashboard} />
@@ -34,7 +33,6 @@ const App = () => (
         <Route exact path="/newSanctuary" component={NewSanctuary} />
       </Wrapper>
       <Footer />
-    </body>
   </Router>
 );
 

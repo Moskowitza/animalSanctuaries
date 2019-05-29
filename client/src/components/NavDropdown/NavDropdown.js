@@ -15,37 +15,30 @@ class NavDropdown extends Component {
 
   showMenu(event) {
     event.preventDefault();
-
     this.setState({ showMenu: true }, () => {
       document.addEventListener('click', this.closeMenu);
     });
   }
 
   closeMenu(event) {
-
     if (!this.dropdownMenu.contains(event.target)) {
-
       this.setState({ showMenu: false }, () => {
         document.removeEventListener('click', this.closeMenu);
       });
-
     }
   }
 
   render() {
     return <div className="navbar-default navbar-dark bg-dark">
-        <button className="navbar-toggler bg-dark"  onClick={this.showMenu}>
-          <span className="navbar-toggler-icon" />
-        </button>
-
-        {this.state.showMenu ? <div ref={element => {
-              this.dropdownMenu = element;
-            }}>
+          <button className="navbar-toggler bg-dark"  onClick={this.showMenu}>
+            <span className="navbar-toggler-icon" />
+          </button>
+        {this.state.showMenu ? <div ref={element => {this.dropdownMenu = element;}}>
         <nav className="navbar-default navbar-nav bg-dark">
               <div>
                 <ul>
                   <li>
-                <Link to="/" className="nav-link">
+                  <Link to="/" className="nav-link">
                   About
                 </Link>
                 </li>
