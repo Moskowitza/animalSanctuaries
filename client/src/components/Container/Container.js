@@ -4,7 +4,9 @@ import "./Container.css";
 
 
 const Container = props =>
- <div className="container">
-    <div className={`container${props.fluid ? "-fluid" : ""}`} {...props} />
-</div>
+
+    <div className={`container${props.fluid ? "-fluid" : ""}`} {...props} >
+        {props.children}
+    </div>
+
 export default Container;

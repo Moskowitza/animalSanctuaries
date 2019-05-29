@@ -75,19 +75,16 @@ class Dashboard extends Component {
   }
 
   render() {
-    return ( <div>
-     
-        <Container>
+    return (<Container>
           <Row>
-            <Col size="md-12" ClassName="Center">
+            <Col size="md-12" ClassName="center">
               <p></p>
               <h1>Welcome To Animal Sanctuaries!</h1>
             </Col>
           </Row>
-        </Container>
 
-        {this.state.user ? (
-          <Container>
+
+        {this.state.user ? (<>
             <Row>
               <Col size="md-12" ClassName="center">
               <div className="card h-75 w-75 center">
@@ -104,7 +101,9 @@ class Dashboard extends Component {
                 </div>
               </Col>
             </Row>
-            <Row><Col size="md-12" /><div className="card-body" /></Row>
+            <Row>
+              <Col size="md-12" /><div className="card-body" />
+            </Row>
             <Row>
               <Col size="md-6">
               <h3>My Sanctuaries</h3>
@@ -131,34 +130,26 @@ class Dashboard extends Component {
                   ))}
               </Col>
             </Row>
-          </Container>
+        </>
         ) : (
-            <Container>
-              <Row className="Center">
-                <Col size="md-12" className="Center">
-                <div className="card h-75 w-75 center">
-                <div className="card-body text-center">
-                  <div className="Center">
-                    <p className="lead">
-                      {" "}
-                      Login or Register to continue to follow Animal Sanctuaries!</p>
-                      <Link to="/signin" className="btn btn-info">
-                Login
-              </Link>   
-              &nbsp;                       
-              <Link to="/signin" className="btn btn-primary">
-                Register
-              </Link>
-                  </div>
-                  </div>
-                  </div>
-                </Col>
-              </Row>
-            </Container>
-          )
-          
-        }
+          <>
+          <Row>
+          <Col size="md-12">
+          <div className="card  mx-auto text-center" style={{"width":"50%"}}>
+            <div className="card-body">
+            <h5 className="card-title">Login for dashboard</h5>
+            <p className="card-text">You're not logged in, so there is nothing to see here</p>
+            <Link to="/signin" className="btn btn-info">Login</Link>   
+            &nbsp;                       
+            <Link to="/signup" className="btn btn-primary">Register</Link>
+            </div>
           </div>
+          </Col>
+          </Row>
+          </>
+          )
+        }
+        </Container>
     )
   }
 }
