@@ -22,7 +22,6 @@ const App = () => (
         <h2> Website for Animal lovers</h2>
       </Header>
       <Wrapper>
-      
         <Route exact path="/" component={About} />
         <Route exact path="/about" component={About} />
         <Route exact path="/dashboard" component={Dashboard} />
