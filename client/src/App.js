@@ -15,7 +15,7 @@ import Footer from "./components/Footer";
 
 const App = () => (
 <Router>
-      {/* <NavDropdown /> */}
+<React.Fragment>
       <Navbar />
       <Header>
         <h1> Animal Sanctuaries</h1>
@@ -32,6 +32,7 @@ const App = () => (
         <Route exact path="/newSanctuary" component={NewSanctuary} />
       </Wrapper>
       <Footer />
+      </React.Fragment>
   </Router>
 );
 

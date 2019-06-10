@@ -130,9 +130,9 @@ class Dashboard extends Component {
                   ))}
               </Col>
             </Row>
-            <React.Fragment>
-        : (
-          <>
+            </React.Fragment>
+        : 
+        <React.Fragment>
           <Row>
           <Col size="md-12">
           <div className="card  mx-auto text-center" style={{"width":"50%"}}>
@@ -146,8 +146,7 @@ class Dashboard extends Component {
           </div>
           </Col>
           </Row>
-          </>
-          )
+          </React.Fragment>
         }
         </Container>
     )
