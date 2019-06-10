@@ -84,7 +84,7 @@ class Dashboard extends Component {
           </Row>
 
 
-        {this.state.user ? (<>
+        {this.state.user ? <React.Fragment>
             <Row>
               <Col size="md-12" ClassName="center">
               <div className="card h-75 w-75 center">
@@ -130,8 +130,8 @@ class Dashboard extends Component {
                   ))}
               </Col>
             </Row>
-        </>
-        ) : (
+            <React.Fragment>
+        : (
           <>
           <Row>
           <Col size="md-12">
