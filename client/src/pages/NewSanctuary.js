@@ -11,33 +11,23 @@ class NewSanctuary extends Component {
     //Setting the initial values of this.state.email and this.state.password
 
     state = {
+        user:[],
         name: "",
         image: "",
         state: "",
-        // animalPhone: "",
-        // animalSanEmail: "",
-        // animalSanAddress: "",
-        // animalWebsite: "",
-        // Facebook: "",
-        // Instagram: "",
-        // Twitter: "",
-        // youTube: "",
-        // DonationPage: "",
-        // Volunteer: "",
-        // VisitationPage: "",
-        // animalBlog: "",
-        // listAnimal: "",
-        // EventPage: "",
-        // animalAbout: "",
     }
+    componentDidMount() {
+        this.getUser();
+      };
+      getUser = () => {
+        API.getUser()
+          .then(res => {
+            this.setState({ user: res.data});
+          })
+      }
 
-
-    // handle any changes to the input fields
     handleInputChange = event => {
-        // Pull the name and value properties off of the event.target (the element which triggered the event)
         const { name, value } = event.target;
-
-        // Set the state for the appropriate input field
         this.setState({
             [name]: value
         });
@@ -52,33 +42,15 @@ class NewSanctuary extends Component {
             name: this.state.name,
             image: this.state.image,
             state: this.state.state
-            // animalPhone: this.state.animalPhone,
-            // animalSanEmail: this.state.animalSanEmail,
-            // animalSanAddress: this.state.animalSanAddress,
-            // animalWebsite: this.state.animalWebsite,
-            // Facebook: this.state.Facebook,
-            // Instagram: this.state.Instagram,
-            // Twitter: this.state.Twitter,
-            // youTube: this.state.youTube,
-            // DonationPage: this.state.DonationPage,
-            // Volunteer: this.state.Volunteer,
-            // VisitationPage: this.state.VisitationPage,
-            // animalBlog: this.state.animalBlog,
-            // listAnimal: this.state.listAnimal,
-            // EventPage: this.state.EventPage,
-            // animalAbout: this.state.animalAbout,
         })
             .then(res => {
-
                 if (res.data === true) {
                     this.props.history.push("/");
                 }
                 else {
                     // however you want to handle an error.
+                     console.log(res);
                 }
-                // console.log(res);
-
-                // this.history.pushState(null, 'login');
             })
             .catch(err => {
                 console.log(err);
@@ -86,11 +58,12 @@ class NewSanctuary extends Component {
             });
     };
 
-    // const data = new FormData(event.target);
+
 
     render() {
         return (
-            <div>
+        <React.Fragment>
+            {this.state.user? (
                 <Container>
                     <Row className="justify-content-center">
                         <Col size="md-12">
@@ -131,125 +104,7 @@ class NewSanctuary extends Component {
                                         onChange={this.handleInputChange}
                                     />
                                     </p>
-                                   
-                                    {/* <label >animalPhone</label>
-                                    <input
-                                        type="text"
-                                        name="animalPhone"
-                                        value={this.state.animalPhone}
-                                        onChange={this.handleInputChange}
-                                    />                                    <br />
-                                    <label >animalSanEmail</label>
-                                    <input
-                                        type="text"
-                                        name="animalSanEmail"
-                                        value={this.state.animalSanEmail}
-                                        onChange={this.handleInputChange}
-                                    />
-                                    <br />
-                                    <label >animalSanAddress</label>
-                                    <input
-                                        type="text"
-                                        name="animalSanAddress"
-                                        value={this.state.animalSanAddress}
-                                        onChange={this.handleInputChange}
-                                    />
-                                    <br />
-                                    <label >animalWebsite</label>
-                                    <input
-                                        type="text"
-                                        name="animalWebsite"
-                                        value={this.state.animalWebsite}
-                                        onChange={this.handleInputChange}
-                                    />
-                                    <br />
-                                    <label >Facebook</label>
-                                    <input
-                                        type="text"
-                                        name="Facebook"
-                                        value={this.state.Facebook}
-                                        onChange={this.handleInputChange}
-                                    />
-                                    <br />
-                                    <label >Instagram</label>
-                                    <input
-                                        type="text"
-                                        name="Instagram"
-                                        value={this.state.Instagram}
-                                        onChange={this.handleInputChange}
-                                    />
-                                    <br />
-                                    <label >Twitter</label>
-                                    <input
-                                        type="text"
-                                        name="Twitter"
-                                        value={this.state.Twitter}
-                                        onChange={this.handleInputChange}
-                                    />
-                                    <br />
-                                    <label >youTube</label>
-                                    <input
-                                        type="text"
-                                        name="youTube"
-                                        value={this.state.youTube}
-                                        onChange={this.handleInputChange}
-                                    />
-                                    <br />
-                                    <label >DonationPage</label>
-                                    <input
-                                        type="text"
-                                        name="DonationPage"
-                                        value={this.state.DonationPage}
-                                        onChange={this.handleInputChange}
-                                    />
-                                    <br />
-                                    <label >Volunteer</label>
-                                    <input
-                                        type="text"
-                                        name="Volunteer"
-                                        value={this.state.Volunteer}
-                                        onChange={this.handleInputChange}
-                                    />
-                                    <br />
-                                    <label >VisitationPage</label>
-                                    <input
-                                        type="text"
-                                        name="VisitationPage"
-                                        value={this.state.VisitationPage}
-                                        onChange={this.handleInputChange}
-                                    />
-                                    <br />
-                                    <label >animalBlog</label>
-                                    <input
-                                        type="text"
-                                        name="animalBlog"
-                                        value={this.state.animalBlog}
-                                        onChange={this.handleInputChange}
-                                    />
-                                    <br />
-                                    <label >listAnimal</label>
-                                    <input
-                                        type="text"
-                                        name="listAnimal"
-                                        value={this.state.listAnimal}
-                                        onChange={this.handleInputChange}
-                                    />
-                                    <br />
-                                    <label >EventPage</label>
-                                    <input
-                                        type="text"
-                                        name="EventPage"
-                                        value={this.state.EventPage}
-                                        onChange={this.handleInputChange}
-                                    />
-                                    <br />
-                                    <label >animalAbout</label>
-                                    <input
-                                        type="text"
-                                        name="animalAbout"
-                                        value={this.state.animalAbout}
-                                        onChange={this.handleInputChange}
-                                    /> */}
+
                                         <Link className="btn btn-info" onClick={this.handleFormSubmit} to="/auth/newSanctuary">Add New Sanctuary</Link>
                                     <Link className="btn" to='/'>Cancel</Link>
                                 </span>
@@ -258,10 +113,21 @@ class NewSanctuary extends Component {
                         </Col>
                     </Row>
                 </Container>
-
-            </div>
-        );
-    }
+                ):(
+                <Container>
+                    <Row className="justify-content-center">
+                        <Col size="md-12">
+                            <div className="card ">
+                            Login to create a Sanctuary
+                            
+                        </div>
+                        </Col>
+                    </Row>
+                </Container>
+                )}
+            </React.Fragment>
+        
+        )}
 };
 
 
