@@ -100,7 +100,7 @@ class Search extends Component {
               <p className="card-body text-center">
                 Log in to save sanctuaries to your dashboard
               </p>
-              </div>
+            </div>
           </Row>
           )}
           <Row>
