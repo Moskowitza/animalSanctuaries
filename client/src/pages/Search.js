@@ -41,18 +41,6 @@ class Search extends Component {
           });
         })
     }
-  // We need to shift this page to view Profiles. 
-  // handlePageChange = page => {
-  //   this.setState({ currentPage: page });
-  // };
-
-  // renderPage = () => {
-  //   if (this.state.currentPage === "Search") {
-  //     return <Search />;
-  //   } else if (this.state.currentPage === "SanctuaryProfile") {
-  //     return <SanctuaryProfile />;
-  //   }
-  // };
 
 
   // handle any changes to the input Fields: Search
@@ -98,19 +86,21 @@ class Search extends Component {
     );
     return <div>
         <Container fluid={false} style={{ minHeight: "80%" }}>
-          {this.state.user.id ? (
+          {this.state.user ? (
           <Row fluid={true}>
-            <div className="card w-50 h-50">
+            <div className="card m-4">
               <p className="card-body text-center">
                 You are currently logged in as {this.state.user.email}
               </p>
             </div>
           </Row>
           ):(
-          <Row fluid={true} className="card" style={{ margin: "10px" }}>
+          <Row fluid={true}>
+          <div className="card" style={{ margin: "10px" }}>
               <p className="card-body text-center">
                 Log in to save sanctuaries to your dashboard
               </p>
+              </div>
           </Row>
           )}
           <Row>
