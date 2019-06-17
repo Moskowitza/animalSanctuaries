@@ -17,11 +17,7 @@ const App = () => (
 <Router>
 <React.Fragment>
       <NavBarComp />
-      <Header>
-        <h1> Animal Sanctuaries</h1>
-        <h2> Website for Animal lovers</h2>
-      </Header>
-      <Wrapper>
+      <Header/>
         <Route exact path="/" component={About} />
         <Route exact path="/about" component={About} />
         <Route exact path="/dashboard" component={Dashboard} />
@@ -30,7 +26,6 @@ const App = () => (
         <Route exact path="/signup" component={Signup} />
         <Route exact path="/sanctuary/:id" component={SanctuaryProfile} />
         <Route exact path="/newSanctuary" component={NewSanctuary} />
-      </Wrapper>
       <Footer />
       </React.Fragment>
   </Router>
