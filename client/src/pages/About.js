@@ -1,8 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Container from "../components/Container";
 import Row from "../components/Row";
 import Col from "../components/Col";
-import { Link } from "react-router-dom";
 
 
 const About = () => (
@@ -14,7 +14,7 @@ const About = () => (
             <h1>Welcome To animal sanctuaries!</h1>
           </div>
           <div className="card w-100 h-100">
-          <p></p>
+          <p />
             <p className="card-body text-center">
               Farm animal sanctuaries are safe havens for animals who have
               endured the victimization of factory farming. Visiting a sanctuary

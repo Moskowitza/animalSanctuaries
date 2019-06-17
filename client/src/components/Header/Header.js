@@ -1,15 +1,21 @@
 import React from "react";
+
 import Row from "react-bootstrap/Row"
 import Container from "react-bootstrap/Container"
+import Col from 'react-bootstrap/Col'
 import "./Header.css";
 
 const Header = props => (
-<Container fluid={true}>
+<Container fluid>
     <Row className="header">
-      <h1>Animal Sanctuaries</h1>
+      <Col>
+        <h1>Animal Sanctuaries</h1>
+      </Col>
     </Row>
     <Row>
+    <Col>
       <h2>Website for Animal lovers</h2>
+    </Col>
    </Row>
 </Container>
 
