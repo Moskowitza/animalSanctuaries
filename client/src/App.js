@@ -6,17 +6,17 @@ import Search from "./pages/Search";
 import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
 import NewSanctuary from "./pages/NewSanctuary";
-import Navbar from "./components/Navbar";
+import NavBarComp from "./components/NavBarComp";
 import Wrapper from "./components/Wrapper";
 import Header from "./components/Header";
 import SanctuaryProfile from "./components/SanctuaryProfile";
 import Footer from "./components/Footer";
-// import NavDropdown from "./components/NavDropdown";
+
 
 const App = () => (
 <Router>
 <React.Fragment>
-      <Navbar />
+      <NavBarComp />
       <Header>
         <h1> Animal Sanctuaries</h1>
         <h2> Website for Animal lovers</h2>
