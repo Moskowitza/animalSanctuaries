@@ -14,20 +14,20 @@ import Footer from "./components/Footer";
 
 
 const App = () => (
-<Router>
-<React.Fragment>
+  <Router>
+    <React.Fragment>
       <NavBarComp />
-      <Header/>
-        <Route exact path="/" component={About} />
-        <Route exact path="/about" component={About} />
-        <Route exact path="/dashboard" component={Dashboard} />
-        <Route exact path="/search" component={Search} />
-        <Route exact path="/signin" component={Signin} />
-        <Route exact path="/signup" component={Signup} />
-        <Route exact path="/sanctuary/:id" component={SanctuaryProfile} />
-        <Route exact path="/newSanctuary" component={NewSanctuary} />
+      <Header />
+      <Route exact path="/" component={About} />
+      <Route exact path="/about" component={About} />
+      <Route exact path="/dashboard" component={Dashboard} />
+      <Route exact path="/search" component={Search} />
+      <Route exact path="/signin" component={Signin} />
+      <Route exact path="/signup" component={Signup} />
+      <Route exact path="/sanctuary/:id" component={SanctuaryProfile} />
+      <Route exact path="/newSanctuary" component={NewSanctuary} />
       <Footer />
-      </React.Fragment>
+    </React.Fragment>
   </Router>
 );
 

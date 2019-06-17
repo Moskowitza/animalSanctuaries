@@ -122,7 +122,7 @@
     ]
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": "wesbos"
   },
   "devDependencies": {
     "eslint": "^5.16.0",
