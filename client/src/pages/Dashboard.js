@@ -79,7 +79,7 @@ class Dashboard extends Component {
   };
 
   render() {
-    const { user } = this.state;
+    const { user, usercomments, sanctuaries } = this.state;
     return (
       <Container>
         <Row>
@@ -95,9 +95,7 @@ class Dashboard extends Component {
               <Col size="md-12" ClassName="center">
                 <div className="card h-75 w-75 center">
                   <div className="card-body text-center">
-                    <p>
-                      You are currently logged in as {this.state.user.email}
-                    </p>
+                    <p>You are currently logged in as {user.email}</p>
                     <Link to="/search" className="btn btn-info">
                       search
                     </Link>
@@ -120,7 +118,7 @@ class Dashboard extends Component {
             <Row>
               <Col size="md-6">
                 <h3>My Sanctuaries</h3>
-                {this.state.sanctuaries.map(sanctuary => (
+                {sanctuaries.map(sanctuary => (
                   <SavedSanctuaries
                     id={sanctuary.sanId}
                     key={sanctuary.sanId}
@@ -133,7 +131,7 @@ class Dashboard extends Component {
               </Col>
               <Col size="md-6">
                 <h3>My Comments</h3>
-                {this.state.usercomments.map(obj => (
+                {usercomments.map(obj => (
                   <SavedComments
                     key={obj.postId}
                     sanctuary={obj.Sanctuary.name}
