@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import API from '../utils/API';
+// import API from '../utils/API';
 // import Card from '../components/Card';
 
 // Switch this to REGISTER and create a seperate LOGIN
@@ -14,46 +14,59 @@ class Signin extends Component {
   state = {
     email: '',
     password: '',
-    // email: "",
-    // firstname: "",
-    // lastname: ""
+  };
+
+  // componentDidMount() {
+  //   const { user } = this.props;
+  //   this.setState({ user });
+  // }
+
+  // componentDidUpdate(prevProps) {
+  //   const { user } = this.state;
+  //   if (user && user.email !== prevProps.user.email) {
+  //     // Check if it's a new user, you can also use some unique property, like the ID  (this.props.user.id !== prevProps.user.id)
+  //     this.updateUser();
+  //   }
+  // }
+
+  updateUser = () => {
+    const { user } = this.props;
+    this.setState({ user });
   };
 
   // handle any changes to the input fields
   handleInputChange = event => {
-    // Pull the name and value properties off of the event.target (the element which triggered the event)
     const { name, value } = event.target;
-    // Set the state for the appropriate input field
     this.setState({
       [name]: value,
     });
   };
 
-  // When the form is submitted, prevent the default event and alert the username and password
   handleFormSubmit = event => {
     const { email, password } = this.state;
-    const { history } = this.props;
+    const { signIn } = this.props;
     event.preventDefault();
     if (email && password) {
+      signIn(email, password);
       // alert(`Username: ${this.state.username}\nPassword: ${this.state.password}`);
       // We need to have an HTTP request to our path
-      API.loginUser({
-        email,
-        password,
-      })
-        .then(res => {
-          console.log(res);
-          history.push('/dashboard');
-          // this.history.pushState(null, 'login');
-        })
-        .catch(err => console.log(err));
+      // API.loginUser({
+      //   email,
+      //   password,
+      // })
+      //   .then(res => {
+      //     console.log(res);
+      //     history.push('/dashboard');
+      //   })
+      //   .catch(err => console.log(err));
     }
   };
-  // const data = new FormData(event.target);
 
   render() {
-    const { email, password } = this.state;
-    return (
+    const { user, email, password } = this.state;
+    return user ? (
+      <div>hello{user}</div>
+    ) : (
       <div>
         <Container>
           <Row className="justify-content-start">
@@ -117,10 +130,16 @@ class Signin extends Component {
     );
   }
 }
+Signin.defaultProps = {
+  user: null,
+};
+
 Signin.propTypes = {
-  history: PropTypes.shape({
-    push: PropTypes.func.isRequired,
-  }).isRequired,
+  user: PropTypes.object,
+  signIn: PropTypes.func.isRequired,
+  // history: PropTypes.shape({
+  //   push: PropTypes.func.isRequired,
+  // }).isRequired,
 };
 
 export default withRouter(Signin);
