@@ -1,17 +1,16 @@
-import React from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import Dashboard from "./pages/Dashboard";
-import About from "./pages/About";
-import Search from "./pages/Search";
-import Signin from "./pages/Signin";
-import Signup from "./pages/Signup";
-import NewSanctuary from "./pages/NewSanctuary";
-import NavBarComp from "./components/NavBarComp";
-import Wrapper from "./components/Wrapper";
-import Header from "./components/Header";
-import SanctuaryProfile from "./components/SanctuaryProfile";
-import Footer from "./components/Footer";
-
+import React from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import Dashboard from './pages/Dashboard';
+import About from './pages/About';
+import Search from './pages/Search';
+import Signin from './pages/Signin';
+import Signup from './pages/Signup';
+import NewSanctuary from './pages/NewSanctuary';
+import NavBarComp from './components/NavBarComp';
+import Wrapper from './components/Wrapper';
+import Header from './components/Header';
+import SanctuaryProfile from './components/SanctuaryProfile';
+import Footer from './components/Footer';
 
 const App = () => (
   <Router>

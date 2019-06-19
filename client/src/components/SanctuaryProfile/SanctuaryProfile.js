@@ -1,80 +1,71 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import API from "../../utils/API";
-import "./SanctuaryProfile.css";
-import Comments from "../Comments";
-import Row from "../Row";
-import Col from "../Col";
-import Container from "../Container"
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
 
-
+import Comments from '../Comments';
+import API from '../../utils/API';
 
 class SanctuaryProfile extends Component {
   state = {
     sanctuary: {},
     user: {},
     existingComments: [],
-    comment: ""
-  }
+    comment: '',
+  };
+
   componentDidMount() {
+    const { match } = this.props;
+    const { params } = match;
     this.getUser();
-    API.getSanctuary(this.props.match.params.id)
+    API.getSanctuary(params.id)
       .then(res => this.setState({ sanctuary: res.data }))
       .catch(err => console.log(err));
     this.getComments();
   }
-  getUser = () => {
-    API.getUser()
-      .then(res => {
-        this.setState({
-          user: res.data
-        });
-      })
-  }
-  getComments = () => {
-    API.getComments(this.props.match.params.id)
-      .then(res => this.setState({ existingComments: res.data }))
-      .catch(err => console.log(err))
-  }
 
+  getUser = () => {
+    API.getUser().then(res => {
+      this.setState({
+        user: res.data,
+      });
+    });
+  };
+
+  getComments = () => {
+    const { match } = this.props;
+    const { params } = match;
+    API.getComments(params.id)
+      .then(res => this.setState({ existingComments: res.data }))
+      .catch(err => console.log(err));
+  };
 
   // handle any changes to the input fields
   handleInputChange = event => {
-    event.preventDefault()
+    event.preventDefault();
     // Pull the name and value properties off of the event.target (the element which triggered the event)
     const { name, value } = event.target;
 
     // Set the state for the appropriate input field
     this.setState({
-      [name]: value
+      [name]: value,
     });
   };
-  handleFormSubmit = event => {
-    event.preventDefault();
-    var data = {
-      comment: this.state.comment,
-      userId: this.state.user.userId,
-      sanId: this.state.sanctuary.sanId
-    }
 
-    // alert(`Username: ${this.state.username}\nPassword: ${this.state.password}`);
-    // We need to have an HTTP request to our path
+  handleFormSubmit = event => {
+    const { comment, user, sanctuary } = this.state;
+    event.preventDefault();
+    const data = {
+      comment,
+      userId: user.userId,
+      sanId: sanctuary.sanId,
+    };
+
     API.saveComment(data)
       .then(res => this.getComments())
-      //   {
-      //   if (res.data === true) {
-      //     // do what? I guess render the comment section, we'll get there
-      //     //   this.props.history.push("/dashboard");
-      //     // this.history.pushState(null, 'comment');
-          
-      //   }
-      //   // else {
-      //   //   // however you want to handle an error.
-      //   // }
-      // })
-      //get them again
-      // .then(this.getComments())
-      .then(this.setState({ comment: "" }))
+      .then(this.setState({ comment: '' }))
       .catch(err => {
         console.log(err);
         alert('Problem Commenting!');
@@ -84,55 +75,61 @@ class SanctuaryProfile extends Component {
   // const data = new FormData(event.target);
 
   render() {
-    return <div>
+    const { sanctuary, existingComments, user, comment } = this.state;
+    return (
+      <div>
         <Container>
           <Row>
             <div className="card w-75 h-75 text-center">
-              <h3>{this.state.sanctuary.name} Profile Page</h3>
+              <h3>{sanctuary.name} Profile Page</h3>
             </div>
           </Row>
           <Row>
             <Col size="md-6">
               <div className="card w-100 h-100">
                 <div className="card-body text-center">
-                  <img alt="sanctuary" src={this.state.sanctuary.image} className="img-fluid" />
+                  <img
+                    alt="sanctuary"
+                    src={sanctuary.image}
+                    className="img-fluid"
+                  />
                   <h3>
-                    Sanctuary Website: <a
-                      href={this.state.sanctuary.animalWebsite}
-                    >
-                      Click Here!{" "}
-                    </a>
+                    Sanctuary Website:{' '}
+                    <a href={sanctuary.animalWebsite}>Click Here! </a>
                   </h3>
 
                   <p className="text-left">
-                   <strong> Details:</strong>
+                    <strong> Details:</strong>
                     <ul>
                       <li>
-                        {" "}
-                        <b>Address:</b> {this.state.sanctuary.animalAddress}{" "}
-                      <i class="material-icons">location_on</i>
+                        {' '}
+                        <b>Address:</b> {sanctuary.animalAddress}{' '}
+                        <i className="material-icons">location_on</i>
                       </li>
                       <li>
-                        {" "}
-                        <b>Facebook:</b> <a href={this.state.sanctuary.Facebook}>
-                          {" "}
-                          <i class="material-icons">link</i>
+                        {' '}
+                        <b>Facebook:</b>{' '}
+                        <a href={sanctuary.Facebook}>
+                          {' '}
+                          <i className="material-icons">link</i>
                         </a>
                       </li>
                       <li>
-                        {" "}
-                       <b> Instagram:</b> <a href={this.state.sanctuary.Instagram}>
-                          {" "}
-                          <i class="material-icons">link</i>
+                        {' '}
+                        <b> Instagram:</b>{' '}
+                        <a href={sanctuary.Instagram}>
+                          {' '}
+                          <i className="material-icons">link</i>
                         </a>
                       </li>
-                    <li>
-                      {" "}
-                      <b> Donation:</b> <a href={this.state.sanctuary.DonationPage}>
-                        {" "}
-                        <i class="material-icons">link</i>
-                      </a>
-                    </li>
+                      <li>
+                        {' '}
+                        <b> Donation:</b>{' '}
+                        <a href={sanctuary.DonationPage}>
+                          {' '}
+                          <i className="material-icons">link</i>
+                        </a>
+                      </li>
                     </ul>
                   </p>
                 </div>
@@ -142,44 +139,65 @@ class SanctuaryProfile extends Component {
             <Col size="md-6">
               <div className="card w-100 h-100">
                 <div className="card-body text-center">
-                  {this.state.existingComments ? <div>
+                  {existingComments ? (
+                    <div>
                       <p>Comments:</p>
-                      {this.state.existingComments.map(comment => (
+                      {existingComments.map(singleComment => (
                         <Comments
-                          key={comment.postId}
-                          comment={comment.comment}
+                          key={singleComment.postId}
+                          comment={singleComment.comment}
                         />
                       ))}
-                    </div> : <div>
+                    </div>
+                  ) : (
+                    <div>
                       <p> no comments </p>
-                    </div>}
+                    </div>
+                  )}
                 </div>
               </div>
             </Col>
           </Row>
-   
           <Row>
             <Col size="md-12">
-              <div className="card-body" />
-              {this.state.user ? <div className="card w-75 h-75">
+              {user ? (
+                <div className="card w-75 h-75">
                   <div className="card-body">
-                    <label>Add Comment:</label>
-                    <p>
-                      <input type="text" className="form-control" name="comment" value={this.state.comment} onChange={this.handleInputChange} />
-                    </p>
-                    <button className="btn btn-default btn-info" type="submit" onClick={this.handleFormSubmit}>
+                    <label htmlFor="userComment">
+                      Add Comment:
+                      <input
+                        id="userComment"
+                        type="text"
+                        className="form-control"
+                        name="comment"
+                        value={comment}
+                        onChange={this.handleInputChange}
+                      />
+                    </label>
+                    <button
+                      className="btn btn-default btn-info"
+                      type="submit"
+                      onClick={this.handleFormSubmit}
+                    >
                       Save Comment
                     </button>
                     <Link to="/Search">← Back to Search</Link>
                   </div>
-                </div> : <div className="card w-75 h-75">
+                </div>
+              ) : (
+                <div className="card w-75 h-75">
                   <div className="card-body">log in to comment</div>
-                </div>}
+                </div>
+              )}
             </Col>
           </Row>
         </Container>
-      </div>;
+      </div>
+    );
   }
 }
+SanctuaryProfile.propTypes = {
+  match: PropTypes.shape.isRequired,
+};
 
 export default SanctuaryProfile;

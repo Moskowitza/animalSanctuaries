@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { withRouter, Link } from 'react-router-dom';
-import Container from '../components/Container';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import API from '../utils/API';
-import Row from '../components/Row';
-import Col from '../components/Col';
 
 // Switch this to REGISTER and create a seperate LOGIN
 class Signup extends Component {
@@ -132,7 +132,11 @@ class Signup extends Component {
                         </p>
 
                         <p className="align-items-end">
-                          <Link className="btn btn-info" onClick={this.handleFormSubmit} to="/dashboard">
+                          <Link
+                            className="btn btn-info"
+                            onClick={this.handleFormSubmit}
+                            to="/dashboard"
+                          >
                             Submit
                           </Link>
                           &nbsp;

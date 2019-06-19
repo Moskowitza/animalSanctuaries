@@ -1,1 +1,1 @@
-export { default } from "./SavedComments"
+export { default } from './SavedComments';

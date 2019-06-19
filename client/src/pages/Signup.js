@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { withRouter, Link } from 'react-router-dom';
-import Container from '../components/Container';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import API from '../utils/API';
-import Row from '../components/Row';
-import Col from '../components/Col';
 
 // Switch this to REGISTER and create a seperate LOGIN
 class Signup extends Component {
@@ -52,6 +52,7 @@ class Signup extends Component {
   // const data = new FormData(event.target);
 
   render() {
+    const { email, firstname, lastname, username, password } = this.state;
     return (
       <div>
         <Container>
@@ -62,69 +63,78 @@ class Signup extends Component {
                   <p>Follow your favorite Animal Sanctuary!</p>
                   <p>Sign up for an account</p>
                 </div>
-                {/* FORM HAS ACTION TO SIGNUP route */}
 
                 <form className="text-center" action="/sigup">
                   <div className="form-group">
                     <div className="card-body text-left">
                       <span>
-                        <label>Email Address:</label>
-                        <p>
+                        <label htmlFor="email">
+                          Email Address:
                           <input
+                            id="email"
                             type="text"
                             className="form-control"
                             name="email"
-                            value={this.state.email}
+                            value={email}
                             onChange={this.handleInputChange}
                           />
-                        </p>
+                        </label>
 
-                        <label> First Name:</label>
-                        <p>
+                        <label htmlFor="firstname">
+                          {' '}
+                          First Name:
                           <input
                             type="text"
                             className="form-control"
+                            id="firstname"
                             name="firstname"
-                            value={this.state.firstname}
+                            value={firstname}
                             onChange={this.handleInputChange}
                           />
-                        </p>
+                        </label>
 
-                        <label>Last Name: </label>
-                        <p>
+                        <label htmlFor="lastname">
+                          Last Name:
                           <input
                             type="text"
                             className="form-control"
                             name="lastname"
-                            value={this.state.lastname}
+                            id="lastname"
+                            value={lastname}
                             onChange={this.handleInputChange}
                           />
-                        </p>
+                        </label>
 
-                        <label>Username: </label>
-                        <p>
+                        <label htmlFor="username">
+                          Username:
                           <input
                             type="text"
                             className="form-control"
                             name="username"
-                            value={this.state.username}
+                            id="username"
+                            value={username}
                             onChange={this.handleInputChange}
                           />
-                        </p>
+                        </label>
 
-                        <label> Password: </label>
-                        <p>
+                        <label htmlFor="password">
+                          {' '}
+                          Password:
                           <input
                             type="password"
                             className="form-control"
                             name="password"
-                            value={this.state.password}
+                            value={password}
                             onChange={this.handleInputChange}
                           />
-                        </p>
+                        </label>
 
                         <p className="align-items-end">
-                          <Link className="btn btn-info" onClick={this.handleFormSubmit} to="/dashboard">
+                          <Link
+                            className="btn btn-info"
+                            onClick={this.handleFormSubmit}
+                            to="/dashboard"
+                          >
                             Submit
                           </Link>
                           &nbsp;

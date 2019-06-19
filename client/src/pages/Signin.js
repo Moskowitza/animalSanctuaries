@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { withRouter, Link } from 'react-router-dom';
-import Container from '../components/Container';
+import PropTypes from 'prop-types';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import API from '../utils/API';
-import Row from '../components/Row';
-import Col from '../components/Col';
 // import Card from '../components/Card';
 
 // Switch this to REGISTER and create a seperate LOGIN
@@ -31,6 +32,7 @@ class Signin extends Component {
   // When the form is submitted, prevent the default event and alert the username and password
   handleFormSubmit = event => {
     const { email, password } = this.state;
+    const { history } = this.props;
     event.preventDefault();
     if (email && password) {
       // alert(`Username: ${this.state.username}\nPassword: ${this.state.password}`);
@@ -41,7 +43,7 @@ class Signin extends Component {
       })
         .then(res => {
           console.log(res);
-          this.props.history.push('/dashboard');
+          history.push('/dashboard');
           // this.history.pushState(null, 'login');
         })
         .catch(err => console.log(err));
@@ -50,6 +52,7 @@ class Signin extends Component {
   // const data = new FormData(event.target);
 
   render() {
+    const { email, password } = this.state;
     return (
       <div>
         <Container>
@@ -57,7 +60,9 @@ class Signin extends Component {
             <Col size="md-12" className="center ">
               {/* FORM HAS ACTION TO SIGNIN route */}
               <div className="card w-50 h-50">
-                <div className="card-header">Please Login or Return to the homepage</div>
+                <div className="card-header">
+                  Please Login or Return to the homepage
+                </div>
                 <div className="form-group">
                   <form className="card-body">
                     <span>
@@ -67,7 +72,7 @@ class Signin extends Component {
                           className="form-control"
                           type="text"
                           name="email"
-                          value={this.state.email}
+                          value={email}
                           onChange={this.handleInputChange}
                         />
                       </p>
@@ -85,12 +90,16 @@ class Signin extends Component {
                           className="form-control"
                           type="password"
                           name="password"
-                          value={this.state.password}
+                          value={password}
                           onChange={this.handleInputChange}
                         />
                       </p>
                       <p />
-                      <Link className="btn btn-primary" to="/dashboard" onClick={this.handleFormSubmit}>
+                      <Link
+                        className="btn btn-primary"
+                        to="/dashboard"
+                        onClick={this.handleFormSubmit}
+                      >
                         Login
                       </Link>
                       &nbsp;
@@ -108,5 +117,10 @@ class Signin extends Component {
     );
   }
 }
+Signin.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
+};
 
 export default withRouter(Signin);
