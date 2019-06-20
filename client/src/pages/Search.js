@@ -5,7 +5,6 @@ import SearchForm from "../components/SearchForm";
 import SearchResults from "../components/SearchResults";
 import UserSearchResults from "../components/UserSearchResults"; 
 
-
 // import sanctuaries from "../sanctuaries.json";
 import API from "../utils/API";
 class Search extends Component {

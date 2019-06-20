@@ -2,6 +2,18 @@ import React from "react";
 import "./UserSearchResults.css";
 import { Link } from "react-router-dom";
 
+//TODO : Format with
+
+// TODO : Create an onClick function to have reactRouter swith to the store
+//sancRef=React.createRef()
+//goToSanc=event=>{
+//  event.preventDefault();
+//  const animalSanc=this.sancRef.sanid
+//  push this.props.history(`/sanctuary/${animalSanc}`)
+// }
+
+
+
 const UserSearchResults = props => (
   <ul className="list-group search-results">
     <li
