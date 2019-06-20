@@ -29,12 +29,21 @@ class App extends Component {
       .catch(err => console.log(err));
   };
 
+  logOut = () => {
+    API.logoutUser()
+      .then(res => {
+        this.setState({ user: null });
+        window.location.replace('/');
+      })
+      .catch(err => console.log(err));
+  };
+
   render() {
     const { user } = this.state;
     return (
       <Router>
         <React.Fragment>
-          <NavBarComp />
+          <NavBarComp user={user} logOut={this.logOut} />
           <Header />
           <Route
             exact

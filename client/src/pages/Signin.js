@@ -16,24 +16,6 @@ class Signin extends Component {
     password: '',
   };
 
-  // componentDidMount() {
-  //   const { user } = this.props;
-  //   this.setState({ user });
-  // }
-
-  // componentDidUpdate(prevProps) {
-  //   const { user } = this.state;
-  //   if (user && user.email !== prevProps.user.email) {
-  //     // Check if it's a new user, you can also use some unique property, like the ID  (this.props.user.id !== prevProps.user.id)
-  //     this.updateUser();
-  //   }
-  // }
-
-  updateUser = () => {
-    const { user } = this.props;
-    this.setState({ user });
-  };
-
   // handle any changes to the input fields
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -48,17 +30,6 @@ class Signin extends Component {
     event.preventDefault();
     if (email && password) {
       signIn(email, password);
-      // alert(`Username: ${this.state.username}\nPassword: ${this.state.password}`);
-      // We need to have an HTTP request to our path
-      // API.loginUser({
-      //   email,
-      //   password,
-      // })
-      //   .then(res => {
-      //     console.log(res);
-      //     history.push('/dashboard');
-      //   })
-      //   .catch(err => console.log(err));
     }
   };
 
@@ -130,12 +101,8 @@ class Signin extends Component {
     );
   }
 }
-Signin.defaultProps = {
-  user: null,
-};
 
 Signin.propTypes = {
-  user: PropTypes.object,
   signIn: PropTypes.func.isRequired,
   // history: PropTypes.shape({
   //   push: PropTypes.func.isRequired,
