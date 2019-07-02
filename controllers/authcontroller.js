@@ -19,6 +19,7 @@ exports.signinpost = function (req, res) {
   const { email, firstname, lastname, userId } = req.user;
   const userData = { email, firstname, lastname, userId }
   res.json(userData);
+  // res.json(req.user)
 };
 exports.authSignup = function (req, res) {
   // console.log(req.body);

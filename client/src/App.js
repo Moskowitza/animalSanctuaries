@@ -68,7 +68,7 @@ class App extends Component {
             exact
             path="/signup"
             user={user}
-            render={props => <Signup user={user} signIn={this.signUp} />}
+            render={props => <Signup {...props} user={user} signIn={this.signIn} />}
           />
           <Route exact path="/sanctuary/:id" component={SanctuaryProfile} />
           <Route
