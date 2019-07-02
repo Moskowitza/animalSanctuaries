@@ -4,28 +4,21 @@ import { withRouter, Link } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Card from 'react-bootstrap/Card';
 import API from '../utils/API';
+import Form from 'react-bootstrap/Form'
 
 // Switch this to REGISTER and create a seperate LOGIN
 class NewSanctuary extends Component {
   //  Setting the initial values of this.state.email and this.state.password
 
   state = {
-    user: [],
     name: '',
     image: '',
     state: '',
   };
 
-  componentDidMount() {
-    this.getUser();
-  }
 
-  getUser = () => {
-    API.getUser().then(res => {
-      this.setState({ user: res.data });
-    });
-  };
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -61,14 +54,15 @@ class NewSanctuary extends Component {
   };
 
   render() {
-    const { user, name, image, state } = this.state;
+    const { name, image, state } = this.state;
+    const { user } = this.props;
     return (
       <React.Fragment>
         {user ? (
           <Container>
             <Row className="justify-content-center">
               <Col size="md-12">
-                <div className="card w-50 h-50">
+                <div className="card w-50 ">
                   {/* FORM HAS ACTION TO SIGNUP route */}
                   <form action="/auth/newSanctuary">
                     <div className="card-header">Register a New Sanctuary</div>
@@ -130,19 +124,20 @@ class NewSanctuary extends Component {
             </Row>
           </Container>
         ) : (
-          <Container>
-            <Row className="justify-content-center">
-              <Col size="md-12">
-                <div className="card ">Login to create a Sanctuary</div>
-              </Col>
-            </Row>
-          </Container>
-        )}
+            <Container>
+              <Row className="justify-content-center">
+                <Col size="md-12">
+                  <div className="card ">Login to create a Sanctuary</div>
+                </Col>
+              </Row>
+            </Container>
+          )}
       </React.Fragment>
     );
   }
 }
 NewSanctuary.propTypes = {
+  user: PropTypes.string.isRequired,
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,

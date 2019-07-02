@@ -3,6 +3,8 @@ import { withRouter, Link } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Card from 'react-bootstrap/Card';
+import Form from 'react-bootstrap/Form';
 import API from '../utils/API';
 
 // Switch this to REGISTER and create a seperate LOGIN
@@ -40,11 +42,11 @@ class Signup extends Component {
       lastname,
     })
       .then(res => {
-        console.log(`res ${res.data}`);
-        window.location.replace(res.data);
+        const { signIn } = this.props;
+        signIn(email, password);
       })
       .catch(err => {
-        console.log(err);
+        console.error(err);
         alert(`Problem signing in: ${err}`);
       });
   };
@@ -56,101 +58,93 @@ class Signup extends Component {
     return (
       <div>
         <Container>
-          <Row className="justify-content-center">
-            <Col size="md-12">
-              <div className="card w-50 h-50">
-                <div className="card-header text-center">
-                  <p>Follow your favorite Animal Sanctuary!</p>
-                  <p>Sign up for an account</p>
-                </div>
-
-                <form className="text-center" action="/sigup">
-                  <div className="form-group">
-                    <div className="card-body text-left">
-                      <span>
-                        <label htmlFor="email">
-                          Email Address:
-                          <input
-                            id="email"
-                            type="text"
-                            className="form-control"
-                            name="email"
-                            value={email}
-                            onChange={this.handleInputChange}
-                          />
-                        </label>
-
-                        <label htmlFor="firstname">
-                          {' '}
-                          First Name:
-                          <input
-                            type="text"
-                            className="form-control"
-                            id="firstname"
-                            name="firstname"
-                            value={firstname}
-                            onChange={this.handleInputChange}
-                          />
-                        </label>
-
-                        <label htmlFor="lastname">
-                          Last Name:
-                          <input
-                            type="text"
-                            className="form-control"
-                            name="lastname"
-                            id="lastname"
-                            value={lastname}
-                            onChange={this.handleInputChange}
-                          />
-                        </label>
-
-                        <label htmlFor="username">
-                          Username:
-                          <input
-                            type="text"
-                            className="form-control"
-                            name="username"
-                            id="username"
-                            value={username}
-                            onChange={this.handleInputChange}
-                          />
-                        </label>
-
-                        <label htmlFor="password">
-                          {' '}
-                          Password:
-                          <input
-                            type="password"
-                            className="form-control"
-                            name="password"
-                            value={password}
-                            onChange={this.handleInputChange}
-                          />
-                        </label>
-
-                        <p className="align-items-end">
-                          <Link
-                            className="btn btn-info"
-                            onClick={this.handleFormSubmit}
-                            to="/dashboard"
-                          >
-                            Submit
+          <Card>
+            <Card.Header>
+              <h3>Sign up for an account</h3>
+              <p>Follow your favorite Animal Sanctuary!</p>
+            </Card.Header>
+            <Card.Body>
+              <Form>
+                <Row className="justify-content-center">
+                  <Col>
+                    <Form.Row>
+                      <Form.Group as={Col} controlId="email">
+                        <Form.Label>Email address</Form.Label>
+                        <Form.Control
+                          type="email"
+                          placeholder="Enter email"
+                          className="form-control"
+                          name="email"
+                          value={email}
+                          onChange={this.handleInputChange} />
+                        <Form.Text className="text-muted">
+                          We'll never share your email with anyone else.
+                    </Form.Text>
+                      </Form.Group>
+                      <Form.Group as={Col} controlId="password">
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control
+                          type="password"
+                          placeholder="name"
+                          name="password"
+                          value={password}
+                          onChange={this.handleInputChange} />
+                      </Form.Group>
+                    </Form.Row>
+                    <Form.Row>
+                      <Form.Group as={Col} controlId="firstname">
+                        <Form.Label>First Name</Form.Label>
+                        <Form.Control
+                          type="text"
+                          placeholder="Anita"
+                          name="firstname"
+                          value={firstname}
+                          onChange={this.handleInputChange} />
+                      </Form.Group>
+                      <Form.Group as={Col} controlId="lastname">
+                        <Form.Label>Last Name</Form.Label>
+                        <Form.Control
+                          type="text"
+                          placeholder="Tofu-Eater"
+                          name="lastname"
+                          value={lastname}
+                          onChange={this.handleInputChange} />
+                      </Form.Group>
+                      <Form.Group as={Col} controlId="username">
+                        <Form.Label>User Name</Form.Label>
+                        <Form.Control
+                          type="text"
+                          placeholder="AnimalLover"
+                          name="username"
+                          value={username}
+                          onChange={this.handleInputChange} />
+                      </Form.Group>
+                    </Form.Row>
+                    <p className="align-items-end">
+                      <Link
+                        className="btn btn-info"
+                        onClick={this.handleFormSubmit}
+                        to="/"
+                      >
+                        Submit
                           </Link>
-                          &nbsp;
+                      &nbsp;
                           <Link className="btn" to="/">
-                            Cancel
+                        Cancel
                           </Link>
-                        </p>
-                      </span>
-                    </div>
-                  </div>
-                </form>
-              </div>
-            </Col>
-          </Row>
-        </Container>
-      </div>
+                    </p>
+
+
+
+                  </Col>
+                </Row>
+              </Form>
+            </Card.Body>
+          </Card>
+          {/* </Col>
+          </Row > */}
+        </Container >
+      </div >
     );
   }
 }
