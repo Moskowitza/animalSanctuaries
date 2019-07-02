@@ -74,8 +74,8 @@ class App extends Component {
           <Route
             exact
             path="/newSanctuary"
-            user={user}
-            component={NewSanctuary}
+            render={props => (
+              <NewSanctuary {...props} user={user} />)}
           />
           <Footer />
         </React.Fragment>

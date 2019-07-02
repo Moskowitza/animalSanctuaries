@@ -2,7 +2,7 @@ import React from 'react';
 import './Footer.css';
 
 const Footer = () => (
-  <footer className="footer d-flex align-items-center">
+  <footer className="fixed-bottom d-flex align-items-center footer">
     <span>
       <div>
         Animal Sanctuaries 2018 by &nbsp;

@@ -3,6 +3,8 @@ import { withRouter, Link } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Card from 'react-bootstrap/Card';
+import Form from 'react-bootstrap/Form';
 import API from '../utils/API';
 
 // Switch this to REGISTER and create a seperate LOGIN
@@ -58,13 +60,13 @@ class Signup extends Component {
         <Container>
           <Row className="justify-content-center">
             <Col size="md-12">
-              <div className="card w-50 h-50">
-                <div className="card-header text-center">
+              <Card>
+                <Card.Header>
                   <p>Follow your favorite Animal Sanctuary!</p>
                   <p>Sign up for an account</p>
-                </div>
-
-                <form className="text-center" action="/sigup">
+                </Card.Header>
+                <Form>
+                  {/* <form className="text-center" action="/sigup"> */}
                   <div className="form-group">
                     <div className="card-body text-left">
                       <span>
@@ -145,8 +147,9 @@ class Signup extends Component {
                       </span>
                     </div>
                   </div>
-                </form>
-              </div>
+                  {/* </form> */}
+                </Form>
+              </Card>
             </Col>
           </Row>
         </Container>

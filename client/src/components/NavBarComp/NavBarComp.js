@@ -17,82 +17,73 @@ const NavBarComp = ({ user, logOut }) => (
     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
     <Navbar.Collapse id="responsive-navbar-nav">
       <Nav className="mr-auto">
-        <Nav.Link>
+        <Nav.Item>
           {' '}
           <Link className="nav-link" to="/about">
             About
           </Link>
-        </Nav.Link>
-        <Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
           {' '}
           <Link className="nav-link" to="/dashboard">
             Dashboard
           </Link>
-        </Nav.Link>
-        <Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
           {' '}
           <Link className="nav-link" to="/search">
             Search
           </Link>
-        </Nav.Link>
+        </Nav.Item>
         {user ? (
           <>
-            <Nav.Link>
+            <Nav.Item>
               {' '}
               <Link className="nav-link" to="/newSanctuary">
                 Contribute
               </Link>
-            </Nav.Link>
-            <Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
               {' '}
               <Button variant="danger" onClick={logOut}>
                 Log Out
               </Button>
-            </Nav.Link>
+            </Nav.Item>
           </>
         ) : (
-          <>
-            <Nav.Link>
-              {' '}
-              <Link className="nav-link" to="/signin">
-                Sign In
+            <>
+              <Nav.Item>
+                {' '}
+                <Link className="nav-link" to="/signin">
+                  Sign In
               </Link>
-            </Nav.Link>
-            <Nav.Link>
-              {' '}
-              <Link className="nav-link" to="/signup">
-                Sign Up
+              </Nav.Item>
+              <Nav.Item>
+                {' '}
+                <Link className="nav-link" to="/signup">
+                  Sign Up
               </Link>
-            </Nav.Link>
-          </>
-        )}
+              </Nav.Item>
+            </>
+          )}
       </Nav>
     </Navbar.Collapse>
   </Navbar>
 );
+// Check what is sent back in response
 NavBarComp.propTypes = {
   logOut: PropTypes.func.isRequired,
-  user: PropTypes.shape.isRequired,
+  user: PropTypes.shape({
+    email:
+      PropTypes.string,
+    firstname:
+      PropTypes.string,
+    lastname:
+      PropTypes.string,
+    userId:
+      PropTypes.number,
+  }),
 };
 
 export default NavBarComp;
-// createdAt:
-// "2019-06-19T21:07:34.000Z"
-// email:
-// "aaron@aaron.com"
-// firstname:
-// "aaron"
-// last_login:
-// null
-// lastname:
-// "aaron"
-// password:
-// "$2a$10$PyXcp4pWJm8.7ey7oaT2Xe2PhfsSb.qyrkBRAXzrS0hmrguwdfwSK"
-// status:
-// "active"
-// updatedAt:
-// "2019-06-19T21:07:34.000Z"
-// userId:
-// 1
-// username:
-// "aaron"
+
