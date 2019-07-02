@@ -1,9 +1,8 @@
-import React from "react";
-import Container from "../components/Container";
-import Row from "../components/Row";
-import Col from "../components/Col";
-import { Link } from "react-router-dom";
-
+import React from 'react';
+import { Link } from 'react-router-dom';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 const About = () => (
   <div>
@@ -14,7 +13,7 @@ const About = () => (
             <h1>Welcome To animal sanctuaries!</h1>
           </div>
           <div className="card w-100 h-100">
-          <p></p>
+            <p />
             <p className="card-body text-center">
               Farm animal sanctuaries are safe havens for animals who have
               endured the victimization of factory farming. Visiting a sanctuary
@@ -25,11 +24,11 @@ const About = () => (
               sanctuaries offer an island of kindness in this sea of cruelty.
             </p>
             <p>
-            <img
-              className="rounded mx-auto d-block"
-              src="http://imagizer.imageshack.com/v2/500x500q90/673/7wO0v7.jpg"
-              alt="girl kissing sheep"
-            />
+              <img
+                className="rounded mx-auto d-block"
+                src="http://imagizer.imageshack.com/v2/500x500q90/673/7wO0v7.jpg"
+                alt="girl kissing sheep"
+              />
             </p>
 
             <p className="card-body text-center">
@@ -37,7 +36,6 @@ const About = () => (
               saved sacturaries
               <br />
               <br />
-
               <Link to="/search" className="btn btn-info">
                 Search
               </Link>

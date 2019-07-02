@@ -1,55 +1,55 @@
-import axios from "axios";
+import axios from 'axios';
 
 export default {
-  //these routes should match authcontroller
-  getUser: function () {
+  // these routes should match authcontroller
+  getUser() {
     // checks if there is a user saved
-    return axios.get("/auth/check");
+    return axios.get('/auth/check');
   },
-  //login user
-  loginUser: function (loginData) {
-    return axios.post("/auth/signin", loginData);
+  // login user
+  loginUser(loginData) {
+    return axios.post('/auth/signin', loginData);
   },
-  // Makes a NEW user to the database (I don't think we need this one)// 
-  registerUser: function (registerData) {
-    return axios.post("/auth/signup", registerData);
+  // Makes a NEW user to the database (I don't think we need this one)//
+  registerUser(registerData) {
+    return axios.post('/auth/signup', registerData);
   },
-  //logins out user
-  logoutUser: function () {
-    return axios.get("/auth/logout");
-  },
-  // Makes a NEW user to the database
-  saveUser: function (userData) {
-    return axios.post("/auth/signup", userData);
+  // logins out user
+  logoutUser() {
+    return axios.get('/auth/logout');
   },
   // Makes a NEW user to the database
-  saveSanctuary: function (Data) {
-    return axios.post("/auth/newSanctuary", Data);
+  saveUser(userData) {
+    return axios.post('/auth/signup', userData);
   },
-  getSanctuaries: function (data) {
+  // Makes a NEW user to the database
+  saveSanctuary(Data) {
+    return axios.post('/auth/newSanctuary', Data);
+  },
+  getSanctuaries(data) {
     // Get all sanctuaries
-    return axios.get("/auth/sanctuaries", data);
+    return axios.get('/auth/sanctuaries', data);
   },
-  saveSearch: function (data) {
-    return axios.post("/auth/saveSearch", data)
+  saveSearch(data) {
+    return axios.post('/auth/saveSearch', data);
   },
-  getSavedSanctuaries: function (data) {
+  getSavedSanctuaries(data) {
     return axios.get(`/auth/savedSanctuaries/${data.userId}`);
   },
-  getMyComments: function (data) {
+  getMyComments(data) {
     return axios.get(`/auth/userComments/${data.userId}`);
   },
-  getSanctuary: function (id) {
-    return axios.get("/api/sanctuary/" + id);
+  getSanctuary(id) {
+    return axios.get(`/api/sanctuary/${id}`);
   },
-  saveComment: function (comment) {
-    return axios.post("/auth/newComment", comment);
+  saveComment(comment) {
+    return axios.post('/auth/newComment', comment);
   },
-  getComments: function (id) {
+  getComments(id) {
     return axios.get(`/api/getComments${id}`);
   },
-  deleteComment: function (data) {
-    console.log("@@@@@@@@@@"+data.postId)
+  deleteComment(data) {
+    console.log(`@@@@@@@@@@${data.postId}`);
     return axios.delete(`/api/deleteComment${data.postId}`);
-  }
+  },
 };

@@ -1,1 +1,1 @@
-export { default } from "./SanctuaryProfile"
+export { default } from './SanctuaryProfile';

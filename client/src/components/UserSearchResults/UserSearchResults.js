@@ -1,7 +1,9 @@
-import React from "react";
-import "./UserSearchResults.css";
-import { Link } from "react-router-dom";
+import React from 'react';
+import './UserSearchResults.css';
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
+<<<<<<< HEAD
 //TODO : Format with
 
 // TODO : Create an onClick function to have reactRouter swith to the store
@@ -15,27 +17,37 @@ import { Link } from "react-router-dom";
 
 
 const UserSearchResults = props => (
+=======
+const UserSearchResults = ({ sanId, userId, save, logo, name }) => (
+>>>>>>> c22e2f5d4a1cf890526d96c61a295df092c017d0
   <ul className="list-group search-results">
-    <li
-      key={props.sanId}
-      className="list-group-item" /*onClick={props.select}*/
-    >
-      <img alt="sanctuary" src={props.logo} className="img-fluid" />
-      <h4>Sanctuary Name:{props.name}</h4>
+    <li key={sanId} className="list-group-item" /* onClick={props.select} */>
+      <img alt="sanctuary" src={logo} className="img-fluid" />
+      <h4>Sanctuary Name:{name}</h4>
       <button
+        type="button"
         className="btn btn-outline-success active"
         aria-pressed="true"
-        userid={props.userId}
-        sanid={props.sanId}
-        onClick={props.save}
+        userid={userId}
+        sanid={sanId}
+        onClick={save}
       >
         save
-      </button>{" "}
-      &nbsp;
-      <Link to={"/sanctuary/" + props.sanId}>
+      </button>
+
+      <Link to={`/sanctuary/${sanId}`}>
         <strong>view profile</strong>
       </Link>
     </li>
   </ul>
 );
+
+UserSearchResults.propTypes = {
+  userId: PropTypes.string.isRequired,
+  sanId: PropTypes.string.isRequired,
+  save: PropTypes.func.isRequired,
+  name: PropTypes.string.isRequired,
+  logo: PropTypes.string.isRequired,
+};
+
 export default UserSearchResults;

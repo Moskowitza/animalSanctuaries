@@ -17,7 +17,8 @@ const db = require('./models');
 // For bodyParser
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-// AFTER the bodyParser import line we initialize PASSPORT and the express session and passport session and add them both as middleware. We do this by adding these lines some spaces
+// AFTER the bodyParser import line we initialize PASSPORT and the express session
+// passport session and add them both as middleware. We do this by adding these lines some spaces
 app.use(session({ secret: 'keyboard cat', resave: true, saveUninitialized: true })); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
@@ -30,7 +31,7 @@ if (process.env.NODE_ENV === 'production') {
 require('./routes/auth.js')(app);
 // load passport strategies
 
-db.sequelize.sync().then(function() {});
+db.sequelize.sync().then(() => {});
 app.listen(PORT, () => {
   console.log(`🌎 ==> Server now on port ${PORT}!`);
 });

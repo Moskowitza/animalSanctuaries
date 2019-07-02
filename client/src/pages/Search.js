@@ -1,106 +1,101 @@
+<<<<<<< HEAD
 import React, { Component } from "react";
 import Container from "../components/Container";
 import Row from "../components/Row";
 import SearchForm from "../components/SearchForm";
 import SearchResults from "../components/SearchResults";
 import UserSearchResults from "../components/UserSearchResults"; 
+=======
+import React, { Component } from 'react';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import SearchForm from '../components/SearchForm';
+import SearchResults from '../components/SearchResults';
+import UserSearchResults from '../components/UserSearchResults';
+>>>>>>> c22e2f5d4a1cf890526d96c61a295df092c017d0
 
 // import sanctuaries from "../sanctuaries.json";
-import API from "../utils/API";
+import API from '../utils/API';
+
 class Search extends Component {
   state = {
-    search: "",
-    searchState:"",
+    search: '',
+    // searchState: '',
     sanctuaries: [],
-    results: [],
-    error: "",
-    //add state user to save searches
-    user: []
+    // results: [],
+    // error: '',
+    // add state user to save searches
+    user: [],
   };
 
-    // getSanctuaries and getUser, if logged in
-    componentDidMount() {
-      this.getUser();
-      this.getSanctuaries();
-    };
-    getUser = () => {
-      API.getUser()
-        .then(res => {
-          this.setState({
-            user: res.data
-          });
-        })
-    }
-    getSanctuaries = () => {
-      console.log('getting sanctuaries')
-      API.getSanctuaries()
-        .then(res => {
-          this.setState({
-            sanctuaries: res.data
-          });
-        })
-    }
+  // getSanctuaries and getUser, if logged in
+  componentDidMount() {
+    this.getUser();
+    this.getSanctuaries();
+  }
 
+  getUser = () => {
+    API.getUser().then(res => {
+      this.setState({
+        user: res.data,
+      });
+    });
+  };
+
+  getSanctuaries = () => {
+    console.log('getting sanctuaries');
+    API.getSanctuaries().then(res => {
+      this.setState({
+        sanctuaries: res.data,
+      });
+    });
+  };
 
   // handle any changes to the input Fields: Search
   handleInputChange = event => {
     const { name, value } = event.target;
     this.setState({
-      [name]: value
+      [name]: value,
     });
   };
 
-  //If user is true we pass this to our onClick
-  //API will send data to the backend
+  // If user is true we pass this to our onClick
+  // API will send data to the backend
   saveSearch = data => {
     API.saveSearch({
       sanId: data.sanId,
-      userId: data.userId
-    })
-      .then(res => {
-        console.log(res);
-      })
-  }
-  //we need to pick a sanctuary that for a profile we'll view
-  // selectSanctuary=data=>{
-  //   this.setState({
-  //     selected: data
-  //   })
-  //   // This fires off first, so we'll see the previous one
-  //   .then(console.log("Selected Sanctuary IS" +JSON.stringify(this.state.selected)));
-  // }
+      userId: data.userId,
+    }).then(res => {
+      console.log(res);
+    });
+  };
 
   render() {
-    //This wont work: How would we extract the props we need back out of one mess array? 
-    //let names=this.state.sanctuaries.map((sanctuary)=>{return sanctuary.name})
-    // let states=this.state.sanctuaries.map((sanctuary)=>{return sanctuary.state})
-    // const searchFields = [...names,...states]
-    // console.log(`Seach fields ${searchFields}`)
-
-    //Our live filter function
-    let filteredSanctuaries = this.state.sanctuaries.filter(
-      (sanctuary) => {
-        return sanctuary.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
-      }
+    const { sanctuaries, search, user } = this.state;
+    const filteredSanctuaries = sanctuaries.filter(
+      sanctuary =>
+        sanctuary.name.toLowerCase().indexOf(search.toLowerCase()) !== -1
     );
-    return <div>
-        <Container fluid={false} style={{ minHeight: "80%" }}>
-          {this.state.user ? (
-          <Row fluid={true}>
-            <div className="card m-4">
-              <p className="card-body text-center">
-                You are currently logged in as {this.state.user.email}
-              </p>
-            </div>
-          </Row>
-          ):(
-          <Row fluid={true}>
-          <div className="card" style={{ margin: "10px" }}>
-              <p className="card-body text-center">
-                Log in to save sanctuaries to your dashboard
-              </p>
-            </div>
-          </Row>
+
+    return (
+      <div>
+        <Container fluid={false} style={{ minHeight: '80%' }}>
+          {user ? (
+            <Row fluid>
+              <div className="card m-4">
+                <p className="card-body text-center">
+                  You are currently logged in as {user.email}
+                </p>
+              </div>
+            </Row>
+          ) : (
+            <Row fluid>
+              <div className="card" style={{ margin: '10px' }}>
+                <p className="card-body text-center">
+                  Log in to save sanctuaries to your dashboard
+                </p>
+              </div>
+            </Row>
           )}
           <Row>
             <div className="card w-100 h-50">
@@ -109,7 +104,11 @@ class Search extends Component {
                   Search for a Sanctuary by NAME or STATE below
                 </p>
 
-                <SearchForm className="form-control" handleInputChange={this.handleInputChange} search={this.state.search} />
+                <SearchForm
+                  className="form-control"
+                  handleInputChange={this.handleInputChange}
+                  search={search}
+                />
               </div>
             </div>
           </Row>
@@ -120,7 +119,7 @@ class Search extends Component {
           <Row>
             <div className="card w-100 h-100">
               <div className="card-body">
-                {this.state.user ? // if LOGGED IN
+                {user ? ( // if LOGGED IN
                   <div>
                     {filteredSanctuaries.map(sanctuary => (
                       <UserSearchResults
@@ -129,17 +128,18 @@ class Search extends Component {
                         name={sanctuary.name}
                         website={sanctuary.animalWebsite}
                         logo={sanctuary.image}
-                        //userId comes from state, not our filteredSanctuaries array
-                        userId={this.state.user.userId}
+                        // userId comes from state, not our filteredSanctuaries array
+                        userId={user.userId}
                         save={() =>
                           this.saveSearch({
                             sanId: sanctuary.sanId,
-                            userId: this.state.user.userId
+                            userId: user.userId,
                           })
                         }
                       />
                     ))}
-                  </div> : // if not logged in serve up the page without button link
+                  </div> // if not logged in serve up the page without button link
+                ) : (
                   <div>
                     {filteredSanctuaries.map(sanctuary => (
                       <SearchResults
@@ -150,12 +150,14 @@ class Search extends Component {
                         logo={sanctuary.image}
                       />
                     ))}
-                  </div>}
+                  </div>
+                )}
               </div>
             </div>
           </Row>
         </Container>
-      </div>;
+      </div>
+    );
   }
 }
 

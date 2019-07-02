@@ -2,7 +2,7 @@ const authController = require('../controllers/authcontroller.js');
 const db = require('../models');
 const passport = require('../config/passport/passport');
 
-module.exports = function(app) {
+module.exports = function (app) {
   // GET routes to render our handlebar pages
   app.get('/signup', authController.getsignup); // redirect to "/singup"
   app.get('/signin', authController.getsignin);
@@ -31,13 +31,13 @@ module.exports = function(app) {
   }
   app.get('/dashboard', isLoggedIn, authController.dashboard);
 
-  app.post(
-    '/auth/signin',
-    passport.authenticate('local-signin', {
-      successRedirect: '/dashboard',
-      failureRedirect: '/signin',
-    })
-  );
+  // app.post(
+  //   '/auth/signin',
+  //   passport.authenticate('local-signin', {
+  //     successRedirect: '/dashboard',
+  //     failureRedirect: '/signin',
+  //   })
+  // );
   app.get('/auth/logout', (req, res) => {
     req.logout();
     res.json(true);
@@ -166,7 +166,7 @@ module.exports = function(app) {
       })
       .catch(error => res.json(error));
   });
-  app.get('/api/user_data', function(req, res) {
+  app.get('/api/user_data', function (req, res) {
     if (!req.user) {
       // The user is not logged in, send back an empty object
       res.json({});

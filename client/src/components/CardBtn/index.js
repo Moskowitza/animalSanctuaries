@@ -1,1 +1,1 @@
-export { default } from "./CardBtn";
+export { default } from './CardBtn';

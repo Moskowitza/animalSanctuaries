@@ -1,14 +1,23 @@
-import React from "react";
-import "./SavedComments.css";
+import React from 'react';
+import PropTypes from 'prop-types';
+import './SavedComments.css';
 
-const SavedComments = props => (
+const SavedComments = ({ postId, sanctuary, comment, deleteComment }) => (
   <ul className="list-group search-results">
-      <li key={props.postId} className="list-group-item">
-        <p>Sanctuary Name:{props.sanctuary}</p>
-        <p>comment:{props.comment}</p>
-        <button onClick={props.delete}>delete comment</button>      
-      </li>
+    <li key={postId} className="list-group-item">
+      <p>Sanctuary Name:{sanctuary}</p>
+      <p>comment:{comment}</p>
+      <button type="button" onClick={deleteComment}>
+        delete comment
+      </button>
+    </li>
   </ul>
 );
+SavedComments.propTypes = {
+  postId: PropTypes.string.isRequired,
+  sanctuary: PropTypes.string.isRequired,
+  comment: PropTypes.string.isRequired,
+  deleteComment: PropTypes.func.isRequired,
+};
 
 export default SavedComments;
