@@ -6,11 +6,11 @@ import Col from 'react-bootstrap/Col';
 
 const About = () => (
   <div>
-    <Container style={{ marginTop: 30 }}>
+    <Container >
       <Row>
         <Col size="md-12">
           <div>
-            <h1>Welcome To animal sanctuaries!</h1>
+            <h1 style={{ color: "green" }}>Welcome To animal sanctuaries!</h1>
           </div>
           <div className="card w-100 h-100">
             <p />

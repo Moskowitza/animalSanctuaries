@@ -17,16 +17,6 @@ const SearchState = props => (
         placeholder="Type in an Animal Sanctuary State"
         id="sanctuary"
       />
-      {/* <datalist id="sanctuaries">
-        {props.sanctuaries.map(sanctuary => <option value={sanctuary} key={sanctuary} />)}
-      </datalist> */}
-      {/* <button
-        type="submit"
-        onClick={props.handleFormSubmit}
-        className="btn btn-success"
-      >
-        Search
-      </button> */}
     </div>
   </form>
 );
