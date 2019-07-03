@@ -1,37 +1,24 @@
 import React, { Component } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
+import CardColumns from 'react-bootstrap/CardColumns';
 import SearchForm from '../components/SearchForm';
 import SearchResults from '../components/SearchResults';
 import UserSearchResults from '../components/UserSearchResults';
-
+import PropTypes from 'prop-types';
 // import sanctuaries from "../sanctuaries.json";
 import API from '../utils/API';
 
 class Search extends Component {
   state = {
     search: '',
-    // searchState: '',
     sanctuaries: [],
-    // results: [],
-    // error: '',
-    // add state user to save searches
-    user: [],
   };
 
   // getSanctuaries and getUser, if logged in
   componentDidMount() {
-    this.getUser();
     this.getSanctuaries();
   }
-
-  getUser = () => {
-    API.getUser().then(res => {
-      this.setState({
-        user: res.data,
-      });
-    });
-  };
 
   getSanctuaries = () => {
     console.log('getting sanctuaries');
@@ -50,8 +37,7 @@ class Search extends Component {
     });
   };
 
-  // If user is true we pass this to our onClick
-  // API will send data to the backend
+  // If user, make relation in database
   saveSearch = data => {
     API.saveSearch({
       sanId: data.sanId,
@@ -62,7 +48,8 @@ class Search extends Component {
   };
 
   render() {
-    const { sanctuaries, search, user } = this.state;
+    const { sanctuaries, search } = this.state;
+    const { user } = this.props;
     const filteredSanctuaries = sanctuaries.filter(
       sanctuary =>
         sanctuary.name.toLowerCase().indexOf(search.toLowerCase()) !== -1
@@ -80,14 +67,14 @@ class Search extends Component {
               </div>
             </Row>
           ) : (
-            <Row fluid>
-              <div className="card" style={{ margin: '10px' }}>
-                <p className="card-body text-center">
-                  Log in to save sanctuaries to your dashboard
+              <Row fluid>
+                <div className="card" style={{ margin: '10px' }}>
+                  <p className="card-body text-center">
+                    Log in to save sanctuaries to your dashboard
                 </p>
-              </div>
-            </Row>
-          )}
+                </div>
+              </Row>
+            )}
           <Row>
             <div className="card w-100 h-50">
               <div className="card-body">
@@ -103,53 +90,59 @@ class Search extends Component {
               </div>
             </div>
           </Row>
-          {/* <SearchState             
-            handleInputChange={this.handleInputChange}
-            searchState={this.state.searchState}
-          /> */}
           <Row>
-            <div className="card w-100 h-100">
-              <div className="card-body">
-                {user ? ( // if LOGGED IN
-                  <div>
-                    {filteredSanctuaries.map(sanctuary => (
-                      <UserSearchResults
-                        sanId={sanctuary.sanId}
-                        key={sanctuary.sanId}
-                        name={sanctuary.name}
-                        website={sanctuary.animalWebsite}
-                        logo={sanctuary.image}
-                        // userId comes from state, not our filteredSanctuaries array
-                        userId={user.userId}
-                        save={() =>
-                          this.saveSearch({
-                            sanId: sanctuary.sanId,
-                            userId: user.userId,
-                          })
-                        }
-                      />
-                    ))}
-                  </div> // if not logged in serve up the page without button link
-                ) : (
-                  <div>
-                    {filteredSanctuaries.map(sanctuary => (
-                      <SearchResults
-                        sanId={sanctuary.sanId}
-                        key={sanctuary.sanId}
-                        name={sanctuary.name}
-                        website={sanctuary.animalWebsite}
-                        logo={sanctuary.image}
-                      />
-                    ))}
-                  </div>
-                )}
-              </div>
-            </div>
+
+            {user ? ( // if LOGGED IN
+              <CardColumns>
+                {filteredSanctuaries.map(sanctuary => (
+                  <UserSearchResults
+                    sanId={sanctuary.sanId}
+                    key={sanctuary.sanId}
+                    name={sanctuary.name}
+                    website={sanctuary.animalWebsite}
+                    logo={sanctuary.image}
+                    // userId comes from state, not our filteredSanctuaries array
+                    userId={user.userId}
+                    save={() =>
+                      this.saveSearch({
+                        sanId: sanctuary.sanId,
+                        userId: user.userId,
+                      })
+                    }
+                  />
+                ))}
+              </CardColumns> // if not logged in serve up the page without button link
+            ) : (
+                <CardColumns>
+                  {filteredSanctuaries.map(sanctuary => (
+                    <SearchResults
+                      sanId={sanctuary.sanId}
+                      key={sanctuary.sanId}
+                      name={sanctuary.name}
+                      website={sanctuary.animalWebsite}
+                      logo={sanctuary.image}
+                      animalPhone={sanctuary.animalPhone}
+                      animalAddress={sanctuary.animalAddress}
+                    />
+                  ))}
+                </CardColumns>
+              )}
           </Row>
         </Container>
       </div>
     );
   }
 }
-
+Search.propTypes = {
+  user: PropTypes.shape({
+    email:
+      PropTypes.string,
+    firstname:
+      PropTypes.string,
+    lastname:
+      PropTypes.string,
+    userId:
+      PropTypes.number,
+  }),
+};
 export default Search;
