@@ -19,11 +19,11 @@ const SearchResults = ({ sanId, logo, name, website, animalPhone, animalAddress 
       <Card.Text>
 
       </Card.Text>
-      <Button variant="light">
-        <Link to={`/sanctuary/${sanId}`}>
-          Profile
+
+      <Link to={`/sanctuary/${sanId}`} className="btn btn-info">
+        Profile
         </Link>
-      </Button>
+
     </Card.Body>
   </Card>
 

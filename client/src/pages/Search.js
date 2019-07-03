@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button'
 import CardColumns from 'react-bootstrap/CardColumns';
+import Card from 'react-bootstrap/Card';
 import SearchForm from '../components/SearchForm';
 import SearchResults from '../components/SearchResults';
 import UserSearchResults from '../components/UserSearchResults';
 import PropTypes from 'prop-types';
-// import sanctuaries from "../sanctuaries.json";
+
 import API from '../utils/API';
 
 class Search extends Component {
@@ -46,6 +50,9 @@ class Search extends Component {
       console.log(res);
     });
   };
+  handleClick = () => {
+    this.props.history.push('/signin')
+  }
 
   render() {
     const { sanctuaries, search } = this.state;
@@ -57,42 +64,44 @@ class Search extends Component {
 
     return (
       <div>
-        <Container fluid={false} style={{ minHeight: '80%' }}>
-          {user ? (
-            <Row fluid>
-              <div className="card m-4">
-                <p className="card-body text-center">
-                  You are currently logged in as {user.email}
-                </p>
-              </div>
-            </Row>
-          ) : (
-              <Row fluid>
-                <div className="card" style={{ margin: '10px' }}>
-                  <p className="card-body text-center">
-                    Log in to save sanctuaries to your dashboard
-                </p>
-                </div>
-              </Row>
-            )}
-          <Row>
-            <div className="card w-100 h-50">
-              <div className="card-body">
-                <p className="text-center">
-                  Search for a Sanctuary by NAME or STATE below
-                </p>
+        <Container>
+          <Row >
+            <Col md={{ span: 6, offset: 3 }}>
+              {user ? (
+                <Card>
+                  <Card.Body>
+                    You are currently logged in as {user.email}
+                  </Card.Body>
+                </Card>
+              ) : (
+                  <Card className="text-center">
+                    <Card.Body>
+                      <Card.Text>
+                        Log in to save sanctuaries to your dashboard
+                            </Card.Text>
+                      <Button
+                        variant="primary"
+                        onClick={this.handleClick}
+                      >
+                        Sign In
+                          </Button>
+                    </Card.Body>
+                  </Card>)}
+            </Col>
+          </Row>
 
-                <SearchForm
-                  className="form-control"
-                  handleInputChange={this.handleInputChange}
-                  search={search}
-                />
-              </div>
-            </div>
+
+          <Row>
+            <Col md={{ span: 3, offset: 6 }} style={{ margin: "10px" }} >
+              <SearchForm
+                className="form-control"
+                handleInputChange={this.handleInputChange}
+                search={search}
+              />
+            </Col>
           </Row>
           <Row>
-
-            {user ? ( // if LOGGED IN
+            {user ? (
               <CardColumns>
                 {filteredSanctuaries.map(sanctuary => (
                   <UserSearchResults
@@ -101,7 +110,6 @@ class Search extends Component {
                     name={sanctuary.name}
                     website={sanctuary.animalWebsite}
                     logo={sanctuary.image}
-                    // userId comes from state, not our filteredSanctuaries array
                     userId={user.userId}
                     save={() =>
                       this.saveSearch({
@@ -129,7 +137,7 @@ class Search extends Component {
               )}
           </Row>
         </Container>
-      </div>
+      </div >
     );
   }
 }
