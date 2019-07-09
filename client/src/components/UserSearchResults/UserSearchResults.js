@@ -3,23 +3,7 @@ import './UserSearchResults.css';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-<<<<<<< HEAD
-//TODO : Format with
-
-// TODO : Create an onClick function to have reactRouter swith to the store
-//sancRef=React.createRef()
-//goToSanc=event=>{
-//  event.preventDefault();
-//  const animalSanc=this.sancRef.sanid
-//  push this.props.history(`/sanctuary/${animalSanc}`)
-// }
-
-
-
-const UserSearchResults = props => (
-=======
 const UserSearchResults = ({ sanId, userId, save, logo, name }) => (
->>>>>>> c22e2f5d4a1cf890526d96c61a295df092c017d0
   <ul className="list-group search-results">
     <li key={sanId} className="list-group-item" /* onClick={props.select} */>
       <img alt="sanctuary" src={logo} className="img-fluid" />

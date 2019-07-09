@@ -1,18 +1,9 @@
-<<<<<<< HEAD
-import React, { Component } from "react";
-import Container from "../components/Container";
-import Row from "../components/Row";
-import SearchForm from "../components/SearchForm";
-import SearchResults from "../components/SearchResults";
-import UserSearchResults from "../components/UserSearchResults"; 
-=======
 import React, { Component } from 'react';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import SearchForm from '../components/SearchForm';
 import SearchResults from '../components/SearchResults';
 import UserSearchResults from '../components/UserSearchResults';
->>>>>>> c22e2f5d4a1cf890526d96c61a295df092c017d0
 
 // import sanctuaries from "../sanctuaries.json";
 import API from '../utils/API';
