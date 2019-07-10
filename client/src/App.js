@@ -56,7 +56,9 @@ class App extends Component {
             render={props => <About {...props} user={user} />}
           />
           <Route exact path="/dashboard" user={user} component={Dashboard} />
-          <Route exact path="/search" component={Search} />
+          <Route exact 
+          path="/search" 
+          render={props => <Search {...props} user={user} />}/>
           <Route
             exact
             path="/signin"
