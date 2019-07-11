@@ -1,5 +1,6 @@
 import React from 'react';
 import './UserSearchResults.css';
+import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -9,7 +10,7 @@ const UserSearchResults = ({ sanId, userId, save, logo, name }) => (
     <li key={sanId} className="list-group-item" /* onClick={props.select} */>
       <img alt="sanctuary" src={logo} className="img-fluid" />
       <h4>Sanctuary Name:{name}</h4>
-      <button
+      <Button
         type="button"
         className="btn btn-outline-success active"
         aria-pressed="true"
@@ -18,10 +19,10 @@ const UserSearchResults = ({ sanId, userId, save, logo, name }) => (
         onClick={save}
       >
         save
-      </button>
+      </Button>
 
       <Link to={`/sanctuary/${sanId}`}>
-        <strong>view profile</strong>
+        <Button>view profile</Button>
       </Link>
     </li>
   </ul>

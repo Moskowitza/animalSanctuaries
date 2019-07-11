@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button';
 import ListGroup from 'react-bootstrap/ListGroup';
 import './SearchResults.css';
 
-const SearchResults = ({ sanId, logo, name, website, animalPhone, animalAddress }) => (
+const SearchResults = ({ sanId, logo, name, website, animalPhone, animalAddress, userId, save }) => (
   <Card border="info" key={sanId} style={{ width: '18rem' }}>
     <Card.Img variant="top" src={logo} className="img-fluid" />
     <Card.Body>
@@ -23,22 +23,18 @@ const SearchResults = ({ sanId, logo, name, website, animalPhone, animalAddress 
       <Link to={`/sanctuary/${sanId}`} className="btn btn-info">
         Profile
         </Link>
-
+      {userId &&       <Button
+        type="button"
+        className="btn btn-outline-success active"
+        aria-pressed="true"
+        userid={userId}
+        sanid={sanId}
+        onClick={save}
+      >
+        save
+      </Button>}
     </Card.Body>
   </Card>
-
-  // <ul className="list-group search-results">
-  //   <li key={sanId} className="list-group-item">
-  //     <img alt="sanctuary" src={logo} className="img-fluid" />
-  //     <h4>Sanctuary Name:{name}</h4>
-  //     <h4>
-  //       Sanctuary Website: <a href={website}>Click me! </a>{' '}
-  //     </h4>
-  //     <Link to={`/sanctuary/${sanId}`}>
-  //       <strong>view profile</strong>
-  //     </Link>
-  //   </li>
-  // </ul>
 );
 
 SearchResults.propTypes = {
@@ -47,6 +43,8 @@ SearchResults.propTypes = {
   name: PropTypes.string.isRequired,
   website: PropTypes.string.isRequired,
   animalPhone: PropTypes.string,
+  userId:PropTypes.number,
+  save:PropTypes.func
 };
 
 export default SearchResults;

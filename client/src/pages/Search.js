@@ -43,6 +43,7 @@ class Search extends Component {
 
   // If user, make relation in database
   saveSearch = data => {
+    
     API.saveSearch({
       sanId: data.sanId,
       userId: data.userId,
@@ -89,8 +90,6 @@ class Search extends Component {
                   </Card>)}
             </Col>
           </Row>
-
-
           <Row>
             <Col md={{ span: 3, offset: 6 }} style={{ margin: "10px" }} >
               <SearchForm
@@ -131,6 +130,13 @@ class Search extends Component {
                       logo={sanctuary.image}
                       animalPhone={sanctuary.animalPhone}
                       animalAddress={sanctuary.animalAddress}
+                      userId={user ? user.userId: null}
+                      save={() =>
+                      this.saveSearch({
+                        sanId: sanctuary.sanId,
+                        userId: user.userId,
+                      })
+                    }
                     />
                   ))}
                 </CardColumns>
