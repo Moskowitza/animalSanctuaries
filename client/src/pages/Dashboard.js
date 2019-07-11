@@ -3,36 +3,30 @@ import { Link } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
 import API from '../utils/API';
+
 import SavedSanctuaries from '../components/SavedSanctuaries/SavedSanctuaries';
 import SavedComments from '../components/SavedComments';
 
 class Dashboard extends Component {
   state = {
-    user: null,
+    // user: null,
     usercomments: [],
     sanctuaries: [],
   };
 
   componentDidMount() {
-    this.getUser();
+    const { user } = this.props;
+    console.log(user)
+    // this.getUser();
     // this.getSavedSanctuaries()
+   user && this.getSavedSanctuaries({ userId: user.userId });
+   user && this.getMyComments({ userId: user.userId });
   }
 
-  getUser = () => {
-    API.getUser().then(res => {
-      // this does return the object with key pairs
-      console.log(
-        `dashboard, find user with Id : ${JSON.stringify(res.data.userId)}`
-      );
-      this.setState({
-        user: res.data,
-      });
-      const { user } = this.state;
-      this.getSavedSanctuaries({ userId: user.userId });
-      this.getMyComments({ userId: user.userId });
-    });
-  };
+
 
   getSavedSanctuaries = data => {
     // event.preventDefault();
@@ -54,20 +48,9 @@ class Dashboard extends Component {
     });
   };
 
-  logoutUser = event => {
-    event.preventDefault();
-    API.logoutUser()
-      .then(res => {
-        console.log(res.data);
-        if (res.data === true) {
-          this.setState({ user: null });
-        }
-      })
-      .catch(err => console.log(err));
-  };
 
   deleteComment = data => {
-    const { user } = this.state;
+    const { user } = this.props;
     API.deleteComment({
       postId: data.postId,
     })
@@ -78,22 +61,19 @@ class Dashboard extends Component {
   };
 
   render() {
-    const { user, usercomments, sanctuaries } = this.state;
+    const { user } = this.props;
+    const { usercomments, sanctuaries } = this.state;
     return (
       <Container>
-        <Row>
-          <Col size="md-12" ClassName="center">
-            <p />
-            <h1>Welcome To Animal Sanctuaries!</h1>
-          </Col>
-        </Row>
 
         {user ? (
           <React.Fragment>
             <Row>
-              <Col size="md-12" ClassName="center">
-                <div className="card h-75 w-75 center">
-                  <div className="card-body text-center">
+              <Col  ClassName="center">
+                <Card   
+                  className="card mx-auto text-center"
+                  style={{ width: '50%' }}>
+                  <Card.Body>
                     <p>You are currently logged in as {user.email}</p>
                     <Link to="/search" className="btn btn-info">
                       search
@@ -106,8 +86,8 @@ class Dashboard extends Component {
                     >
                       Logout
                     </Link>
-                  </div>
-                </div>
+                  </Card.Body>
+                </Card>
               </Col>
             </Row>
             <Row>
@@ -147,11 +127,11 @@ class Dashboard extends Component {
           <React.Fragment>
             <Row>
               <Col size="md-12">
-                <div
+                <Card
                   className="card  mx-auto text-center"
                   style={{ width: '50%' }}
                 >
-                  <div className="card-body">
+                  <Card.Body>
                     <h5 className="card-title">Login for dashboard</h5>
                     <p className="card-text">
                       You're not logged in, so there is nothing to see here
@@ -163,8 +143,8 @@ class Dashboard extends Component {
                     <Link to="/signup" className="btn btn-primary">
                       Register
                     </Link>
-                  </div>
-                </div>
+                  </Card.Body>
+                </Card>
               </Col>
             </Row>
           </React.Fragment>
