@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-
+import Form from 'react-bootstrap/Form';
+import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
@@ -16,6 +17,7 @@ class SanctuaryProfile extends Component {
     sanctuary: {},
     existingComments: [],
     comment: '',
+    show:false
   };
   componentDidMount() {
     const { match } = this.props;
@@ -55,22 +57,48 @@ class SanctuaryProfile extends Component {
     console.log(`saving comment userId ${user.userId} sanId ${sanctuary.sanId} comment ${comment}`)
 
     API.saveComment(data)
-      .then(res => this.getComments())
-      .then(this.setState({ comment: '' }))
+      .then(res => {
+        this.getComments();
+        this.handleShow()
+      })
+      // .then(this.setState({ comment: '' }))
       .catch(err => {
         console.log(err);
         alert('Problem Commenting!');
       });
   };
+  handleShow=()=>{
+    const {show}=this.state
+    this.setState({show:true})
+  }
+  handleClose=()=>{
+    const {show}=this.state
+    this.setState({show:false, comment:""})
+ 
+  }
 
   // const data = new FormData(event.target);
 
   render() {
     const {user}=this.props
-    const { sanctuary, existingComments, comment } = this.state;
+    const { sanctuary, existingComments, comment, show } = this.state;
     return (
     
         <Container >
+            <Modal show={show} onHide={this.handleClose}>
+            <Modal.Header closeButton>
+              <Modal.Title>Comment Added</Modal.Title>
+            </Modal.Header>
+            <Modal.Body>Your Comment {comment} </Modal.Body>
+            <Modal.Footer>
+              <Button variant="secondary" onClick={this.handleClose}>
+                Close
+              </Button>
+              <Button variant="primary" onClick={this.handleClose}>
+                Save Changes
+              </Button>
+            </Modal.Footer>
+            </Modal>
           <Row className="mb-2">
           <Col size="md-12">
             <Card className=" text-center">
@@ -83,23 +111,29 @@ class SanctuaryProfile extends Component {
               {user ? (
                 <Card>
                   <Card.Body>
-                    <label htmlFor="userComment">
-                      Add Comment:
-                      <input
-                        id="userComment"
-                        type="text"
-                        className="form-control"
-                        name="comment"
-                        value={comment}
-                        onChange={this.handleInputChange}
-                      />
-                    </label>
-                    <Button
-                      onClick={this.handleFormSubmit}
-                    >
-                      Save Comment
-                    </Button>
-                    <Link to="/Search">← Back to Search</Link>
+                  <Form>
+                    <Form.Group as={Row} controlId="userComment">
+                       <Form.Label column sm={2}>Add Comment:</Form.Label> 
+                        <Col sm={8}>
+                          <Form.Control
+                            type="text"
+                            name="comment"
+                            value={comment}
+                            onChange={this.handleInputChange}
+                          />                     
+                        </Col>
+                      </Form.Group>
+                     <Form.Group as={Row} >
+                      <Col sm={{ span: 6, offset: 2 }}>
+                        <Button onClick={this.handleFormSubmit}>
+                          Save Comment
+                        </Button>
+                      </Col>
+                      <Col sm={{span:4}}>
+                          <Link to="/Search">← Back to Search</Link>
+                      </Col>
+                    </Form.Group>
+                    </Form>
                   </Card.Body>
                 </Card>
               ) : (
