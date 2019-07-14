@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import { Link } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -153,4 +155,17 @@ class Dashboard extends Component {
     );
   }
 }
+
+Dashboard.propTypes = {
+  user: PropTypes.shape({
+    email:
+      PropTypes.string,
+    firstname:
+      PropTypes.string,
+    lastname:
+      PropTypes.string,
+    userId:
+      PropTypes.number,
+  }),
+};
 export default Dashboard;

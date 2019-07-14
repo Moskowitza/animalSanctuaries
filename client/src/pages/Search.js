@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import { Link } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -9,7 +11,6 @@ import Card from 'react-bootstrap/Card';
 import SearchForm from '../components/SearchForm';
 import SearchResults from '../components/SearchResults';
 import UserSearchResults from '../components/UserSearchResults';
-import PropTypes from 'prop-types';
 
 import API from '../utils/API';
 

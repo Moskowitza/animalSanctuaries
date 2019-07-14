@@ -137,7 +137,16 @@ class NewSanctuary extends Component {
   }
 }
 NewSanctuary.propTypes = {
-  user: PropTypes.string.isRequired,
+  user: PropTypes.shape({
+    email:
+      PropTypes.string,
+    firstname:
+      PropTypes.string,
+    lastname:
+      PropTypes.string,
+    userId:
+      PropTypes.number,
+  }),
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,
