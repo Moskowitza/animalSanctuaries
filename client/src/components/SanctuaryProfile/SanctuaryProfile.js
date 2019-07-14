@@ -68,13 +68,10 @@ class SanctuaryProfile extends Component {
       });
   };
   handleShow=()=>{
-    const {show}=this.state
     this.setState({show:true})
   }
-  handleClose=()=>{
-    const {show}=this.state
+  handleClose=()=>{   
     this.setState({show:false, comment:""})
- 
   }
 
   // const data = new FormData(event.target);
@@ -94,9 +91,9 @@ class SanctuaryProfile extends Component {
               <Button variant="secondary" onClick={this.handleClose}>
                 Close
               </Button>
-              <Button variant="primary" onClick={this.handleClose}>
+              {/* <Button variant="primary" onClick={this.handleClose}>
                 Save Changes
-              </Button>
+              </Button> */}
             </Modal.Footer>
             </Modal>
           <Row className="mb-2">

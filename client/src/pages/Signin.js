@@ -32,7 +32,9 @@ class Signin extends Component {
     event.preventDefault();
     if (email && password) {
       signIn(email, password);
+      this.props.history.push('/dashboard');
     }
+
   };
 
   render() {

@@ -24,15 +24,17 @@ class Dashboard extends Component {
     const { user } = this.props;
     console.log(user)
     // this.getUser();
-    // this.getSavedSanctuaries()
-   user && this.getSavedSanctuaries({ userId: user.userId });
+    user && this.getSavedSanctuaries()
+  //  user && this.getSavedSanctuaries({ userId: user.userId });
    user && this.getMyComments({ userId: user.userId });
   }
 
 
 
-  getSavedSanctuaries = data => {
+  getSavedSanctuaries = () => {
     // event.preventDefault();
+    const { user } = this.props;
+    const data={ userId: user.userId }
     API.getSavedSanctuaries(data).then(res => {
       // console.log("my loaded Sanctuaries" + JSON.stringify(res.data))
       this.setState({
@@ -71,8 +73,8 @@ class Dashboard extends Component {
 
         {user ? (
           <React.Fragment>
-            <Row ClassName="m-4">
-              <Col  ClassName="center m-4">
+            <Row className="m-4">
+              <Col  className="center m-4">
                 <Card   
                   className="card mx-auto text-center"
                   style={{ width: '50%' }}>

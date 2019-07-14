@@ -18,8 +18,6 @@ class NewSanctuary extends Component {
     state: '',
   };
 
-
-
   handleInputChange = event => {
     const { name, value } = event.target;
     this.setState({
