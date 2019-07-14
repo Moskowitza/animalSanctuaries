@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Row from 'react-bootstrap/Row';
 import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button';
 
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
@@ -13,27 +14,17 @@ import API from '../../utils/API';
 class SanctuaryProfile extends Component {
   state = {
     sanctuary: {},
-    user: {},
     existingComments: [],
     comment: '',
   };
   componentDidMount() {
     const { match } = this.props;
     const { params } = match;
-    this.getUser();
     API.getSanctuary(params.id)
       .then(res => this.setState({ sanctuary: res.data }))
       .catch(err => console.log(err));
     this.getComments();
   }
-
-  getUser = () => {
-    API.getUser().then(res => {
-      this.setState({
-        user: res.data,
-      });
-    });
-  };
 
   getComments = () => {
     const { match } = this.props;
@@ -43,13 +34,9 @@ class SanctuaryProfile extends Component {
       .catch(err => console.log(err));
   };
 
-  // handle any changes to the input fields
   handleInputChange = event => {
     event.preventDefault();
-    // Pull the name and value properties off of the event.target (the element which triggered the event)
     const { name, value } = event.target;
-
-    // Set the state for the appropriate input field
     this.setState({
       [name]: value,
     });
@@ -57,7 +44,7 @@ class SanctuaryProfile extends Component {
 
   handleFormSubmit = event => {
     const { comment, sanctuary } = this.state;
-    const {user}=this.props
+    const {user}=this.props;
     event.preventDefault();
     const data = {
       comment,
@@ -166,8 +153,8 @@ class SanctuaryProfile extends Component {
           <Row>
             <Col size="md-12 mb-8">
               {user ? (
-                <div className="card w-75 h-75">
-                  <div className="card-body">
+                <Card>
+                  <Card.Body>
                     <label htmlFor="userComment">
                       Add Comment:
                       <input
@@ -179,16 +166,14 @@ class SanctuaryProfile extends Component {
                         onChange={this.handleInputChange}
                       />
                     </label>
-                    <button
-                      className="btn btn-default btn-info"
-                      type="submit"
+                    <Button
                       onClick={this.handleFormSubmit}
                     >
                       Save Comment
-                    </button>
+                    </Button>
                     <Link to="/Search">← Back to Search</Link>
-                  </div>
-                </div>
+                  </Card.Body>
+                </Card>
               ) : (
                 <Card>
                   <Card.Body>log in to comment</Card.Body>
