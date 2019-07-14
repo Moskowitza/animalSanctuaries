@@ -5,6 +5,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
+import Accordion from 'react-bootstrap/Accordion'
 import API from '../utils/API';
 
 import SavedSanctuaries from '../components/SavedSanctuaries/SavedSanctuaries';
@@ -55,7 +56,7 @@ class Dashboard extends Component {
       postId: data.postId,
     })
       .then(res => {
-        console.log(res);
+        console.log(`Deleted ${res}`);
       })
       .then(this.getMyComments({ userId: user.userId }));
   };
@@ -68,8 +69,8 @@ class Dashboard extends Component {
 
         {user ? (
           <React.Fragment>
-            <Row>
-              <Col  ClassName="center">
+            <Row ClassName="m-4">
+              <Col  ClassName="center m-4">
                 <Card   
                   className="card mx-auto text-center"
                   style={{ width: '50%' }}>
@@ -90,13 +91,11 @@ class Dashboard extends Component {
                 </Card>
               </Col>
             </Row>
-            <Row>
-              <Col size="md-12" />
-              <div className="card-body" />
-            </Row>
+
             <Row>
               <Col size="md-6">
                 <h3>My Sanctuaries</h3>
+                <Accordion defaultActiveKey="">
                 {sanctuaries.map(sanctuary => (
                   <SavedSanctuaries
                     id={sanctuary.sanId}
@@ -107,6 +106,7 @@ class Dashboard extends Component {
                     sanId={sanctuary.sanId}
                   />
                 ))}
+                </Accordion>
               </Col>
               <Col size="md-6">
                 <h3>My Comments</h3>

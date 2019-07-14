@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Row from 'react-bootstrap/Row';
+import Card from 'react-bootstrap/Card';
+
 import Col from 'react-bootstrap/Col';
 import Container from 'react-bootstrap/Container';
 
@@ -15,7 +17,6 @@ class SanctuaryProfile extends Component {
     existingComments: [],
     comment: '',
   };
-
   componentDidMount() {
     const { match } = this.props;
     const { params } = match;
@@ -55,7 +56,8 @@ class SanctuaryProfile extends Component {
   };
 
   handleFormSubmit = event => {
-    const { comment, user, sanctuary } = this.state;
+    const { comment, sanctuary } = this.state;
+    const {user}=this.props
     event.preventDefault();
     const data = {
       comment,
@@ -75,19 +77,22 @@ class SanctuaryProfile extends Component {
   // const data = new FormData(event.target);
 
   render() {
-    const { sanctuary, existingComments, user, comment } = this.state;
+    const {user}=this.props
+    const { sanctuary, existingComments, comment } = this.state;
     return (
-      <div>
-        <Container>
+    
+        <Container className="mb-4">
           <Row>
-            <div className="card w-75 h-75 text-center">
+          <Col size="md-12">
+            <Card className=" text-center">
               <h3>{sanctuary.name} Profile Page</h3>
-            </div>
+            </Card>
+            </Col>
           </Row>
           <Row>
             <Col size="md-6">
-              <div className="card w-100 h-100">
-                <div className="card-body text-center">
+              <Card>
+                <Card.Body>
                   <img
                     alt="sanctuary"
                     src={sanctuary.image}
@@ -132,8 +137,8 @@ class SanctuaryProfile extends Component {
                       </li>
                     </ul>
                   </p>
-                </div>
-              </div>
+                </Card.Body>
+              </Card>
             </Col>
 
             <Col size="md-6">
@@ -159,7 +164,7 @@ class SanctuaryProfile extends Component {
             </Col>
           </Row>
           <Row>
-            <Col size="md-12">
+            <Col size="md-12 mb-8">
               {user ? (
                 <div className="card w-75 h-75">
                   <div className="card-body">
@@ -185,14 +190,14 @@ class SanctuaryProfile extends Component {
                   </div>
                 </div>
               ) : (
-                <div className="card w-75 h-75">
-                  <div className="card-body">log in to comment</div>
-                </div>
+                <Card>
+                  <Card.Body>log in to comment</Card.Body>
+                </Card>
               )}
             </Col>
           </Row>
         </Container>
-      </div>
+
     );
   }
 }

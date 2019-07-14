@@ -49,6 +49,7 @@ class Search extends Component {
       userId: data.userId,
     }).then(res => {
       console.log(res);
+      // Open Modal
     });
   };
   handleClick = () => {

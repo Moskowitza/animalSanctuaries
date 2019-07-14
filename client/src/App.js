@@ -55,26 +55,32 @@ class App extends Component {
             path="/about"
             render={props => <About {...props} user={user} />}
           />
-          <Route exact path="/dashboard" 
+          <Route 
+            exact 
+            path="/dashboard" 
             render={props => (<Dashboard {...props} user={user} />)}
           />
-          <Route exact 
-          path="/search" 
-          render={props => <Search {...props} user={user} />}/>
+          <Route 
+            exact 
+            path="/search" 
+            render={props => <Search {...props} user={user} />}
+          />
           <Route
             exact
             path="/signin"
-            render={props => (
-              <Signin {...props} user={user} signIn={this.signIn} />
-            )}
+            render={props => (<Signin {...props} user={user} signIn={this.signIn} />)}
           />
           <Route
             exact
             path="/signup"
-            user={user}
+
             render={props => <Signup {...props} user={user} signIn={this.signIn} />}
           />
-          <Route exact path="/sanctuary/:id" component={SanctuaryProfile} />
+          <Route 
+            exact 
+            path="/sanctuary/:id" 
+            render={props => <SanctuaryProfile {...props} user={user}  />}
+          />
           <Route
             exact
             path="/newSanctuary"
