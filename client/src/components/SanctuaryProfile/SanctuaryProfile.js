@@ -70,16 +70,16 @@ class SanctuaryProfile extends Component {
     const { sanctuary, existingComments, comment } = this.state;
     return (
     
-        <Container className="mb-4">
-          <Row>
+        <Container >
+          <Row className="mb-2">
           <Col size="md-12">
             <Card className=" text-center">
               <h3>{sanctuary.name} Profile Page</h3>
             </Card>
             </Col>
           </Row>
-          <Row>
-            <Col size="mb-8">
+          <Row className="mb-4">
+            <Col>
               {user ? (
                 <Card>
                   <Card.Body>
@@ -109,8 +109,8 @@ class SanctuaryProfile extends Component {
               )}
             </Col>
           </Row>
-          <Row>
-            <Col size="md-6">
+          <Row className="mb-4 pb-5">
+            <Col size="sm-6">
               <Card>
                   <Card.Img
                     alt="sanctuary"
@@ -128,10 +128,8 @@ class SanctuaryProfile extends Component {
                         <i className="material-icons">location_on</i>
                       </ListGroup.Item>
                       <ListGroup.Item>
-                      
                         <b>Facebook:</b>
-                        <a href={sanctuary.Facebook}>
-                          
+                        <a href={sanctuary.Facebook}>  
                           <i className="material-icons">link</i>
                         </a>
                       </ListGroup.Item>
@@ -151,8 +149,7 @@ class SanctuaryProfile extends Component {
                 </Card.Body>
               </Card>
             </Col>
-
-            <Col size="md-6">
+            <Col size="sm-6">
               <Card>
                 <Card.Body>
                   {existingComments ? (
