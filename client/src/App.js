@@ -18,7 +18,10 @@ class App extends Component {
     user:null
 //user: {email: "toki@toki.com", firstname: "toki", lastname: "toki", userId: 4}
   };
-
+ componentDidMount(){
+  const user = localStorage.getItem('user');
+  user && this.setState({ user: JSON.parse(user)});
+ }
   signIn = async (email, password) => {
     try{
       const user = await API.loginUser({
@@ -27,12 +30,14 @@ class App extends Component {
       })
       const {data} = user;
       this.setState({ user: data });
+      localStorage.setItem('user', JSON.stringify(data));
       return data
     }
       catch(err) {console.log(err)};
   };
 
   logOut = () => {
+    localStorage.removeItem('user');
     API.logoutUser()
       .then(res => {
         this.setState({ user: null });

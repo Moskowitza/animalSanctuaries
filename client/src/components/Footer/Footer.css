@@ -1,6 +1,6 @@
 .footer {
   /* min-height: 50px; */
-  position: relative;
+  position: absolute;
   background: linear-gradient(
     to bottom right,
     #5f9ea0,
