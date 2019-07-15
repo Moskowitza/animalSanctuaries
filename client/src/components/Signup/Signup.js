@@ -61,8 +61,8 @@ class Signup extends Component {
 
   render() {
     return (
-      <div>
-        <Container>
+
+        <Container className="mb-4">
           <Row className="justify-content-center">
             <Col size="md-12">
               <div className="card w-50 h-50">
@@ -152,7 +152,6 @@ class Signup extends Component {
             </Col>
           </Row>
         </Container>
-      </div>
     );
   }
 }

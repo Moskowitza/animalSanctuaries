@@ -15,7 +15,6 @@ import SavedComments from '../components/SavedComments';
 
 class Dashboard extends Component {
   state = {
-    // user: null,
     usercomments: [],
     sanctuaries: [],
   };
@@ -69,7 +68,7 @@ class Dashboard extends Component {
     const { user } = this.props;
     const { usercomments, sanctuaries } = this.state;
     return (
-      <Container>
+      <Container className="mb-4">
 
         {user ? (
           <React.Fragment>

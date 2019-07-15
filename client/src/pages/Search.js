@@ -66,8 +66,7 @@ class Search extends Component {
     );
 
     return (
-      <div>
-        <Container>
+        <Container className="mb-4">
           <Row >
             <Col md={{ span: 6, offset: 3 }}>
               {user ? (
@@ -102,26 +101,6 @@ class Search extends Component {
             </Col>
           </Row>
           <Row>
-            {/* {user ? (
-              <CardColumns>
-                {filteredSanctuaries.map(sanctuary => (
-                  <UserSearchResults
-                    sanId={sanctuary.sanId}
-                    key={sanctuary.sanId}
-                    name={sanctuary.name}
-                    website={sanctuary.animalWebsite}
-                    logo={sanctuary.image}
-                    userId={user.userId}
-                    save={() =>
-                      this.saveSearch({
-                        sanId: sanctuary.sanId,
-                        userId: user.userId,
-                      })
-                    }
-                  />
-                ))}
-              </CardColumns> // if not logged in serve up the page without button link
-            ) : ( */}
                 <CardColumns>
                   {filteredSanctuaries.map(sanctuary => (
                     <SearchResults
@@ -142,10 +121,9 @@ class Search extends Component {
                     />
                   ))}
                 </CardColumns>
-              {/* )} */}
           </Row>
         </Container>
-      </div >
+
     );
   }
 }

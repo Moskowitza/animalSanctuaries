@@ -7,7 +7,7 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 const About = () => (
 
-    <Container >
+    <Container className="mb-4">
       <Row>
         <Col size="md-12">
           <div>

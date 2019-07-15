@@ -12,7 +12,6 @@ import Form from 'react-bootstrap/Form'
 // Switch this to REGISTER and create a seperate LOGIN
 class Signin extends Component {
   // Setting the initial values of this.state.email and this.state.password
-
   state = {
     email: '',
     password: '',
@@ -44,39 +43,38 @@ class Signin extends Component {
 
   render() {
     const { user, email, password } = this.state;
-    return user ? (
+    return (
+    <Container className="mb-4">
+    {user ? (
       <div>hello{user}</div>
     ) : (
-        <div>
-          <Container>
-            <Row className="justify-content-start">
-              <Col size="md-12" className="center ">
-                {/* FORM HAS ACTION TO SIGNIN route */}
-                <Card>
-                  <Card.Header>
-                    Please Login or Return to the homepage
-                  </Card.Header>
-                  <div className="form-group">
-                    <Card.Body>
-                      <form className="card-body">
-                        <span>
-                          <p> Email Address:</p>
-                          <p className="form-group">
-                            <input
-                              className="form-control"
-                              type="text"
-                              name="email"
-                              value={email}
-                              onChange={this.handleInputChange}
-                            />
-                          </p>
-
-                          <p>Password:</p>
-                          <p>
-                            <input
-                              className="form-control"
-                              type="password"
-                              name="password"
+          <Row className="justify-content-start">
+            <Col size="md-12" className="center ">
+              {/* FORM HAS ACTION TO SIGNIN route */}
+              <Card>
+                <Card.Header>
+                  Please Login or Return to the homepage
+                </Card.Header>
+                <div className="form-group">
+                  <Card.Body>
+                    <form className="card-body">
+                      <span>
+                        <p> Email Address:</p>
+                        <p className="form-group">
+                          <input
+                            className="form-control"
+                            type="text"
+                            name="email"
+                            value={email}
+                            onChange={this.handleInputChange}
+                          />
+                        </p>
+                        <p>Password:</p>
+                        <p>
+                          <input
+                            className="form-control"
+                            type="password"
+                            name="password"
                               value={password}
                               onChange={this.handleInputChange}
                             />
@@ -99,18 +97,13 @@ class Signin extends Component {
                   </div>
                 </Card>
               </Col>
-            </Row>
+            </Row>)
+    }
           </Container>
-        </div >
-      );
-  }
+  )}
 }
-
 Signin.propTypes = {
   signIn: PropTypes.func.isRequired,
-  // history: PropTypes.shape({
-  //   push: PropTypes.func.isRequired,
-  // }).isRequired,
 };
 
 export default withRouter(Signin);
