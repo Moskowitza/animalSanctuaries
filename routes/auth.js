@@ -102,11 +102,8 @@ module.exports = function (app) {
     });
     Promise.all([myComments])
       .then(result => {
-        console.log('#######################################');
-        console.log('#######################################');
         console.log(`########${JSON.stringify(result[0])}`);
         res.json(result[0]);
-        // console.log("########" + result[0].Posts)
       })
       .catch(error => res.json(error));
   });

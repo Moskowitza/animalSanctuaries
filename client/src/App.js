@@ -16,7 +16,6 @@ import API from './utils/API';
 class App extends Component {
   state = {
     user:null
-//user: {email: "toki@toki.com", firstname: "toki", lastname: "toki", userId: 4}
   };
  componentDidMount(){
   const user = localStorage.getItem('user');

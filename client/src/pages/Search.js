@@ -86,7 +86,7 @@ class Search extends Component {
           </Col>
         </Row>
         <Row>
-          <Col md={{ span: 3, offset: 6 }} style={{ margin: '10px' }}>
+          <Col md={{ span: 12, offset: 6 }} style={{ margin: '10px' }}>
             <SearchForm
               className="form-control"
               handleInputChange={this.handleInputChange}
