@@ -19,15 +19,17 @@ class App extends Component {
 //user: {email: "toki@toki.com", firstname: "toki", lastname: "toki", userId: 4}
   };
 
-  signIn = (email, password) => {
-    API.loginUser({
-      email,
-      password,
-    })
-      .then(res => {
-        this.setState({ user: res.data });
+  signIn = async (email, password) => {
+    try{
+      const user = await API.loginUser({
+        email,
+        password,
       })
-      .catch(err => console.log(err));
+      const {data} = user;
+      this.setState({ user: data });
+      return data
+    }
+      catch(err) {console.log(err)};
   };
 
   logOut = () => {

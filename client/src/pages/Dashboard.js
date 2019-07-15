@@ -20,13 +20,13 @@ class Dashboard extends Component {
     sanctuaries: [],
   };
 
-  componentDidMount() {
+  async componentDidMount() {
     const { user } = this.props;
     console.log(user)
     // this.getUser();
-    user && this.getSavedSanctuaries()
+    user && await this.getSavedSanctuaries()
   //  user && this.getSavedSanctuaries({ userId: user.userId });
-   user && this.getMyComments({ userId: user.userId });
+   user && await this.getMyComments({ userId: user.userId });
   }
 
 

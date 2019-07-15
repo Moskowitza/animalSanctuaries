@@ -26,15 +26,20 @@ class Signin extends Component {
     });
   };
 
-  handleFormSubmit = event => {
+   handleFormSubmit =  async (event)  => {
+   try{
     const { email, password } = this.state;
-    const { signIn } = this.props;
+    const { signIn, history } = this.props;
     event.preventDefault();
     if (email && password) {
-      signIn(email, password);
-      this.props.history.push('/dashboard');
+      const thisUser =  await signIn(email, password);
+      console.log(`logged in ${JSON.stringify(thisUser)}`)
+      history.push('/dashboard')
     }
-
+   } 
+   catch(err){
+     console.log(err)
+   }
   };
 
   render() {
