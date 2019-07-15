@@ -63,7 +63,6 @@ class Search extends Component {
       sanctuary =>
         sanctuary.name.toLowerCase().indexOf(search.toLowerCase()) !== -1
     );
-
     return (
       <Container className="mb-4">
         <Row>
