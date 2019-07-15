@@ -29,8 +29,8 @@ class Dashboard extends Component {
   componentDidUpdate() {
     const { user } = this.props;
     const { sanctuaries, usercomments } = this.state;
-    if (user && !sanctuaries) this.getSavedSanctuaries();
-    if (user && !usercomments) this.getMyComments();
+    if (user && !sanctuaries[0]) this.getSavedSanctuaries();
+    if (user && !usercomments[0]) this.getMyComments();
   }
   getSavedSanctuaries = () => {
     // event.preventDefault();
@@ -45,7 +45,7 @@ class Dashboard extends Component {
         });
       } else {
         this.setState({
-          sanctuaries: null,
+          sanctuaries: [],
         });
       }
     });
@@ -59,8 +59,11 @@ class Dashboard extends Component {
       if (res.data.length) {
         this.setState({
           usercomments: res.data,
+        })
+      }else {
+        this.setState({
+          usercomments: [],
         });
-      }
     });
   };
 
