@@ -56,8 +56,7 @@ class Signup extends Component {
   render() {
     const { email, firstname, lastname, username, password } = this.state;
     return (
-      <div>
-        <Container>
+        <Container className="mb-4">
           <Card>
             <Card.Header>
               <h3>Sign up for an account</h3>
@@ -133,18 +132,12 @@ class Signup extends Component {
                         Cancel
                           </Link>
                     </p>
-
-
-
                   </Col>
                 </Row>
               </Form>
             </Card.Body>
           </Card>
-          {/* </Col>
-          </Row > */}
         </Container >
-      </div >
     );
   }
 }

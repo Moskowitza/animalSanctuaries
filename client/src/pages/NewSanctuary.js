@@ -6,7 +6,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import API from '../utils/API';
-import Form from 'react-bootstrap/Form'
+import Form from 'react-bootstrap/Form';
 
 // Switch this to REGISTER and create a seperate LOGIN
 class NewSanctuary extends Component {
@@ -56,94 +56,90 @@ class NewSanctuary extends Component {
     const { user } = this.props;
     return (
       <React.Fragment>
-        {user ? (
-          <Container>
-            <Row className="justify-content-center">
-              <Col size="md-12">
-                <div className="card w-50 ">
-                  {/* FORM HAS ACTION TO SIGNUP route */}
-                  <form action="/auth/newSanctuary">
-                    <div className="card-header">Register a New Sanctuary</div>
-                    <span className="card-body">
-                      <p>
-                        <label htmlFor="name">
-                          Name
-                          <input
-                            className="form-control"
-                            id="name"
-                            type="text"
-                            name="name"
-                            value={name}
-                            onChange={this.handleInputChange}
-                          />
-                        </label>
-                      </p>
-                      <p>
-                        <label htmlFor="imageLink">
-                          Image Link
-                          <input
-                            id="imageLink"
-                            className="form-control"
-                            type="text"
-                            name="image"
-                            value={image}
-                            onChange={this.handleInputChange}
-                          />
-                        </label>
-                      </p>
-                      <p>
-                        <label htmlFor="state">
-                          State
-                          <input
-                            id="state"
-                            className="form-control"
-                            type="text"
-                            name="state"
-                            value={state}
-                            onChange={this.handleInputChange}
-                          />
-                        </label>
-                      </p>
+        {user
+          ? <Container>
+              <Row className="justify-content-center">
+                <Col size="md-12">
+                  <div className="card w-50 ">
+                    {/* FORM HAS ACTION TO SIGNUP route */}
+                    <form action="/auth/newSanctuary">
+                      <div className="card-header">
+                        Register a New Sanctuary
+                      </div>
+                      <span className="card-body">
+                        <p>
+                          <label htmlFor="name">
+                            Name
+                            <input
+                              className="form-control"
+                              id="name"
+                              type="text"
+                              name="name"
+                              value={name}
+                              onChange={this.handleInputChange}
+                            />
+                          </label>
+                        </p>
+                        <p>
+                          <label htmlFor="imageLink">
+                            Image Link
+                            <input
+                              id="imageLink"
+                              className="form-control"
+                              type="text"
+                              name="image"
+                              value={image}
+                              onChange={this.handleInputChange}
+                            />
+                          </label>
+                        </p>
+                        <p>
+                          <label htmlFor="state">
+                            State
+                            <input
+                              id="state"
+                              className="form-control"
+                              type="text"
+                              name="state"
+                              value={state}
+                              onChange={this.handleInputChange}
+                            />
+                          </label>
+                        </p>
 
-                      <Link
-                        className="btn btn-info"
-                        onClick={this.handleFormSubmit}
-                        to="/auth/newSanctuary"
-                      >
-                        Add New Sanctuary
-                      </Link>
-                      <Link className="btn" to="/">
-                        Cancel
-                      </Link>
-                    </span>
-                  </form>
-                </div>
-              </Col>
-            </Row>
-          </Container>
-        ) : (
-            <Container>
+                        <Link
+                          className="btn btn-info"
+                          onClick={this.handleFormSubmit}
+                          to="/auth/newSanctuary"
+                        >
+                          Add New Sanctuary
+                        </Link>
+                        <Link className="btn" to="/">
+                          Cancel
+                        </Link>
+                      </span>
+                    </form>
+                  </div>
+                </Col>
+              </Row>
+            </Container>
+          : <Container>
               <Row className="justify-content-center">
                 <Col size="md-12">
                   <div className="card ">Login to create a Sanctuary</div>
                 </Col>
               </Row>
-            </Container>
-          )}
+            </Container>}
       </React.Fragment>
     );
   }
 }
 NewSanctuary.propTypes = {
   user: PropTypes.shape({
-    email:
-      PropTypes.string,
-    firstname:
-      PropTypes.string,
-    lastname:
-      PropTypes.string,
-    userId:
-      PropTypes.number,
+    email: PropTypes.string,
+    firstname: PropTypes.string,
+    lastname: PropTypes.string,
+    userId: PropTypes.number,
   }),
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,

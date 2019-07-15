@@ -61,97 +61,96 @@ class Signup extends Component {
 
   render() {
     return (
-
-        <Container className="mb-4">
-          <Row className="justify-content-center">
-            <Col size="md-12">
-              <div className="card w-50 h-50">
-                <div className="card-header text-center">
-                  <p>Follow your favorite Animal Sanctuary!</p>
-                  <p>Sign up for an account</p>
-                </div>
-                {/* FORM HAS ACTION TO SIGNUP route */}
-
-                <form className="text-center" action="/sigup">
-                  <div className="form-group">
-                    <div className="card-body text-left">
-                      <span>
-                        <label>Email Address:</label>
-                        <p>
-                          <input
-                            type="text"
-                            className="form-control"
-                            name="email"
-                            value={this.state.email}
-                            onChange={this.handleInputChange}
-                          />
-                        </p>
-
-                        <label> First Name:</label>
-                        <p>
-                          <input
-                            type="text"
-                            className="form-control"
-                            name="firstname"
-                            value={this.state.firstname}
-                            onChange={this.handleInputChange}
-                          />
-                        </p>
-
-                        <label>Last Name: </label>
-                        <p>
-                          <input
-                            type="text"
-                            className="form-control"
-                            name="lastname"
-                            value={this.state.lastname}
-                            onChange={this.handleInputChange}
-                          />
-                        </p>
-
-                        <label>Username: </label>
-                        <p>
-                          <input
-                            type="text"
-                            className="form-control"
-                            name="username"
-                            value={this.state.username}
-                            onChange={this.handleInputChange}
-                          />
-                        </p>
-
-                        <label> Password: </label>
-                        <p>
-                          <input
-                            type="password"
-                            className="form-control"
-                            name="password"
-                            value={this.state.password}
-                            onChange={this.handleInputChange}
-                          />
-                        </p>
-
-                        <p className="align-items-end">
-                          <Link
-                            className="btn btn-info"
-                            onClick={this.handleFormSubmit}
-                            to="/dashboard"
-                          >
-                            Submit
-                          </Link>
-                          &nbsp;
-                          <Link className="btn" to="/">
-                            Cancel
-                          </Link>
-                        </p>
-                      </span>
-                    </div>
-                  </div>
-                </form>
+      <Container className="mb-4">
+        <Row className="justify-content-center">
+          <Col size="md-12">
+            <div className="card w-50 h-50">
+              <div className="card-header text-center">
+                <p>Follow your favorite Animal Sanctuary!</p>
+                <p>Sign up for an account</p>
               </div>
-            </Col>
-          </Row>
-        </Container>
+              {/* FORM HAS ACTION TO SIGNUP route */}
+
+              <form className="text-center" action="/sigup">
+                <div className="form-group">
+                  <div className="card-body text-left">
+                    <span>
+                      <label>Email Address:</label>
+                      <p>
+                        <input
+                          type="text"
+                          className="form-control"
+                          name="email"
+                          value={this.state.email}
+                          onChange={this.handleInputChange}
+                        />
+                      </p>
+
+                      <label> First Name:</label>
+                      <p>
+                        <input
+                          type="text"
+                          className="form-control"
+                          name="firstname"
+                          value={this.state.firstname}
+                          onChange={this.handleInputChange}
+                        />
+                      </p>
+
+                      <label>Last Name: </label>
+                      <p>
+                        <input
+                          type="text"
+                          className="form-control"
+                          name="lastname"
+                          value={this.state.lastname}
+                          onChange={this.handleInputChange}
+                        />
+                      </p>
+
+                      <label>Username: </label>
+                      <p>
+                        <input
+                          type="text"
+                          className="form-control"
+                          name="username"
+                          value={this.state.username}
+                          onChange={this.handleInputChange}
+                        />
+                      </p>
+
+                      <label> Password: </label>
+                      <p>
+                        <input
+                          type="password"
+                          className="form-control"
+                          name="password"
+                          value={this.state.password}
+                          onChange={this.handleInputChange}
+                        />
+                      </p>
+
+                      <p className="align-items-end">
+                        <Link
+                          className="btn btn-info"
+                          onClick={this.handleFormSubmit}
+                          to="/dashboard"
+                        >
+                          Submit
+                        </Link>
+                        &nbsp;
+                        <Link className="btn" to="/">
+                          Cancel
+                        </Link>
+                      </p>
+                    </span>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </Col>
+        </Row>
+      </Container>
     );
   }
 }
