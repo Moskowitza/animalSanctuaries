@@ -45,14 +45,14 @@ class Dashboard extends Component {
         });
       } else {
         this.setState({
-          sanctuaries: [],
+          sanctuaries: null,
         });
       }
     });
   };
 
   getMyComments = () => {
-    console.log('getting saved sanctuaries');
+    console.log('getting saved comments');
     const { user } = this.props;
     const data = { userId: user.userId };
     API.getMyComments(data).then(res => {
@@ -62,8 +62,9 @@ class Dashboard extends Component {
         })
       }else {
         this.setState({
-          usercomments: [],
+          usercomments: null,
         });
+      }
     });
   };
 
