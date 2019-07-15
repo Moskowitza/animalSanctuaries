@@ -7,14 +7,12 @@ import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card';
 import { Link } from 'react-router-dom';
 
-const SavedSanctuaries = ({ key, logo, name, sanId }) => (
-    <Card key={key}>
-    <Card.Header>
-      <Accordion.Toggle as={Card.Header} eventKey={key}>
-        {name}
+const SavedSanctuaries = ({ key, logo, name, sanId, index }) => (
+    <Card>
+      <Accordion.Toggle as={Card.Header} eventKey={index}>
+      <Card.Header> {name} </Card.Header>
       </Accordion.Toggle>
-    </Card.Header>
-    <Accordion.Collapse eventKey={key}>
+    <Accordion.Collapse eventKey={index}>
       <Card.Body> 
       <Card.Img variant="top" alt="sanctuary" src={logo} className="img-fluid" />
       <Link to={`/sanctuary/${sanId}`}>

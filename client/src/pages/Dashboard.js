@@ -15,38 +15,52 @@ import SavedComments from '../components/SavedComments';
 
 class Dashboard extends Component {
   state = {
-    usercomments: [],
-    sanctuaries: [],
+    usercomments: null,
+    sanctuaries: null,
   };
 
-  async componentDidMount() {
+  componentDidMount() {
     const { user } = this.props;
     console.log(user);
-    // this.getUser();
-    user && (await this.getSavedSanctuaries());
-    //  user && this.getSavedSanctuaries({ userId: user.userId });
-    user && (await this.getMyComments({ userId: user.userId }));
+    user && this.getSavedSanctuaries();
+    user && this.getMyComments();
   }
 
+  componentDidUpdate() {
+    const { user } = this.props;
+    const { sanctuaries, usercomments } = this.state;
+    if (user && !sanctuaries) this.getSavedSanctuaries();
+    if (user && !usercomments) this.getMyComments();
+  }
   getSavedSanctuaries = () => {
     // event.preventDefault();
+    console.log('getting saved sanctuaries');
     const { user } = this.props;
     const data = { userId: user.userId };
     API.getSavedSanctuaries(data).then(res => {
-      // console.log("my loaded Sanctuaries" + JSON.stringify(res.data))
-      this.setState({
-        sanctuaries: res.data,
-      });
+      console.log(res.data)
+      if (res.data.length) {
+        this.setState({
+          sanctuaries: res.data,
+        });
+      } else {
+        this.setState({
+          sanctuaries: null,
+        });
+      }
     });
   };
 
-  getMyComments = data => {
-    // event.preventDefault();
+  getMyComments = () => {
+    console.log('getting saved sanctuaries');
+    const { user } = this.props;
+    const data = { userId: user.userId };
     API.getMyComments(data).then(res => {
-      console.log(`mycomments ${JSON.stringify(res.data)}`);
-      this.setState({
-        usercomments: res.data,
-      });
+      if (res.data.length) {
+        this.setState({
+          usercomments: res.data,
+        });
+      }
     });
   };
 
@@ -64,6 +78,7 @@ class Dashboard extends Component {
   render() {
     const { user } = this.props;
     const { usercomments, sanctuaries } = this.state;
+
     return (
       <Container className="mb-4">
         {user
@@ -96,21 +111,22 @@ class Dashboard extends Component {
                 <Col size="md-6">
                   <h3>My Sanctuaries</h3>
                   <Accordion>
-                    {sanctuaries.map(sanctuary =>
+                    {sanctuaries ? sanctuaries.map((sanctuary, index) =>
                       <SavedSanctuaries
                         id={sanctuary.sanId}
                         key={sanctuary.sanId}
                         logo={sanctuary.image}
                         name={sanctuary.name}
                         state={sanctuary.state}
+                        index={index}
                         sanId={sanctuary.sanId}
                       />
-                    )}
+                    ) : <>No saved Sanctiaries</>}
                   </Accordion>
                 </Col>
                 <Col size="md-6">
                   <h3>My Comments</h3>
-                  {usercomments.map(obj =>
+                  {usercomments ?  usercomments.map(obj =>
                     <SavedComments
                       key={obj.postId}
                       sanctuary={obj.Sanctuary.name}
@@ -118,7 +134,7 @@ class Dashboard extends Component {
                       deleteComment={() =>
                         this.deleteComment({ postId: obj.postId })}
                     />
-                  )}
+                  ): <> No saved comments </>}
                 </Col>
               </Row>
             </React.Fragment>
