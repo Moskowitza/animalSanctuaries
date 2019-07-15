@@ -14,75 +14,22 @@ import SavedSanctuaries from '../components/SavedSanctuaries/SavedSanctuaries';
 import SavedComments from '../components/SavedComments';
 
 class Dashboard extends Component {
-  state = {
-    usercomments: null,
-    sanctuaries: null,
-  };
 
   componentDidMount() {
-    const { user } = this.props;
+    const { user, getSavedSanctuaries, getMyComments } = this.props;
     console.log(user);
-    user && this.getSavedSanctuaries();
-    user && this.getMyComments();
+    user && getSavedSanctuaries();
+    user && getMyComments();
   }
-
-  componentDidUpdate() {
-    const { user } = this.props;
-    const { sanctuaries, usercomments } = this.state;
-    if (user && !sanctuaries[0]) this.getSavedSanctuaries();
-    if (user && !usercomments[0]) this.getMyComments();
-  }
-  getSavedSanctuaries = () => {
-    // event.preventDefault();
-    console.log('getting saved sanctuaries');
-    const { user } = this.props;
-    const data = { userId: user.userId };
-    API.getSavedSanctuaries(data).then(res => {
-      console.log(res.data)
-      if (res.data.length) {
-        this.setState({
-          sanctuaries: res.data,
-        });
-      } else {
-        this.setState({
-          sanctuaries: null,
-        });
-      }
-    });
-  };
-
-  getMyComments = () => {
-    console.log('getting saved comments');
-    const { user } = this.props;
-    const data = { userId: user.userId };
-    API.getMyComments(data).then(res => {
-      if (res.data.length) {
-        this.setState({
-          usercomments: res.data,
-        })
-      }else {
-        this.setState({
-          usercomments: null,
-        });
-      }
-    });
-  };
-
-  deleteComment = data => {
-    const { user } = this.props;
-    API.deleteComment({
-      postId: data.postId,
-    })
-      .then(res => {
-        console.log(`Deleted ${res}`);
-      })
-      .then(this.getMyComments({ userId: user.userId }));
-  };
+  // componentDidUpdate(){
+  //   const { user, getSavedSanctuaries, getMyComments } = this.props;
+  //   console.log(user);
+  //   user && getSavedSanctuaries();
+  //   user && getMyComments();
+  // }
 
   render() {
-    const { user } = this.props;
-    const { usercomments, sanctuaries } = this.state;
-
+    const { user, usercomments, sanctuaries, deleteComment  } = this.props;
     return (
       <Container className="mb-4">
         {user
@@ -114,8 +61,10 @@ class Dashboard extends Component {
               <Row>
                 <Col size="md-6">
                   <h3>My Sanctuaries</h3>
-                  <Accordion>
-                    {sanctuaries ? sanctuaries.map((sanctuary, index) =>
+                 
+                    {sanctuaries ? (
+                      <Accordion>
+                     {sanctuaries.map((sanctuary, index) =>
                       <SavedSanctuaries
                         id={sanctuary.sanId}
                         key={sanctuary.sanId}
@@ -124,9 +73,11 @@ class Dashboard extends Component {
                         state={sanctuary.state}
                         index={index}
                         sanId={sanctuary.sanId}
-                      />
-                    ) : <>No saved Sanctiaries</>}
-                  </Accordion>
+                      />)
+                      } 
+                    </Accordion>): 
+                    <Card><Card.Header>No saved Sanctiaries</Card.Header></Card> }
+                  
                 </Col>
                 <Col size="md-6">
                   <h3>My Comments</h3>
@@ -136,9 +87,9 @@ class Dashboard extends Component {
                       sanctuary={obj.Sanctuary.name}
                       comment={obj.comment}
                       deleteComment={() =>
-                        this.deleteComment({ postId: obj.postId })}
+                        deleteComment({ postId: obj.postId })}
                     />
-                  ): <> No saved comments </>}
+                  ): <Card> <Card.Header>No saved comments </Card.Header></Card>}
                 </Col>
               </Row>
             </React.Fragment>

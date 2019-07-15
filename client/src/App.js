@@ -15,26 +15,32 @@ import API from './utils/API';
 
 class App extends Component {
   state = {
-    user:null
+    user: null,
+    usercomments: null,
+    sanctuaries: null,
   };
- componentDidMount(){
-  const user = localStorage.getItem('user');
-  user && this.setState({ user: JSON.parse(user)});
- }
+  async componentDidMount() {
+    const user = localStorage.getItem('user');
+    user && await this.setState({ user: JSON.parse(user) });
+    this.getSavedSanctuaries();
+    this.getMyComments();
+  }
   signIn = async (email, password) => {
-    try{
+    try {
       const user = await API.loginUser({
         email,
         password,
-      })
-      const {data} = user;
+      });
+      const { data } = user;
       this.setState({ user: data });
       localStorage.setItem('user', JSON.stringify(data));
-      return data
+      this.getSavedSanctuaries();
+      this.getMyComments();
+      return data;
+    } catch (err) {
+      console.log(err);
     }
-      catch(err) {console.log(err)};
   };
-
   logOut = () => {
     localStorage.removeItem('user');
     API.logoutUser()
@@ -45,8 +51,52 @@ class App extends Component {
       .catch(err => console.log(err));
   };
 
-  render() {
+  getSavedSanctuaries = () => {
+    // event.preventDefault();
+    console.log('getting saved sanctuaries');
     const { user } = this.state;
+    const data = { userId: user.userId };
+    API.getSavedSanctuaries(data).then(res => {
+      console.log(res.data)
+      if (res.data) {
+        this.setState({
+          sanctuaries: res.data,
+        });
+      } else {
+        this.setState({
+          sanctuaries: null,
+        });
+      }
+    });
+  };
+  getMyComments = () => {
+    console.log('getting saved comments');
+    const { user } = this.state;
+    const data = { userId: user.userId };
+    API.getMyComments(data).then(res => {
+      if (res.data) {
+        this.setState({
+          usercomments: res.data,
+        })
+      }else {
+        this.setState({
+          usercomments: null,
+        });
+      }
+    });
+  };
+
+  deleteComment = data => {
+    const { user } = this.state;
+    API.deleteComment({
+      postId: data.postId,
+    })
+      .then(this.getMyComments({ userId: user.userId }))
+      .catch(err=>console.error(err))
+  };
+
+  render() {
+    const { user, usercomments, sanctuaries } = this.state;
     return (
       <Router>
         <React.Fragment>
@@ -62,31 +112,38 @@ class App extends Component {
             path="/about"
             render={props => <About {...props} user={user} />}
           />
-          <Route 
-            exact 
-            path="/dashboard" 
-            render={props => (<Dashboard {...props} user={user} />)}
+          <Route
+            exact
+            path="/dashboard"
+            render={props => <Dashboard {...props} 
+            getSavedSanctuaries={this.getSavedSanctuaries}
+            getMyComments={this.getMyComments}
+            deleteComment={this.deleteComment}
+            usercomments={usercomments}
+            sanctuaries={sanctuaries}
+            user={user} />}
           />
-          <Route 
-            exact 
-            path="/search" 
+          <Route
+            exact
+            path="/search"
             render={props => <Search {...props} user={user} />}
           />
           <Route
             exact
             path="/signin"
-            render={props => (<Signin {...props} user={user} signIn={this.signIn} />)}
+            render={props =>
+              <Signin {...props} user={user} signIn={this.signIn} />}
           />
           <Route
             exact
             path="/signup"
-
-            render={props => <Signup {...props} user={user} signIn={this.signIn} />}
+            render={props =>
+              <Signup {...props} user={user} signIn={this.signIn} />}
           />
-          <Route 
-            exact 
-            path="/sanctuary/:id" 
-            render={props => <SanctuaryProfile {...props} user={user}  />}
+          <Route
+            exact
+            path="/sanctuary/:id"
+            render={props => <SanctuaryProfile {...props} user={user} />}
           />
           <Route
             exact
