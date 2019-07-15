@@ -51,55 +51,65 @@ class NewSanctuary extends Component {
     if (user) {
       return (
         <Container className="mb-4">
-         <Row className="justify-content-center">
-         <Col>
-           <Card>
-              <Card.Header>Register a New Sanctuary</Card.Header>
-              <Card.Body>
+          <Row className="justify-content-center">
+            <Col>
+              <Card>
+                <Card.Header>Register a New Sanctuary</Card.Header>
+                <Card.Body>
                   <Form>
-                  <Form.Row>
-                    <Form.Group as={Col} controlId="newName">
-                      <Form.Label>Name</Form.Label>
-                      <Form.Control
-                        type="text"
-                        name="newName"
-                        value={newName}
-                        onChange={this.handleInputChange}
-                      />
-                    </Form.Group>
-                    <Form.Group as={Col} controlId="imgLink">
-                      <Form.Label>Image Link</Form.Label>
-                      <Form.Control
-                        type="text"
-                        name="imgLink"
-                        value={imgLink}
-                        onChange={this.handleInputChange}
-                      />
-                    </Form.Group>
-                    <Form.Group as={Col} controlId="newState">
-                      <Form.Label>State</Form.Label>
-                      <Form.Control
-                        type="text"
-                        name="newState"
-                        value={newState}
-                        onChange={this.handleInputChange}
-                      />
-                    </Form.Group>
-                    </Form.Row>
-                    </Form>
-                    <Button variant="primary" onClick={this.handleFormSubmit}>
-                      Add New Sanctuary
-                    </Button>
-
-                    <Link className="btn" to="/">
-                      <Button variant="Danger">Cancel</Button>
-                    </Link>
                     
+                      <Form.Group as={Row} controlId="newName">
+                        <Form.Label column sm="2">
+                          Name
+                        </Form.Label>
+                        <Col sm="10">
+                          <Form.Control
+                            type="text"
+                            name="newName"
+                            value={newName}
+                            onChange={this.handleInputChange}
+                          />
+                        </Col>
+                      </Form.Group>
+                      <Form.Group as={Row} controlId="imgLink">
+                        <Form.Label column sm="2">
+                          Image Link
+                        </Form.Label>
+                        <Col sm="10">
+                          <Form.Control
+                            type="text"
+                            name="imgLink"
+                            value={imgLink}
+                            onChange={this.handleInputChange}
+                          />
+                        </Col>
+                      </Form.Group>
+                      <Form.Group as={Row} controlId="newState">
+                        <Form.Label column sm="2">
+                          State
+                        </Form.Label>
+                        <Col sm="10">
+                          <Form.Control
+                            type="text"
+                            name="newState"
+                            value={newState}
+                            onChange={this.handleInputChange}
+                          />
+                        </Col>
+                      </Form.Group>
                 
-              </Card.Body> 
-            </Card>
+                  </Form>
+                  <Button variant="primary" onClick={this.handleFormSubmit}>
+                    Add New Sanctuary
+                  </Button>
+
+                  <Link className="btn" to="/">
+                    <Button variant="Danger">Cancel</Button>
+                  </Link>
+                </Card.Body>
+              </Card>
             </Col>
-          </Row> 
+          </Row>
         </Container>
       );
     } else {
